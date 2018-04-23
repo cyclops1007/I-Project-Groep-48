@@ -2,3 +2,7 @@
     margin: auto;
 }
 
+.page-footer{
+    postion: absolute;
+    bottom: 0;
+}
