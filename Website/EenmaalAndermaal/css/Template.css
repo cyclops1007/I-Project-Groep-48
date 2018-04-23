@@ -1,0 +1,49 @@
+html, body {
+    height: 100%;
+}
+
+nav {
+    background-color: #5f4b8b;
+}
+
+.navbar-nav > li > .dropdown-menu a:hover {
+    background-color: #AFA5C5;
+    color: white;
+}
+
+button a:hover {
+    color: black;
+}
+
+#text-container {
+    white-space:normal;
+    margin-right: 1%;
+    margin-top: 2.5%;
+    background-color: #424A51;
+}
+
+#Breadcrumb {
+    font-size: 12px;
+    background-color: #AFA5C5;
+}
+.breadcrumb >.active> a {
+    color: #28262D;
+}
+
+.breadcrumb {
+    padding: 2px 15px !important;
+}
+
+footer {
+    position: absolute;
+    width: 98%;
+    bottom: 0;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover  {
+    color: white;
+}
