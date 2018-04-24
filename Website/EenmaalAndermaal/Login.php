@@ -13,17 +13,19 @@ include 'Template.php';
 <body>
 <div id="login-container" class="container w-50 rounded ">
     <h1>Login</h1>
-    </br>
+    <br>
     <form action="welcome.php" method="post">
         <div class="form-group">
             <label>Gebruikersnaam:</label>
-                <input class="form-control" type="text" name="name"><br>
+                <input class="form-control" type="text" name="username"><br>
             <label>Wachtwoord:</label>
-                <input class="form-control" type="text" name="email"><br>
+                <input class="form-control" type="text" name="password"><br>
         </div>
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Login</button>
     </form>
+    <br>
+    <p>Nog geen account? Klik <a href="Registreer.php">HIER</a> om te registreren!</p>
 </div>
-</div>
+<?php include 'Footer.php'?>
 </body>
 </html>

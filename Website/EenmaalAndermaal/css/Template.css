@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    padding-bottom: 70px;
 }
 
 nav {
@@ -35,9 +36,8 @@ button a:hover {
 }
 
 footer {
-    position: absolute;
-    width: 98%;
-    bottom: 0;
+    position: relative;
+    width: 100%;
 }
 
 footer a {
