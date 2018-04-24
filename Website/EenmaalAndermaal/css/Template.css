@@ -17,9 +17,11 @@ button a:hover {
 
 #text-container {
     white-space:normal;
-    margin-right: 1%;
-    margin-top: 2.5%;
     background-color: #424A51;
+}
+
+.col-md-6{
+    padding:0;
 }
 
 #Breadcrumb {
@@ -32,6 +34,15 @@ button a:hover {
 
 .breadcrumb {
     padding: 2px 15px !important;
+}
+
+.carousel-inner img {
+    margin: auto;
+    display: block;
+    height: auto;
+    max-width: 100%;
+    line-height: 1;
+    width: 100%;
 }
 
 footer {

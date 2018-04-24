@@ -53,9 +53,10 @@
         </ul>
         <nav aria-label="breadcrumb">
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder=". . ." aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Iets zoeken" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Zoek</button>
         </form>
+        </nav>
     </div>
 </nav>
 <nav class="...">
