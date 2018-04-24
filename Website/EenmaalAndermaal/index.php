@@ -116,11 +116,13 @@
             <h1>Over ons</h1>
         <img width="290" height="220" src="image/Geekcrew.jpg" class="float-right"" />
 
-        <p>EenmaalAndermaal is een veilingsite van iConcepts die kopers en verkopers samenbrengt om prettig en veilig te handelen.
-            Iedereen kan een advertentie plaatsen of producten verkopen. Het enige wat je nodig hebt is een email adres
-            en een paar minuten van je tijd. Deze website was opgericht in 2018 door een team van getraumatiseerde studenten.
-            Wij hopen u hierbij veel koop plezier te leveren.</p>
-
+        <p>EenmaalAndermaal is een initiatief geïntroduceerd door iConcepts.
+            iConcepts is een bedrijf dat veel waarde hecht aan betrouwbaarheid en duurzaamheid.
+            Vandaar dat zij met een groep gemotiveerde studenten aan tafel zijn gaan zitten om deze site te realiseren.
+            EenmaalAndermaal is een plek waar je veilig, snel en eenvoudig spullen kunt kopen en verkopen!
+            Het doel hiervan is om gebruikte producten een tweede leven te geven, in deze toch zware tijden.
+            Weggooien is zonde en op deze manier kan iedereen profiteren.
+            Dus wacht niet langer, meld je aan, of begin meteen met winkelen!</p>
     </div>
 </div>
 <?php include 'Footer.php'?>
