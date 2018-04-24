@@ -1,12 +1,19 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Emerson
+ * Date: 24-4-2018
+ * Time: 11:15
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Normal CSS -->
-    <link rel="stylesheet" type="text/css" href="css/Template.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
@@ -72,48 +79,52 @@
 
 <div class="row">
     <div class="col-md-6">
-<div id="demo" class="carousel slide" data-ride="carousel" style="width: 600px; margin: 0 auto">
+        <div id="demo" class="carousel slide" data-ride="carousel" style="width: 600px; margin: 0 auto">
 
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
 
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="image/la.jpg" alt="Los Angeles">
-        </div>
-        <div class="carousel-item">
-            <img src="image/chicago.jpg" alt="Chicago">
-        </div>
-        <div class="carousel-item">
-            <img src="image/ny.jpg" alt="New York">
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="image/la.jpg" alt="Los Angeles">
+                </div>
+                <div class="carousel-item">
+                    <img src="image/chicago.jpg" alt="Chicago">
+                </div>
+                <div class="carousel-item">
+                    <img src="image/ny.jpg" alt="New York">
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
         </div>
     </div>
 
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
-</div>
+
+    <div id="text-container" class="container w-50 h-50 rounded">
+            <h1>Over ons</h1>
+        <img width="290" height="220" src="image/Geekcrew.jpg" class="float-right"" />
+
+        <p>EenmaalAndermaal is een veilingsite van iConcepts die kopers en verkopers samenbrengt om prettig en veilig te handelen.
+            Iedereen kan een advertentie plaatsen of producten verkopen. Het enige wat je nodig hebt is een email adres
+            en een paar minuten van je tijd. Deze website was opgericht in 2018 door een team van getraumatiseerde studenten.
+            Wij hopen u hierbij veel koop plezier te leveren.</p>
+
     </div>
-
-<div id="text-container" class="container w-50 h-50 rounded">
-    <img src="image/Geekcrew.jpg" alt="Development team" width=40%>
-    <h1>Over ons</h1>
-
-    <p>EenmaalAndermaal is een veilingsite van iConcepts die kopers en verkopers samenbrengt om prettig en veilig te handelen.
-    Iedereen kan een advertentie plaatsen of producten verkopen. Het enige wat je nodig hebt is een email adres
-    en een paar minuten van je tijd. Deze website was opgericht in 2018 door een team van getraumatiseerde studenten.
-        Wij hopen u hierbij veel koop plezier te leveren.</p>
-</div>
 </div>
 <?php include 'Footer.php'?>
+
 </body>
 </html>
+

@@ -1,3 +1,60 @@
+html, body {
+    height: 100%;
+    padding-bottom: 70px;
+}
+
+nav {
+    background-color: #5f4b8b;
+}
+
+.navbar-nav > li > .dropdown-menu a:hover {
+    background-color: #AFA5C5;
+    color: white;
+}
+
+button a:hover {
+    color: black;
+}
+
+#text-container {
+    white-space:normal;
+    background-color: #424A51;
+}
+
+.col-md-6{
+    padding:0;
+}
+
+#Breadcrumb {
+    font-size: 12px;
+    background-color: #AFA5C5;
+}
+.breadcrumb >.active> a {
+    color: #28262D;
+}
+
+.breadcrumb {
+    padding: 2px 15px !important;
+}
+
 .carousel-inner img {
     margin: auto;
+    display: block;
+    height: auto;
+    max-width: 100%;
+    line-height: 1;
+    width: 100%;
+}
+
+footer {
+    position: relative;
+    width: 100%;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover  {
+    color: white;
 }
