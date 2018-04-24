@@ -26,6 +26,6 @@ include 'Template.php';
     <br>
     <p>Nog geen account? Klik <a href="Registreer.php">HIER</a> om te registreren!</p>
 </div>
-<?php include 'Footer.php'?>
+<?php include 'Footer.php';?>
 </body>
 </html>
