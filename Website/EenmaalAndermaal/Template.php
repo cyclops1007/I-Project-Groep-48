@@ -24,38 +24,51 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <body class="text-white bg-dark">
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
-    <img src="../images/???.png">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
+                <a class="navbar-brand" href="#">EenmaalAndermaal <span class="sr-only">(current)</span></a>
             <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Profiel</a>
+                    <a class="dropdown-item" href="#">Mijn veilingen</a>
+                    <a class="dropdown-item" href="#">Boden</a>
+                    <a class="dropdown-item" href="#">Artikelen</a>
+                    <a class="dropdown-item" href="#">Gevolgde veilingen</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Veilingen
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Overzicht</a>
+                    <a class="dropdown-item" href="#">Nieuwe veiling</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Beheer
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Veilingen</a>
+                    <a class="dropdown-item" href="#">Gebruikers</a>
+                    <a class="dropdown-item" href="#">Prestatie</a>
+                    <a class="dropdown-item" href="#">Batch upload</a>
+                </div>
             </li>
         </ul>
         <nav aria-label="breadcrumb">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Iets zoeken" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Zoek</button>
-        </form>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Iets zoeken" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Zoek</button>
+            </form>
         </nav>
     </div>
 </nav>

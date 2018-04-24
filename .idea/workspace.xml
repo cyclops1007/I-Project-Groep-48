@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="571101c1-2836-4116-ae11-8d0e8d9d47e1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Website/EenmaalAndermaal/index.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Website/EenmaalAndermaal/index.php" afterPath="$PROJECT_DIR$/Website/EenmaalAndermaal/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php" afterPath="$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,11 +26,21 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="116" column="21" lean-forward="true" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
+            <state relative-caret-position="450">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="72" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Template.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="73" column="6" lean-forward="false" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,12 +62,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php" />
         <option value="$PROJECT_DIR$/Website/EenmaalAndermaal/index.html" />
         <option value="$PROJECT_DIR$/Website/EenmaalAndermaal/css/Template.css" />
         <option value="$PROJECT_DIR$/Website/EenmaalAndermaal/Template.html" />
         <option value="$PROJECT_DIR$/Website/EenmaalAndermaal/css/stylesheet.css" />
         <option value="$PROJECT_DIR$/Website/EenmaalAndermaal/index.php" />
+        <option value="$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php" />
       </list>
     </option>
   </component>
@@ -70,7 +78,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -150,26 +158,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.Footer.php">
+  <component name="RunManager" selected="JavaScript Debug.Registreer.php">
     <configuration name="Footer.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/I-Project-Groep-48/Website/EenmaalAndermaal/Footer.php" />
+    <configuration name="Registreer.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/I-Project-Groep-48/Website/EenmaalAndermaal/Registreer.php" />
     <configuration name="Template.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/I-Project-Groep-48/Website/EenmaalAndermaal/Template.html" />
     <configuration name="Template.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/I-Project-Groep-48/Website/EenmaalAndermaal/Template.php" />
-    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/I-Project-Groep-48/Website/EenmaalAndermaal/index.html" />
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Website/EenmaalAndermaal/index.php" />
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.Template.php" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.Template.html" />
-      <item index="3" class="java.lang.String" itemvalue="PHP Script.index.php" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.Footer.php" />
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.Template.php" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.Template.html" />
+      <item index="2" class="java.lang.String" itemvalue="PHP Script.index.php" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.Footer.php" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.Registreer.php" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.Footer.php" />
-        <item index="1" class="java.lang.String" itemvalue="PHP Script.index.php" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.Template.php" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.Template.html" />
-        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.Registreer.php" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.Footer.php" />
+        <item index="2" class="java.lang.String" itemvalue="PHP Script.index.php" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.Template.php" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.Template.html" />
       </list>
     </recent_temporary>
   </component>
@@ -184,15 +192,15 @@
       <option name="presentableId" value="Default" />
       <updated>1524469264138</updated>
       <workItem from="1524469267093" duration="1516000" />
-      <workItem from="1524471178974" duration="26134000" />
+      <workItem from="1524471178974" duration="27281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27650000" />
+    <option name="totallyTimeSpent" value="28797000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -258,14 +266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="53" column="1" lean-forward="false" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -284,10 +284,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="73" column="6" lean-forward="false" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Registreer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="116" column="21" lean-forward="true" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
+        <state relative-caret-position="450">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="72" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
