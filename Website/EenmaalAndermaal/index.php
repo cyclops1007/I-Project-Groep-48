@@ -130,8 +130,9 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
             Weggooien is zonde en op deze manier kan iedereen profiteren.
             Dus wacht niet langer, meld je aan, of begin meteen met winkelen!</p>
     </div>
+
 </div>
-<?php include 'Footer.php'?>
+<?php include 'Footer.php';?>
 
 </body>
 </html>
