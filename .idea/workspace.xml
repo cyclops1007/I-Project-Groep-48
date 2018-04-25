@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="571101c1-2836-4116-ae11-8d0e8d9d47e1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Website/EenmaalAndermaal/Mijn_account.php" afterPath="$PROJECT_DIR$/Website/EenmaalAndermaal/Mijn_account.php" />
-    </list>
+    <list default="true" id="571101c1-2836-4116-ae11-8d0e8d9d47e1" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,11 +31,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Template.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Template.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="550">
               <caret line="27" column="82" lean-forward="false" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mijn_account.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Mijn_account.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1325">
+              <caret line="53" column="60" lean-forward="true" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -193,12 +200,12 @@
       <updated>1524469264138</updated>
       <workItem from="1524469267093" duration="1516000" />
       <workItem from="1524471178974" duration="30107000" />
-      <workItem from="1524647114818" duration="509000" />
+      <workItem from="1524647114818" duration="666000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32132000" />
+    <option name="totallyTimeSpent" value="32289000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -307,18 +314,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Mijn_account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="53" column="69" lean-forward="false" selection-start-line="53" selection-start-column="69" selection-end-line="53" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="27" column="82" lean-forward="false" selection-start-line="27" selection-start-column="82" selection-end-line="27" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Website/EenmaalAndermaal/Mijn_account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1325">
+          <caret line="53" column="60" lean-forward="true" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
           <folding />
         </state>
       </provider>
