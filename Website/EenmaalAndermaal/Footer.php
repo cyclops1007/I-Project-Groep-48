@@ -17,33 +17,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 <body>
-<!--Footer-->
-<div class="navbar navbar-fixed-bottom">
-<footer class="page-footer font-small indigo pt-0">
-    <hr class="rgba-white-light" style="margin: 0 15%;">
-    <!--Grid row-->
-    <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
-        <!--Grid columns-->
+
+<footer class="footer">
+    <div class="container">
+        <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
+
         <div class="col-md-2 mb-3">
-            <h6 class="text-uppercase font-weight-bold">
-                © 2018 Copyright
-            </h6>
+        <span class="text-muted">© 2018 Copyright</span>
         </div>
+
         <div class="col-md-2 mb-3">
-            <h6 class="text-uppercase font-weight-bold">
-                <a href="#!">voorwaarden</a>
-            </h6>
+        <a href="#!">Voorwaarden</a>
         </div>
+
         <div class="col-md-2 mb-3">
-            <h6 class="text-uppercase font-weight-bold">
-                <a href="#!">Contact</a>
-            </h6>
+        <a href="#!">Contact</a>
         </div>
-        <!--Grid columns-->
+        </div>
     </div>
-    <!--Grid row-->
 </footer>
-<!--/Footer-->
-</div>
+
+
+
 </body>
 </html>
