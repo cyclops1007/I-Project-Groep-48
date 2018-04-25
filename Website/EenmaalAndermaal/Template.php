@@ -7,6 +7,7 @@
  */
 // Eventuele includes/ requires.
 // Eventuele sessions/ cookies.
+session_start();
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
 <!DOCTYPE html>
@@ -83,5 +84,9 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
     ?>
 </ol>
 </nav>
+<?php
+echo "<pre>";// zorgt dat 't goed leesbaar is
+    print_r($_SESSION);// laat de hele sessie op dat moment zien
+echo "</pre>";?>
 </body>
 </html>

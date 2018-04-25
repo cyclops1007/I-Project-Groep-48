@@ -12,9 +12,6 @@ if(!isset($_SESSION["change"])){
 }else{
     //$_SESSION["change"] = NULL;
 }
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
