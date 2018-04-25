@@ -1,4 +1,3 @@
-@@ -0,0 +1,78 @@
 <?php
 /**
  * Created by PhpStorm.
@@ -8,10 +7,10 @@
  */
 include 'Template.php';
 $array = ['1', '2' , '3' ];
-if(isset($_SESSION["change"])){
+if(!isset($_SESSION["change"])){
     $_SESSION["change"] = $_POST["Change"];
 }else{
-    $_SESSION["change"] = NULL;
+    //$_SESSION["change"] = NULL;
 }
 echo "<pre>";
 print_r($_SESSION);
@@ -26,7 +25,7 @@ echo "</pre>";
 <div id="container" class="container rounded">
     <h1>Mijn account</h1><br>
     <?php
-    if($_SESSION['change'] == NULL) {
+    if($_SESSION['change'] == NULL || $_SESSION['change'] == 0) {
         echo "<h2>Gebruikersnaam:</h2>";
         echo "<h2>Naam: </h2>";
         echo "<h2>Adres:</h2>" ;
@@ -64,12 +63,12 @@ echo "</pre>";
             </div>
         </form>
     <?php }
-    if(($_SESSION['change'] == NULL)){
+    if(($_SESSION['change'] == NULL || $_SESSION['change'] == 0)){
         ?>
         <br>
         <form action="" method="post">
-            <input type="hidden" name="Change" value="0">
-            <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Change" value="Verander account informatie">
+            <input type="hidden" name="Change" value="1">
+            <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Verander" value="Verander account informatie">
         </form>
         <br>
     <?php } ?>
