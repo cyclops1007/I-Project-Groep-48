@@ -83,6 +83,5 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
     ?>
 </ol>
 </nav>
-
 </body>
 </html>
