@@ -7,6 +7,7 @@
  */
 // Eventuele includes/ requires.
 // Eventuele sessions/ cookies.
+$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,13 +31,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="navbar-brand" href="#">EenmaalAndermaal <span class="sr-only">(current)</span></a>
+                <a class="navbar-brand" href="index.php">EenmaalAndermaal <span class="sr-only">(current)</span></a>
             <li class="nav-item dropdown ">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Profiel</a>
+                    <a class="dropdown-item" href="Login.php">Profiel</a>
                     <a class="dropdown-item" href="#">Mijn veilingen</a>
                     <a class="dropdown-item" href="#">Boden</a>
                     <a class="dropdown-item" href="#">Artikelen</a>
@@ -74,7 +75,12 @@
 </nav>
 <nav class="...">
 <ol id="Breadcrumb" class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page"><a href="#">Home > </a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="#">home</a></li>
+    <?php
+    foreach($crumbs as $crumb){
+        echo ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
+    }
+    ?>
 </ol>
 </nav>
 

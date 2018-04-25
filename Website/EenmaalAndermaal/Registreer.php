@@ -14,7 +14,7 @@ include 'Template.php';
 <div id="login-container" class="container w-50 rounded ">
     <h1>Registreren</h1>
     </br>
-    <form action="welcome.php" method="post">
+    <form action="Home.php" method="post">
         <div class="form-group">
             <label>Voornaam:</label>
             <input class="form-control" type="text" name="firstname"><br>
@@ -36,12 +36,14 @@ include 'Template.php';
                     <option><?php echo $option ?></option>
                 <?php } ?>
             </select><br>
+            <label>Geboortedatum:</label>
+            <input class="form-control" type="text" name="date"><br>
             <label>Mail:</label>
             <input class="form-control" type="text" name="mail"><br>
             <label>Wachtwoord:</label>
-            <input class="form-control" type="text" name="password"><br>
+            <input class="form-control" type="password" name="password"><br>
             <label>Wachtwoord-herhalen:</label>
-            <input class="form-control" type="text" name="password_h"><br>
+            <input class="form-control" type="password" name="password_h"><br>
             <label>Beveiligingsvraag:</label>
             <select class="form-control" name="security_q">
                 <?php foreach ($array as $key){?>
