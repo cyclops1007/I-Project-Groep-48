@@ -17,9 +17,9 @@ include 'Template.php';
     <form action="welcome.php" method="post">
         <div class="form-group">
             <label>Gebruikersnaam:</label>
-                <input class="form-control" type="text" name="username"><br>
+            <input class="form-control" type="text" name="username"><br>
             <label>Wachtwoord:</label>
-                <input class="form-control" type="text" name="password"><br>
+            <input class="form-control" type="text" name="password"><br>
         </div>
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Login</button>
     </form>
