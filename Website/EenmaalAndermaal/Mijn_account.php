@@ -63,13 +63,13 @@ if(!isset($_SESSION["change"])){
     if(($_SESSION['change'] == NULL || $_SESSION['change'] == 0)){
         ?>
         <br>
-        <form action="" method="post">
+        <form action="Mijn_account.php" method="post">
             <input type="hidden" name="Change" value="1">
             <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Verander" value="Verander account informatie">
         </form>
         <br>
     <?php } ?>
 </div>
-<?php include 'Footer.php'; ?>
+<?php //include 'Footer.php'; ?>
 </body>
 </html>
