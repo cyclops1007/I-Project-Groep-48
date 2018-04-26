@@ -9,8 +9,6 @@ include 'Template.php';
 ?>
 <!DOCTYPE html>
 <html lang="nl">
-<!doctype html>
-<html>
 <head>
     <title>Batch Upload</title>
 </head>
