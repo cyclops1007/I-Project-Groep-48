@@ -8,6 +8,7 @@
 // Eventuele includes/ requires.
 // Eventuele sessions/ cookies.
 session_start();
+//require_once 'Database_con.php';
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
 <!DOCTYPE html>

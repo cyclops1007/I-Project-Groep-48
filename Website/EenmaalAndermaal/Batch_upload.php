@@ -16,8 +16,8 @@ include 'Template.php';
 <div id="container" class="container rounded">
     <h1>Batch upload</h1>
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="my_file[]" multiple>
-    <input type="submit" value="Upload">
+    <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple>
+    <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Upload">
 </form>
 
 <?php
@@ -38,8 +38,6 @@ if (isset($_FILES['my_file'])) {
 }
 ?>
 </div>
-</body>
-</html>
 <?php include 'Footer.php'; ?>
 </body>
 </html>
