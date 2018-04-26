@@ -133,7 +133,6 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 
 </div>
 <?php include 'Footer.php';?>
-
 </body>
 </html>
 
