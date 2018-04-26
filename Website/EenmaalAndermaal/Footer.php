@@ -19,21 +19,12 @@
 <body>
 
 <footer class="footer">
-    <div class="container">
-        <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
+        <span class="text-muted col-sm-7">© 2018 Copyright</span>
 
-        <div class="col-md-2 mb-3">
-        <span class="text-muted">© 2018 Copyright</span>
-        </div>
+        <a href="#!" class="col-sm-2">Voorwaarden</a>
 
-        <div class="col-md-2 mb-3">
-        <a href="#!">Voorwaarden</a>
-        </div>
-
-        <div class="col-md-2 mb-3">
-        <a href="#!">Contact</a>
-        </div>
-        </div>
+        <a href="#!" class="col-sm-1">Contact</a>
     </div>
 </footer>
 </body>
