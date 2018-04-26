@@ -18,11 +18,13 @@ include 'Template.php';
 <body>
 <div id="container" class="container rounded">
     <h1>Verkoop product</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple>
-        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Upload">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple><br>
+        <input class="form-control" type="text" name="name"><br>
+        <input class="form-control" type="text" name="cost"><br>
+        <textarea rows="4" cols="50" class="form-control" type="text" name="discription"></textarea><br>
+        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Upload_product" value="Upload">
     </form>
-
     <?php
     if (isset($_FILES['my_file'])) {
         $myFile = $_FILES['my_file'];

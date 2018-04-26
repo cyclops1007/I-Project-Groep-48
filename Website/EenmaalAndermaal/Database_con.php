@@ -6,10 +6,10 @@
  * Time: 14:13
  */
 
-$server = 'LAPTOP-BPT7KP36';
+$server = 'KAY-HP\MSSQLSERVER1';
 $dataBankNaam = 'EenmaalAndermaal';
 $gebruikersnaam = 'sa';
-$wachtwoord = 'dbrules';
+$wachtwoord = 'yak12345678910';
 
 try{
     $dbh = new PDO ("sqlsrv:Server=$server;Database=$dataBankNaam;
