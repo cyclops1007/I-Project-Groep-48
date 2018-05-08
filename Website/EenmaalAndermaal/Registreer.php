@@ -5,6 +5,7 @@
  * Date: 24-4-2018
  * Time: 9:14
  */
+if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast"){
 include 'Template.php';
 ?>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@ include 'Template.php';
             <input class="form-control" type="text" name="city"><br>
             <label>Land:</label>
             <select class="form-control" name="country">
-                <?php foreach ($array as $key){?>
+                <?php foreach ($array as $key) { ?>
                     <option><?php echo $option ?></option>
                 <?php } ?>
             </select><br>
@@ -46,7 +47,7 @@ include 'Template.php';
             <input class="form-control" type="password" name="password_h"><br>
             <label>Beveiligingsvraag:</label>
             <select class="form-control" name="security_q">
-                <?php foreach ($array as $key){?>
+                <?php foreach ($array as $key) { ?>
                     <option><?php echo $option ?></option>
                 <?php } ?>
             </select><br>
@@ -54,6 +55,11 @@ include 'Template.php';
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Registreer</button>
     </form>
 </div>
-<?php include 'Footer.php'?>
+<?php include 'Footer.php';
+      }
+      else{
+          header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
+      }
+?>
 </body>
 </html>

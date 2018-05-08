@@ -8,6 +8,9 @@
 // Eventuele includes/ requires.
 // Eventuele sessions/ cookies.
 session_start();
+if(!isset($_SESSION['rol'])){
+    $_SESSION['rol'] = "gast";
+}
 require_once 'Database_con.php';
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
