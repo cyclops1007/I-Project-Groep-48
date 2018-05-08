@@ -58,6 +58,7 @@ include 'Template.php';
                     <p>Orginele prijs: €10,-</p>
                     <p>Huidige prijs: €11,50</p>
                     </br>
+                    <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast"){ ?>
                     <form action="welcome.php" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>
@@ -65,6 +66,7 @@ include 'Template.php';
                         </div>
                         <button type="submit" class="btn btn-outline-light">bied</button>
                     </form>
+                    <?php } ?>
                 </div>
                 <div id="text-container" class="container rounded col-sm-6">
                     <p><strong>Beschrijving:</strong> Hier vind u de beschrijving van de veiling waarop u wilt bieden.</p>
@@ -72,6 +74,7 @@ include 'Template.php';
             </div>
         </div>
     </div>
+</div>
     <?php include 'Footer.php';?>
 </body>
 </html>

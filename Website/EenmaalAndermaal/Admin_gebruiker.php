@@ -5,41 +5,39 @@
  * Date: 25-4-2018
  * Time: 14:50
  */
+require_once 'database_con.php';
+include 'SQL.php';
 include 'Template.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head></head>
 <body>
-
-
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Naam</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Opties</th>
+        </tr>
+    </thead>
+    <tbody>
 <?php
-    require_once("database_con.php");
-
-
-function pre_r($array){
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-}
-function Gebruiker($id)
-{
-    global $dbh;
-
-    $sql = $dbh->query("SELECT * FROM gebruiker $id");
-    $gebruikernaam = $sql->fetch();
-
-    return $gebruikernaam;
-}
+    foreach ($gebruiker as $key) {
+        ?>
+        <tr>
+            <th scope="col"><?php echo $key[0]; ?></th>
+            <td><?php echo $key[1]; ?></td>
+            <td><?php echo $key[2]; ?></td>
+            <td>Knop voor kick/ban hier.<----</td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
+<?php include "Footer.php";
 ?>
-
-
-
-
-
-
-
-
-<?php include "Footer.php";?>
 </body>
 </html>

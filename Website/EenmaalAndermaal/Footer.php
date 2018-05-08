@@ -22,7 +22,7 @@
     <div class="d-flex justify-content-center">
         <span class="text-muted col-sm-7">© 2018 Copyright</span>
 
-        <a href="#!" class="col-sm-2">Voorwaarden</a>
+        <a href="Voorwaarden.php" class="col-sm-2">Voorwaarden</a>
 
         <a href="#!" class="col-sm-1">Contact</a>
     </div>

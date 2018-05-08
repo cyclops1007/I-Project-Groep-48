@@ -5,6 +5,7 @@
  * Date: 26-4-2018
  * Time: 10:41
  */
+if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast" && $_SESSION['rol'] != "gebruiker"){
 include 'Template.php';
 //require_once 'Database_con.php';
 ?>
@@ -18,11 +19,13 @@ include 'Template.php';
 <body>
 <div id="container" class="container rounded">
     <h1>Verkoop product</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple>
-        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Upload">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple><br>
+        <input class="form-control" type="text" name="name"><br>
+        <input class="form-control" type="text" name="cost"><br>
+        <textarea rows="4" cols="50" class="form-control" type="text" name="discription"></textarea><br>
+        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Upload_product" value="Upload">
     </form>
-
     <?php
     if (isset($_FILES['my_file'])) {
         $myFile = $_FILES['my_file'];
@@ -30,7 +33,7 @@ include 'Template.php';
 
         for ($i = 0; $i < $fileCount; $i++) {
             ?>
-            <p>File #<?= $i+1 ?>:</p>
+            <p>File #<?= $i + 1 ?>:</p>
             <p>
                 Name: <?= $myFile["name"][$i] ?><br>
                 Temporary file: <?= $myFile["tmp_name"][$i] ?><br>
@@ -42,6 +45,10 @@ include 'Template.php';
     ?>
 </div>
 
-<?php include 'Footer.php'; ?>
+<?php include 'Footer.php';
+}else{
+    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
+
+}?>
 </body>
 </html>
