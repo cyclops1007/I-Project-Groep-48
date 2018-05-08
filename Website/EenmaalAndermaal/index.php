@@ -5,6 +5,7 @@
  * Date: 24-4-2018
  * Time: 11:15
  */
+//require_once 'Database_con.php';
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
 <!DOCTYPE html>
