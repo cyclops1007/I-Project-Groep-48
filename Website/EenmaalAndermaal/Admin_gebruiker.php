@@ -10,7 +10,7 @@ include 'SQL.php';
 include 'Template.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head></head>
 <body>
 <table class="table">

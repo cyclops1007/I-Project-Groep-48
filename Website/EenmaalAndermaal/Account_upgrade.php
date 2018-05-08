@@ -18,10 +18,11 @@ function showAccountUpgrade($currency) {
     <html lang="nl">
     <head>
         <link rel="stylesheet" type="text/css" href="css/Account.css">
+        <title>Account Upgrade</title>
     </head>
     <body>
         <div id="container" class="container rounded">
-            <h1>Account upgrade</h1><br>
+            <h1>Account Upgrade</h1><br>
             <p>Heeft u interesse om het volle potentieel uit EenmaalAndermaal te halen?
                 Wilt u de mogelijkheid krijgen om een voorwerp te kopen/verkopen?
                 Upgrade uw account nu dan naar Koper/verkoper met een eenmalige betaling
