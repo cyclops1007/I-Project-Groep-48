@@ -33,7 +33,7 @@ function showAccountUpgrade($currency) {
         </div>
     </body>
     </html>
-    <?php include 'Footer.php';
+    <?php include_once 'Footer.php';
 }
 
 /**
