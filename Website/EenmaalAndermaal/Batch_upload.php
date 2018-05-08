@@ -5,7 +5,7 @@
  * Date: 25-4-2018
  * Time: 13:20
  */
-if(isset($_SESSION['rol']) && $_SESSION['rol'] == "beheerder"){
+if(!isset($_SESSION['rol']) && $_SESSION['rol'] == "beheerder"){
 include 'Template.php';
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ include 'Template.php';
 </div>
 <?php include 'Footer.php';
 }else{
-    header("index.php");
+    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
 }?>
 </body>
 </html>

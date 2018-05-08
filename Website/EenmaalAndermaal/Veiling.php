@@ -74,6 +74,7 @@ include 'Template.php';
             </div>
         </div>
     </div>
+</div>
     <?php include 'Footer.php';?>
 </body>
 </html>
