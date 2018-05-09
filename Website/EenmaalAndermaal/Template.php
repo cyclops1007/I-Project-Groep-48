@@ -11,6 +11,9 @@ session_start();
 if(!isset($_SESSION['rol'])){
     $_SESSION['rol'] = "gast";
 }
+require 'SQL.php';
+$dbh = connectDB();
+
 require_once 'Database_con.php';
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>

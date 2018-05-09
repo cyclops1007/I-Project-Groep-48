@@ -5,7 +5,10 @@
  * Date: 25-4-2018
  * Time: 14:38
  */
+
 include 'Template.php';
+$hoogsteBod = getHoogsteBod();
+$startBod = getStartBod();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,8 +58,8 @@ include 'Template.php';
             <div class = row>
                 <div class="col-sm-6">
                     <h1>Titel</h1>
-                    <p>Orginele prijs: €10,-</p>
-                    <p>Huidige prijs: €11,50</p>
+                    <p>Orginele prijs:<?php echo "$moneySign" . $startBod;?></p>
+                    <p>Huidige prijs:<?php echo "$moneySign" . $hoogsteBod;?></p>
                     </br>
                     <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast"){ ?>
                     <form action="welcome.php" method="post">
