@@ -6,6 +6,8 @@
  * Time: 14:44
  */
 
+include 'general_functions.php';
+
 /**
  * Shows the Account Upgrade page to the user.
  *
@@ -35,13 +37,6 @@ function showAccountUpgrade($currency) {
     </body>
     </html>
     <?php include_once 'Footer.php';
-}
-
-/**
- * Redirects the user to index.php
- */
-function redirectToIndex() {
-    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
 }
 
 /**
