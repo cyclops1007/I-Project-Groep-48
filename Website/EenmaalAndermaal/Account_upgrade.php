@@ -19,6 +19,7 @@ function showAccountUpgrade($currency) {
     <!DOCTYPE html>
     <html lang="nl">
     <head>
+
         <link rel="stylesheet" type="text/css" href="css/Account.css">
         <title>Account Upgrade</title>
     </head>
@@ -34,9 +35,10 @@ function showAccountUpgrade($currency) {
                 <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Upgrade" value="Betalen">
             </form><br>
         </div>
+        <?php include_once 'Footer.php'; ?>
     </body>
     </html>
-    <?php include_once 'Footer.php';
+    <?php
 }
 
 /**

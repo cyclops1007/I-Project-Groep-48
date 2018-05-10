@@ -46,17 +46,18 @@ function showBatchUpload($title) {
         <title><?= $title?></title>
     </head>
     <body>
-    <div id="container" class="container rounded">
-        <h1><?= $title?></h1>
-        <form method="post" enctype="multipart/form-data">
-            <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple>
-            <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Upload">
-        </form>
-        <?php showFiles(); ?>
-    </div>
+        <div id="container" class="container rounded">
+            <h1><?= $title?></h1>
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple>
+                <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Upload">
+            </form>
+            <?php showFiles(); ?>
+        </div>
+        <?php include_once 'Footer.php'; ?>
     </body>
     </html>
-    <?php include 'Footer.php';
+    <?php
 }
 
 /**
