@@ -13,7 +13,7 @@ $password = 'TgtHESqUtn';
 
 try{
     $dbh = new PDO ("sqlsrv:Server=$server;Database=$databaseName;
-ConnectionPooling=0", "$username", "$password");
+    ConnectionPooling=0", "$username", "$password");
 }catch(PDOException $e){
     die ("Fout met database: {$e->getMessage()}");
 }
