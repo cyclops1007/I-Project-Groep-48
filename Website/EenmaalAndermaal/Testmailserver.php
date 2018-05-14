@@ -20,10 +20,10 @@ $mail = new PHPMailer(true);
     $mail->Password = "nuggetlover1!"; // GMAIL password
 
 // Typical mail data
-$mail->AddAddress('eenmaalandermaal2018@gmail.com');
-$mail->SetFrom('eenmaalandermaal2018@gmail.com');
-$mail->Subject = "My Subject";
-$mail->Body = "Mail contents";
+$mail->AddAddress('eenmaalandermaal2018@gmail.com'); //to
+$mail->SetFrom('eenmaalandermaal2018@gmail.com'); //send from
+$mail->Subject = "My Subject"; //title
+$mail->Body = "Mail contents"; //contents
 
 try{
     $mail->Send();
