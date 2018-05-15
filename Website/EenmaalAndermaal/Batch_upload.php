@@ -5,72 +5,43 @@
  * Date: 25-4-2018
  * Time: 13:20
  */
+if(!isset($_SESSION['rol']) && $_SESSION['rol'] == "beheerder"){
+include 'Template.php';
+?>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <title>Batch Upload</title>
+</head>
+<body>
+<div id="container" class="container rounded">
+    <h1>Batch upload</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple>
+        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Upload">
+    </form>
 
-include 'general_functions.php';
-
-/**
- * If the user uploaded files, this function will show the uploaded files
- *
- * @return void
- */
-function showFiles() {
+    <?php
     if (isset($_FILES['my_file'])) {
-        $myFiles = $_FILES['my_file'];
-        $fileCount = count($myFiles["name"]);
-        $uploadedFiles = "";
+        $myFile = $_FILES['my_file'];
+        $fileCount = count($myFile["name"]);
 
         for ($i = 0; $i < $fileCount; $i++) {
-            $fileNr = "File #" . ($i + 1);
-            $name = "Name: " . ($myFiles["name"][$i]);
-            $temporaryFile = "Temporary file: " . ($myFiles["tmp_name"][$i]);
-            $type = "Type: " . ($myFiles["type"][$i]);
-            $uploadedFiles .= "<p>" . $fileNr . "</p>" .
-            "<p>" . $name . "<br>" . $temporaryFile . "<br>" . $type . "</p>";
+            ?>
+            <p>File #<?= $i + 1 ?>:</p>
+            <p>
+                Name: <?= $myFile["name"][$i] ?><br>
+                Temporary file: <?= $myFile["tmp_name"][$i] ?><br>
+                Type: <?= $myFile["type"][$i] ?><br>
+            </p>
+            <?php
         }
-        echo $uploadedFiles;
     }
-}
-
-/**
- * Shows the Batch Upload page to the user.
- *
- * @param String $title Page title
- * @return void
- */
-function showBatchUpload($title) {
-    include 'Template.php';
     ?>
-    <!DOCTYPE html>
-    <html lang="nl">
-    <head>
-        <title><?= $title?></title>
-    </head>
-    <body>
-        <div id="container" class="container rounded">
-            <h1><?= $title?></h1>
-            <form method="post" enctype="multipart/form-data">
-                <input type="file" class="btn btn-outline-light my-2 my-sm-0" name="my_file[]" multiple>
-                <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Upload">
-            </form>
-            <?php showFiles(); ?>
-        </div>
-        <?php include_once 'Footer.php'; ?>
-    </body>
-    </html>
-    <?php
-}
-
-/**
- * Determines what page to show the user based on the 'rol'. If the user has a 'rol' and it is "beheerder" it will show
- * the batch upload page, if not it will redirect to index.php
- */
-function determineWhatToShow() {
-    if(!isset($_SESSION['rol']) && $_SESSION['rol'] == "beheerder"){
-        showBatchUpload("Batch Upload");
-    } else {
-        redirectToIndex();
-    }
-}
-
-determineWhatToShow();
-?>
+</div>
+<?php include 'Footer.php';
+}else{
+    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
+}?>
+</body>
+</html>
