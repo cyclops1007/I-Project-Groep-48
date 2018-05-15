@@ -7,13 +7,13 @@
  */
 
 //if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
+ob_start();
     include 'Template.php';
 
     $login_foutmelding = "";
-if(isset($_POST['submit'])) // name of your submit button
+if (!empty($_POST)) // name of your submit button
 {
-
-    if (!isset($_POST["username"]) || !isset($_POST["password"])) {
+    if (empty($_POST["username"]) || empty($_POST["password"])) {
         $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
         echo $login_foutmelding;
     } else {
