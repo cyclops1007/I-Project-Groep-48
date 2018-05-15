@@ -12,7 +12,7 @@ include 'Template.php';
 <head>
 
 </head>
-
+<body>
 <div class="row">
     <div class="col-md-6">
         <div id="demo" class="carousel slide" data-ride="carousel" style="width: 600px; margin: 0 auto">
@@ -61,8 +61,9 @@ include 'Template.php';
             Dus wacht niet langer, meld je aan, of begin meteen met winkelen!</p>
     </div>
 </div>
-<?php include 'Footer.php';?>
+
 </body>
+<?php include 'Footer.php';?>
 </html>
 
 
