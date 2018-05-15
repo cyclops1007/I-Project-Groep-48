@@ -6,7 +6,7 @@
  * Time: 14:50
  */
 require_once 'database_con.php';
-include 'Functions.php';
+include 'SQL.php';
 include 'Template.php';
 ?>
 

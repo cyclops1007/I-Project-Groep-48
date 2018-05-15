@@ -7,25 +7,6 @@
  */
 if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast"){
 include 'Template.php';
-$options = getOptions();
-
-if(isset($_POST['firstname'])){
-    $firstname      = $_POST['firstname'];
-    $lastname       = $_POST['lastname'];
-    $username       = $_POST['username'];
-    $address1       = $_POST['address1'];
-    $address2       = $_POST['address2'];
-    $postalcode     = $_POST['postalcode'];
-    $city           = $_POST['city'];
-    $country        = $_POST['country'];
-    $date           = $_POST['date'];
-    $mail           = $_POST['mail'];
-    $password       = $_POST['password'];
-
-    registreer($_POST);
-
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,8 +33,8 @@ if(isset($_POST['firstname'])){
             <input class="form-control" type="text" name="city"><br>
             <label>Land:</label>
             <select class="form-control" name="country">
-                <?php foreach ($options as $key) { ?>
-                    <option><?php echo $key ?></option>
+                <?php foreach ($array as $key) { ?>
+                    <option><?php echo $option ?></option>
                 <?php } ?>
             </select><br>
             <label>Geboortedatum:</label>
