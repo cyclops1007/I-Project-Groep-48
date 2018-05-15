@@ -9,9 +9,10 @@ include 'Template.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+<head>
 
-<body>
+</head>
+
 <div class="row">
     <div class="col-md-6">
         <div id="demo" class="carousel slide" data-ride="carousel" style="width: 600px; margin: 0 auto">
@@ -59,9 +60,11 @@ include 'Template.php';
             Weggooien is zonde en op deze manier kan iedereen profiteren.
             Dus wacht niet langer, meld je aan, of begin meteen met winkelen!</p>
     </div>
-
 </div>
 <?php include 'Footer.php';?>
 </body>
 </html>
+
+
+
 
