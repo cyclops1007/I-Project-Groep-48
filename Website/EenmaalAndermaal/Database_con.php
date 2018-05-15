@@ -5,11 +5,11 @@
  * Date: 25-4-2018
  * Time: 14:13
  */
-
 $server = 'mssql2.iproject.icasites.nl';
 $databaseName = 'iproject48';
 $username = 'iproject48';
 $password = 'TgtHESqUtn';
+$dbh;
 
 try{
     $dbh = new PDO ("sqlsrv:Server=$server;Database=$databaseName;

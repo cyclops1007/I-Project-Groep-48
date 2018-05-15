@@ -7,8 +7,17 @@
  */
 
 function connectDB(){
-    require_once("Database_con.php");
+    require_once 'Database_con.php';
     return $dbh;
+}
+
+function getGebruikers(){
+    global $dbh;
+
+    $sql = $dbh->query("SELECT ID, Voornaam, rol FROM gebruiker");
+    $gebruiker = $sql->fetchall();
+
+    return $gebruiker;
 }
 
 function gebruiker() {
