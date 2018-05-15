@@ -5,6 +5,7 @@
  * Date: 23-4-2018
  * Time: 15:27
  */
+<<<<<<< HEAD
 //if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
     include 'Template.php';
 
@@ -34,6 +35,10 @@ if(isset($_POST['submit'])) // name of your submit button
         }
         print_r($_POST);
     }
+=======
+if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast"){
+include 'Template.php';
+>>>>>>> b900a1e6e54e6ed0505ffe3037de39e5b09bf15a
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,23 +47,21 @@ if(isset($_POST['submit'])) // name of your submit button
 <div id="login-container" class="container w-50 rounded ">
     <h1>Login</h1>
     <br>
-    <form action="" method="post">
+    <form action="welcome.php" method="post">
         <div class="form-group">
             <label>Gebruikersnaam:</label>
             <input class="form-control" type="text" name="username"><br>
             <label>Wachtwoord:</label>
-            <input class="form-control" type="password" name="password"><br>
+            <input class="form-control" type="text" name="password"><br>
         </div>
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Login</button>
     </form>
     <br>
     <p>Nog geen account? Klik <a href="Registreer.php">HIER</a> om te registreren!</p>
 </div>
-<?php
-//include 'Footer.php';
-//}else{
-// header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
-//}
-?>
+<?php include 'Footer.php';
+}else{
+    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
+}?>
 </body>
 </html>
