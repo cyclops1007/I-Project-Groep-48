@@ -8,9 +8,16 @@
 // Eventuele includes/ requires.
 // Eventuele sessions/ cookies.
 session_start();
+<<<<<<< HEAD
 //if(!isset($_SESSION['rol'])){
 //    $_SESSION['rol'] = "gast";
 //}
+=======
+if(!isset($_SESSION['rol'])){
+    $_SESSION['rol'] = "gast";
+}
+require_once 'Database_con.php';
+>>>>>>> a3a9d423a06da059ae5dcfa2c05309c0c3d637da
 require 'Functions.php';
 $dbh = connectDB();
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);

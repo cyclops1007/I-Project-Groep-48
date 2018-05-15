@@ -6,6 +6,8 @@
  * Time: 14:44
  */
 
+include 'general_functions.php';
+
 /**
  * Shows the Account Upgrade page to the user.
  *
@@ -17,6 +19,7 @@ function showAccountUpgrade($currency) {
     <!DOCTYPE html>
     <html lang="nl">
     <head>
+
         <link rel="stylesheet" type="text/css" href="css/Account.css">
         <title>Account Upgrade</title>
     </head>
@@ -32,16 +35,10 @@ function showAccountUpgrade($currency) {
                 <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Upgrade" value="Betalen">
             </form><br>
         </div>
+        <?php include_once 'Footer.php'; ?>
     </body>
     </html>
-    <?php include_once 'Footer.php';
-}
-
-/**
- * Redirects the user to index.php
- */
-function redirectToIndex() {
-    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
+    <?php
 }
 
 /**
