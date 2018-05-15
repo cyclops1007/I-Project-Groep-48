@@ -9,28 +9,42 @@ require_once 'database_con.php';
 include 'SQL.php';
 include 'Template.php';
 ?>
+
+<?php
+$data = Gebruiker()
+?>
 <!DOCTYPE html>
 <html lang="nl">
-<head></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/Template.css">
+
+</head>
 <body>
-<table class="table">
+<table id="tabeloverzicht" class="table">
     <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Naam</th>
-            <th scope="col">Rol</th>
-            <th scope="col">Opties</th>
+            <th scope="col">Gebruikersnaam</th>
+            <th scope="col">Gebruikers ID</th>
+            <th scope="col">Achternaam</th>
+            <th scope="col">voornaam</th>
+            <th scope="col">plaatsnaam</th>
+            <th scope="col">Gebruiker Blokkeren</th>
         </tr>
     </thead>
+    </div>
     <tbody>
+
 <?php
-    foreach ($gebruiker as $key) {
+
+    foreach ($data as $key) {
         ?>
         <tr>
-            <th scope="col"><?php echo $key[0]; ?></th>
-            <td><?php echo $key[1]; ?></td>
-            <td><?php echo $key[2]; ?></td>
-            <td>Knop voor kick/ban hier.<----</td>
+            <th scope="col"><?php echo $key['gebruikersnaam']; ?></th>
+            <td><?php echo $key['postcode']; ?></td>
+            <td><?php echo $key['achternaam']; ?></td>
+            <td><?php echo $key['voornaam']; ?></td>
+            <td><?php echo $key['plaatsnaam']; ?></td>
+            <td><button type="button">Blokkeren</button></td>
         </tr>
         <?php
     }
