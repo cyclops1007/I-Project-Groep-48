@@ -24,8 +24,8 @@ include 'Template.php';
     </thead>
     <tbody>
        <!-- For each aanroepen van veilingen -->
-        <?php foreach ($array as $key) {?>
-       <tr>  <th scope="row"><?php echo $VeilingNr; ?></th>
+        <?php foreach ($veiling as $key) {?>
+       <tr>  <th scope="row"><?php echo $veilingNr; ?></th>
            <th scope="row"><?php echo $VeilingNaam; ?></th>
            <th scope="row"><?php echo $VeilingBeschrijving; ?></th>
            <th scope="row"><?php echo $TijdTotSluiting; ?></th>

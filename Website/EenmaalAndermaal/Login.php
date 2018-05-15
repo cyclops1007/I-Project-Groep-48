@@ -11,10 +11,7 @@
     $login_foutmelding = "";
 if(isset($_POST['submit'])) // name of your submit button
 {
-        if (empty($_POST["username"]) || empty($_POST["password"])) {
-            $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
-            echo $login_foutmelding;
-        } else {
+        if (isset($_POST["username"]) || isset($_POST["password"])) {
             $login_query = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username AND wachtwoord = :password");
             $login_query->execute(
                 array(
@@ -22,14 +19,18 @@ if(isset($_POST['submit'])) // name of your submit button
                     'password' => $_POST["password"]
                 )
             );
+
             $tellen = $login_query->rowCount();
-            if ($tellen != 0) {
-                $_SESSION["username"] = $_POST["username"];
-                header("Location: Mijn_account.php");
-            } else {
+            if ($tellen == 0) {
                 $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
                 echo $login_foutmelding;
+            } else {
+                $_SESSION["username"] = $_POST["username"];
+                header("Location: Mijn_account.php");
             }
+        } else {
+            $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
+            echo $login_foutmelding;
         }
         print_r($_POST);
     }

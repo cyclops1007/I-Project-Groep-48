@@ -5,10 +5,18 @@
  * Date: 25-4-2018
  * Time: 14:50
  */
+<<<<<<< HEAD
 
 include 'Template.php';
 
 $data = gebruiker();
+=======
+include 'Template.php';
+$gebruiker = gebruiker();
+echo "<pre>";
+    print_r($gebruiker);
+echo "</pre>";
+>>>>>>> b7149b07cae459a1abee37f9cead87dfc1b2da0f
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -36,12 +44,19 @@ $data = gebruiker();
     foreach ($data as $key) {
         ?>
         <tr>
+<<<<<<< HEAD
             <th scope="col"><?php echo $key['gebruikersnaam']; ?></th>
             <td><?php echo $key['postcode']; ?></td>
             <td><?php echo $key['achternaam']; ?></td>
             <td><?php echo $key['voornaam']; ?></td>
             <td><?php echo $key['plaatsnaam']; ?></td>
             <td><button type="button">Blokkeren</button></td>
+=======
+            <th scope="col"><?php echo $key[0]; ?></th>
+            <td><?php echo $key; ?></td>
+            <td><?php echo $key; ?></td>
+            <td>Knop voor kick/ban hier.<----</td>
+>>>>>>> b7149b07cae459a1abee37f9cead87dfc1b2da0f
         </tr>
         <?php
     }
