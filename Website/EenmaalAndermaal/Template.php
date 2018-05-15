@@ -12,6 +12,8 @@ if(!isset($_SESSION['rol'])){
     $_SESSION['rol'] = "gast";
 }
 require_once 'Database_con.php';
+require 'Functions.php';
+$dbh = connectDB();
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
 <!DOCTYPE html>
@@ -64,7 +66,7 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Veilingen</a>
-                    <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
+                    <a class="dropdown-item" href="#">Gebruikers</a>
                     <a class="dropdown-item" href="#">Prestatie</a>
                     <a class="dropdown-item" href="#">Batch upload</a>
                 </div>

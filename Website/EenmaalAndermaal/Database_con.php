@@ -7,17 +7,15 @@
  */
 
 $server = 'mssql2.iproject.icasites.nl';
-$dataBankNaam = 'iproject48';
-$gebruikersnaam = 'iproject48';
-$wachtwoord = 'TgtHESqUtn';
+$databaseName = 'iproject48';
+$username = 'iproject48';
+$password = 'TgtHESqUtn';
 
 try{
-    $dbh = new PDO ("sqlsrv:Server=$server;Database=$dataBankNaam;
-ConnectionPooling=0", "$gebruikersnaam", "$wachtwoord");
+    $dbh = new PDO ("sqlsrv:Server=$server;Database=$databaseName;
+    ConnectionPooling=0", "$username", "$password");
 }catch(PDOException $e){
     die ("Fout met database: {$e->getMessage()}");
 }
 
 ?>
-
-
