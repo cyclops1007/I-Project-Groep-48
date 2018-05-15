@@ -5,6 +5,7 @@
  * Date: 25-4-2018
  * Time: 14:13
  */
+
 $server = 'mssql2.iproject.icasites.nl';
 $databaseName = 'iproject48';
 $username = 'iproject48';

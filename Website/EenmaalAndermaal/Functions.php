@@ -5,17 +5,14 @@
  * Date: 8-5-2018
  * Time: 10:32
  */
+require_once("Database_con.php");
 
-function connectDB(){
-    require_once("Database_con.php");
-    return $dbh;
-}
 
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM gebruiker");
-    $gebruiker = $sql->fetch();
+    $sql = $dbh->query("SELECT gebruikersnaam, postcode, achternaam, voornaam, plaatsnaam from  gebruiker");
+    $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
 }
