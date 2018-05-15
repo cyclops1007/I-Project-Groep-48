@@ -5,11 +5,11 @@
  * Date: 24-4-2018
  * Time: 11:15
  */
-//require_once 'Database_con.php';
-$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
+include 'Template.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -83,7 +83,11 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
         ?>
     </ol>
 </nav>
+=======
+<head></head>
+>>>>>>> fd3f67e84e06d242690e32d8520847be31b31947
 
+<body>
 <div class="row">
     <div class="col-md-6">
         <div id="demo" class="carousel slide" data-ride="carousel" style="width: 600px; margin: 0 auto">

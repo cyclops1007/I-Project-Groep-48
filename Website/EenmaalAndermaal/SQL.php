@@ -5,12 +5,12 @@
  * Date: 8-5-2018
  * Time: 10:32
  */
-function Gebruiker()
+function Gebruiker($id)
 {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM Gebruiker");
-    $gebruiker = $sql->fetchALL();
+    $sql = $dbh->query("SELECT * FROM gebruiker");
+    $gebruiker = $sql->fetch();
 
     return $gebruiker;
 }

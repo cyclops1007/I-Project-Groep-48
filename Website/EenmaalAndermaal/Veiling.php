@@ -5,7 +5,12 @@
  * Date: 25-4-2018
  * Time: 14:38
  */
+
 include 'Template.php';
+//Soort geld moet nog opgehaald kunnen worden uit de database.
+$hoogsteBod = getHoogsteBod();
+$veilingId = $_GET['veilindId'];
+$veilingInfo = getVeilingDetails($veilingId);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,21 +60,24 @@ include 'Template.php';
             <div class = row>
                 <div class="col-sm-6">
                     <h1>Titel</h1>
-                    <p>Orginele prijs: €10,-</p>
-                    <p>Huidige prijs: €11,50</p>
+                    <p>Orginele prijs:<?php echo "$moneySign" . $veilingInfo['startBod'];?></p>
+                    <p>Huidige prijs:<?php echo "$moneySign" . $hoogsteBod;?></p>
                     </br>
                     <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast"){ ?>
-                    <form action="welcome.php" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>
                             <input class="form-control" type="number" name="bod"><br>
                         </div>
                         <button type="submit" class="btn btn-outline-light">bied</button>
                     </form>
-                    <?php } ?>
+                    <?php }
+                    if(isset($_POST['bod'])){
+                        updateHoogsteBod($veilingId, $_POST['bod']);
+                    }?>
                 </div>
                 <div id="text-container" class="container rounded col-sm-6">
-                    <p><strong>Beschrijving:</strong> Hier vind u de beschrijving van de veiling waarop u wilt bieden.</p>
+                    <p><strong>Beschrijving:</strong><?php $veilingInfo['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>
                 </div>
             </div>
         </div>
