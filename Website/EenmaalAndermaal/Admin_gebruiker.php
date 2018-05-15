@@ -5,9 +5,11 @@
  * Date: 25-4-2018
  * Time: 14:50
  */
-require_once 'database_con.php';
-include 'Functions.php';
 include 'Template.php';
+$gebruiker = gebruiker();
+echo "<pre>";
+    print_r($gebruiker);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -28,8 +30,8 @@ include 'Template.php';
         ?>
         <tr>
             <th scope="col"><?php echo $key[0]; ?></th>
-            <td><?php echo $key[1]; ?></td>
-            <td><?php echo $key[2]; ?></td>
+            <td><?php echo $key; ?></td>
+            <td><?php echo $key; ?></td>
             <td>Knop voor kick/ban hier.<----</td>
         </tr>
         <?php
