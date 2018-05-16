@@ -24,8 +24,6 @@ $veiling = veilingen();
         <th scope="col">Verkoper</th>
     </tr>
     </thead>
-    </div>
-
         <tbody>
         <?php
             foreach ($veiling as $key) {
