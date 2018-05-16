@@ -22,7 +22,7 @@ $test = veilingen();
 <table id="tabeloverzicht" class="table">
     <thead>
     <tr>
-        <th scope="col">veilingen</th>
+        <th scope="col">Titel</th>
         <th scope="col">Beschrijving</th>
         <th scope="col">Startpreijs</th>
         <th scope="col">Verkoper</th>
