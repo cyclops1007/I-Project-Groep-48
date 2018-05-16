@@ -24,6 +24,29 @@ $veiling = veilingen();
         <th scope="col">Verkoper</th>
     </tr>
     </thead>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+    <tbody>
+
+    <?php
+
+    foreach ($test as $key) {
+        ?>
+    <table id="tabeloverzicht" class="table">
+
+
+
+    </div>
+
+
+>>>>>>> 1de0b7cd833fa5921713186400f1745241248c20
+>>>>>>> e310ebe8e7760d063a261913318219f8f32eae72
+>>>>>>> 69777d62486a5d2c6f6a5a1118e1a73b382c60d9
         <tbody>
         <?php
             foreach ($veiling as $key) {
