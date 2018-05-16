@@ -7,36 +7,43 @@
  */
 
 include 'Template.php';
+$veiling = veilingen();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="css/Template.css">
 </head>
 <body>
-    <table class ="table table-dark text-center">
+<table class ="table table-dark text-center">
     <thead>
+    <tr>
         <th scope="col">Veiling nr.:</th>
         <th scope="col">Veiling naam:</th>
         <th scope="col">Veiling beschrijving:</th>
-        <th scope="col">Tijd tot sluiting:</th>
-        <th scope="col">Hoogste bod:</th>
+        <th scope="col">Looptijd:</th>
+        <th scope="col">Startprijs:</th>
+        <th scope="col">Blokkeren veiling:</th>
+    </tr>
     </thead>
     <tbody>
-       <!-- For each aanroepen van veilingen -->
-        <?php foreach ($veiling as $key) {?>
-       <tr>  <th scope="row"><?php echo $veilingNr; ?></th>
-           <th scope="row"><?php echo $VeilingNaam; ?></th>
-           <th scope="row"><?php echo $VeilingBeschrijving; ?></th>
-           <th scope="row"><?php echo $TijdTotSluiting; ?></th>
-           <th scope="row"><?php echo $HoogsteBod; ?></th>
-       </tr>
-        <?php }?>
+    <!-- For each aanroepen van veilingen -->
+    <?php foreach ($veiling as $key) {?>
+        <tr>
+            <th scope="row"><?php echo $key['voorwerpnummer']; ?></th>
+            <td><?php echo $key['titel']; ?></td>
+            <td><?php echo $key['beschrijving']; ?></td>
+            <td><?php echo $key['looptijd']; ?></td>
+            <td><?php echo $key['startprijs']; ?></td>
+            <td><button type="button">Blokkeren</button> </td>
+
+        </tr>
+    <?php }?>
     </tbody>
 </table>
-    <form action="/Veiling_Overzicht_Beheerder.php">
-            <input type="submit" value="Delete">
-    </form>
+
+
 <?php include 'Footer.php';?>
 </body>
 </html>

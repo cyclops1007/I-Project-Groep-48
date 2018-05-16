@@ -11,7 +11,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT gebruikersnaam, postcode, achternaam, voornaam, plaatsnaam from  gebruiker");
+    $sql = $dbh->query("SELECT gebruikersnaam, postcode, achternaam, voornaam, plaatsnaam FROM  gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
@@ -20,7 +20,7 @@ function gebruiker() {
 function veilingen() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT titel, beschrijving, startprijs, verkoper from  voorwerp");
+    $sql = $dbh->query("SELECT * FROM  voorwerp");
     $veilingen = $sql->fetchAll();
 
     return $veilingen;
