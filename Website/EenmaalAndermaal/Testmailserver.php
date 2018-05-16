@@ -22,8 +22,13 @@ $mail = new PHPMailer(true);
 // Typical mail data
 $mail->AddAddress('eenmaalandermaal2018@gmail.com'); //to
 $mail->SetFrom('eenmaalandermaal2018@gmail.com'); //send from
-$mail->Subject = "My Subject"; //title
-$mail->Body = "Mail contents"; //contents
+$mail->Subject = "Signup | verification"; //title
+$mail->Body = "Thanks for signing up!
+                please click this link to activate your account:
+                http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email='.$mail'
+"; //contents
+
+
 
 try{
     $mail->Send();

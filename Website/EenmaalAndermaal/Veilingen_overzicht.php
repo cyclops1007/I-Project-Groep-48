@@ -14,7 +14,6 @@ $veiling = veilingen();
     <link rel="stylesheet" type="text/css" href="css/Template.css">
 </head>
 <body>
-<<<<<<< HEAD
 
 <table id="tabeloverzicht" class="table">
     <thead>
@@ -25,25 +24,16 @@ $veiling = veilingen();
         <th scope="col">Verkoper</th>
     </tr>
     </thead>
-    </div>
+
     <tbody>
 
     <?php
 
     foreach ($test as $key) {
         ?>
-=======
     <table id="tabeloverzicht" class="table">
-        <thead>
->>>>>>> cfab7439bc83dd7f9b7cf7b896a8fab439975665
-        <tr>
-            <th scope="col">veilingen</th>
-            <th scope="col">Beschrijving</th>
-            <th scope="col">Startpreijs</th>
-            <th scope="col">Verkoper</th>
-        </tr>
-        </thead>
-        </div>
+
+
         <tbody>
         <?php
             foreach ($veiling as $key) {
