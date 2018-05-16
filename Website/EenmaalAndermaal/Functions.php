@@ -11,7 +11,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM gebruiker");
+    $sql = $dbh->query("SELECT gebruikersnaam, postcode, achternaam, voornaam, plaatsnaam from  gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;

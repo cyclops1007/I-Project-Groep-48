@@ -5,7 +5,7 @@
  * Date: 24-4-2018
  * Time: 10:37
  */
-if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast"){
+
 include 'Template.php';
 $array = ['1', '2', '3'];
 if (!isset($_SESSION["change"])) {
@@ -75,8 +75,6 @@ if (!isset($_SESSION["change"])) {
     <?php } ?>
 </div>
 <?php //include 'Footer.php';
-}else{
-    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
-}?>
+?>
 </body>
 </html>
