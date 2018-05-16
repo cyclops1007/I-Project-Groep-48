@@ -5,7 +5,7 @@
  * Date: 24-4-2018
  * Time: 9:14
  */
-if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast"){
+
 include 'Template.php';
 $options = getOptions();
 
@@ -75,10 +75,6 @@ if(isset($_POST['firstname'])){
     </form>
 </div>
 <?php include 'Footer.php';
-      }
-      else{
-          header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
-      }
 ?>
 </body>
 </html>

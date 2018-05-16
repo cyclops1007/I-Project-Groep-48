@@ -5,9 +5,8 @@
  * Date: 26-4-2018
  * Time: 10:41
  */
-if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast" && $_SESSION['rol'] != "gebruiker"){
+
 include 'Template.php';
-//require_once 'Database_con.php';
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -46,9 +45,7 @@ include 'Template.php';
 </div>
 
 <?php include 'Footer.php';
-}else{
-    header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
 
-}?>
+?>
 </body>
 </html>
