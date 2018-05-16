@@ -54,7 +54,7 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
                     Veilingen
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Overzicht</a>
+                    <a class="dropdown-item" href="Veilingen_overzicht.php">Overzicht</a>
                     <a class="dropdown-item" href="#">Nieuwe veiling</a>
                 </div>
             </li>
@@ -64,7 +64,7 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Veilingen</a>
-                    <a class="dropdown-item" href="#">Gebruikers</a>
+                    <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
                     <a class="dropdown-item" href="#">Prestatie</a>
                     <a class="dropdown-item" href="#">Batch upload</a>
                 </div>
