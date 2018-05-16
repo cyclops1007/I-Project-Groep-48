@@ -17,6 +17,15 @@ function gebruiker() {
     return $gebruiker;
 }
 
+function veilingen() {
+    global $dbh;
+
+    $sql = $dbh->query("SELECT titel, beschrijving, startprijs, verkoper from  voorwerp");
+    $veilingen = $sql->fetchAll();
+
+    return $veilingen;
+}
+
 function getHoogsteBod() {
     global $dbh;
 
