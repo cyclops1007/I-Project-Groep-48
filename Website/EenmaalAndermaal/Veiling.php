@@ -9,7 +9,7 @@
 include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $hoogsteBod = getHoogsteBod();
-$veilingId = $_GET['veilindId'];
+$veilingId = $_GET['veilingId'];
 $veilingInfo = getVeilingDetails($veilingId);
 ?>
 <!DOCTYPE html>

@@ -1,12 +1,15 @@
+/*
 CREATE DATABASE EenmaalAndermaal
 GO
+*/
 
 /*
 ============================================================
  DROP TABLES
 ============================================================
 */
-USE EenmaalAndermaal
+USE iproject48
+--USE EenmaalAndermaal
 
 DROP TABLE Bod
 DROP TABLE Gebruikerstelefoon
@@ -21,8 +24,8 @@ DROP TABLE Vraag
 
 GO
 
-
-USE EenmaalAndermaal
+USE iproject48
+--USE EenmaalAndermaal
 /*
 ============================================================
 VRAAG
@@ -38,6 +41,13 @@ CONSTRAINT PK_Vraag PRIMARY KEY(vraagnummer)
 )
 
 GO
+
+/*
+============================================================
+LANDEN
+============================================================
+*/
+
 /*
 ============================================================
 GEBRUIKER
@@ -45,6 +55,7 @@ GEBRUIKER
 */
 
 CREATE TABLE Gebruiker (
+gebruikersId	NUMERIC(8)		NOT NULL,
 gebruikersnaam	CHAR(30)		NOT NULL,
 voornaam		CHAR(30)		NOT NULL,
 achternaam		CHAR(30)		NOT NULL,
@@ -52,24 +63,25 @@ adresregel1		CHAR(50)		NOT NULL,
 adresregel2		CHAR(50),
 postcode		CHAR(7)			NOT NULL,
 plaatsnaam		CHAR(50)		NOT NULL,
-land			CHAR(50)		NOT NULL,
+landcode		CHAR(3)			NOT NULL,
 geboortedag		DATE			NOT NULL,
 mailbox			CHAR(50)		NOT NULL,
 wachtwoord		CHAR(50)		NOT NULL,
 vraagnummer		NUMERIC(6)		NOT NULL,
 antwoordTekst	CHAR(125)		NOT NULL,
-verkoper		CHAR(3)			NOT NULL,
+verkoper		BIT				NOT NULL,
+verified		BIT				NULL,
+Hash			VARCHAR(32)		NULL,
 
 --PK
-CONSTRAINT PK_Gebruiker PRIMARY KEY (gebruikersnaam),
+CONSTRAINT PK_Gebruiker PRIMARY KEY (gebruikersId),
 
 --FK
 CONSTRAINT FK_Gebruiker__Vraag FOREIGN KEY (vraagnummer)
-	REFERENCES Vraag(vraagnummer),
+	REFERENCES Vraag(vraagnummer)
 
 --CK
-CONSTRAINT CK_Gebruiker_Verkoper CHECK(verkoper IN ('ja', 'nee')),
-CONSTRAINT CK_Gebruiker_Geboortedatum CHECK (geboortedag > '1900')
+
 )
 
 GO
@@ -81,15 +93,15 @@ GEBRUIKERSTELEFOON
 
 CREATE TABLE Gebruikerstelefoon	(
 volgnr			NUMERIC(2)		NOT NULL,
-gebruiker		CHAR(30)		NOT NULL,
+gebruikersId	NUMERIC(8)		NOT NULL,
 telefoon		NUMERIC(12)		NOT NULL,
 
 --PK
-CONSTRAINT PK_Gebruikerstelefoon PRIMARY KEY (volgnr, gebruiker),
+CONSTRAINT PK_Gebruikerstelefoon PRIMARY KEY (volgnr, gebruikersId),
 
 --FK
-CONSTRAINT FK_Gebruikerstelefoon__Gebruiker FOREIGN KEY (gebruiker)
-	REFERENCES Gebruiker(gebruikersnaam)
+CONSTRAINT FK_Gebruikerstelefoon__Gebruiker FOREIGN KEY (gebruikersId)
+	REFERENCES Gebruiker(gebruikersId)
 )
 
 GO
@@ -121,18 +133,18 @@ VERKOPER
 */
 
 CREATE TABLE Verkoper (
-gebruiker		CHAR(30)		NOT NULL,
+gebruikersId	NUMERIC(8)		NOT NULL,
 bank			CHAR(30),
 bankrekening	NUMERIC(7),
 controleOptie	CHAR(10)		NOT NULL,
 creditcard		CHAR(19),
 
 --PK
-CONSTRAINT PK_Verkoper PRIMARY KEY(gebruiker),
+CONSTRAINT PK_Verkoper PRIMARY KEY(gebruikersId),
 
 --FK
-CONSTRAINT FK_Verkoper__Gebruiker FOREIGN KEY (gebruiker)
-	REFERENCES Gebruiker(gebruikersnaam)
+CONSTRAINT FK_Verkoper__Gebruiker FOREIGN KEY (gebruikersId)
+	REFERENCES Gebruiker(gebruikersId)
 )
 
 GO
@@ -156,11 +168,11 @@ looptijdBeginDag		DATE			NOT NULL,
 looptijdBeginTijdstip	TIME,
 verzendkosten			NUMERIC(5),
 verzendInstructies		CHAR(50),
-verkoper				CHAR(30)		NOT NULL,
-koper					CHAR(30),
+verkoper				NUMERIC(8)		NOT NULL,
+koper					NUMERIC(8),
 looptijdEindeDag		DATE			NOT NULL,
 looptijdEindeTijdstip	TIME			NOT NULL,
-velingGesloten			CHAR(3)			NOT NULL,
+velingGesloten			BIT				NOT NULL,
 Verkoopprijs			NUMERIC(9),
 
 --PK
@@ -168,9 +180,9 @@ CONSTRAINT PK_Voorwerp PRIMARY KEY(voorwerpnummer),
 
 --FK
 CONSTRAINT FK_Voorwerp__Verkoper FOREIGN KEY (verkoper)
-	REFERENCES Verkoper(gebruiker),
+	REFERENCES Verkoper(gebruikersId),
 CONSTRAINT FK_Voorwerp__Gebruiker FOREIGN KEY (koper)
-	REFERENCES Gebruiker(gebruikersnaam)
+	REFERENCES Gebruiker(gebruikersId)
 )
 
 GO
@@ -223,7 +235,7 @@ BOD
 CREATE TABLE Bod (
 voorwerp		NUMERIC(10)		NOT NULL,
 bodbedrag		NUMERIC(10)		NOT NULL,
-gebruiker		CHAR(30)		NOT NULL,
+gebruikersId	NUMERIC(8)		NOT NULL,
 bodDag			DATE			NOT NULL,
 bodTijdstip		TIME			NOT NULL,
 
@@ -233,8 +245,8 @@ CONSTRAINT PK_Bod PRIMARY KEY (voorwerp, bodbedrag),
 --FK
  CONSTRAINT FK_Bod__Voorwerp FOREIGN KEY (voorwerp)
 	REFERENCES Voorwerp(voorwerpnummer),
- CONSTRAINT FK_Bod__Gebruiker FOREIGN KEY (gebruiker)
-	REFERENCES Gebruiker(gebruikersnaam)
+ CONSTRAINT FK_Bod__Gebruiker FOREIGN KEY (gebruikersId)
+	REFERENCES Gebruiker(gebruikersId)
 )
 
 GO
@@ -260,10 +272,6 @@ CONSTRAINT FK_Feedback__Voorwerp FOREIGN KEY (voorwerp)
 	REFERENCES Voorwerp(voorwerpnummer),
 
 --CK
-CONSTRAINT CK_Feedback_soortGebruiker CHECK(soortGebruiker IN ('Bezoeker', 'Gebruiker', 'Verkoper', 'Beheerder'))
 )
 
 GO
-/*
-============================================================
-*/

@@ -1,5 +1,5 @@
-use EenmaalAndermaal
-
+--USE EenmaalAndermaal
+USE iproject48
 /*
 INSERT SCRIPT
 */
@@ -23,9 +23,13 @@ VALUES (
 		'Bij welk bedrijf kreeg je je eerste baan?'
 )
 GO
+
+--==========================================================
+
 --==========================================================
 INSERT INTO Gebruiker
 VALUES ( 
+		 1,
 		 'MalleMan',
 		 'Jan',
 		 'Jansen',
@@ -33,15 +37,18 @@ VALUES (
 		 NULL,
 		 '5043AG',
 		 'Nijmegen',
-		 'Nederland',
+		 'NLD',
 		 '8 August 1990',
 		 'MalleMan@hotmail.com',
 		 'testwachtwoord',
 		  1,
 		 '4 February 1960',
-		 'Ja'
+		  1,
+		  1,
+		  NULL
 ),
-( 
+(		
+		 2,
 		 'ZwoeleMan',
 		 'Mark',
 		 'Wahlberg',
@@ -49,59 +56,73 @@ VALUES (
 		 NULL,
 		 '2012PF',
 		 'Arnhem',
-		 'Nederland',
+		 'NLD',
 		 '22 January 1985',
 		 'ZwoeleMan@hotmail.com',
 		 'testwachtwoord',
 		  2,
 		 'Rufus',
-		 'Nee'
+		 0,
+		 1,
+		 NULL
 ),
-(		 'Zuckerborg',
+(		 
+		 3,
+		 'Zuckerborg',
 		 'Mark',
 		 'Zuckerberg',
 		 'Acaciastraat 10',
 		 NULL,
 		 '1204 TQ',
 		 'Wijchen',
-		 'Nederland',
+		 'NLD',
 		 '6 May 1983',
 		 'W4TCH1NGY0U@Botmail.com',
 		 'TestWachtwoord',
 		  5,
 		 'Facebook',
-		 'Ja'
+		 1,
+		 1,
+		 NULL
 ),
-(		 'HAXOR',
+(		 
+		 4,
+		 'HAXOR',
 		 'Max',
 		 'Smit',
 		 'Oebranilaan 12',
 		  NULL,
 		 '9043 TY',
 		 'Rotterdam',
-		 'Nederland',
+		 'NLD',
 		 '29 November 1994',
 		 'Pegasister@gmail.com',
 		 'TestWachtwoord',
 		  2,
 		 'Rex',
-		 'Ja'
+		 1,
+		 1,
+		 NULL
 
 ),
-(		 'Piertje12',
+(		 
+		 5,
+		 'Piertje12',
 		 'Roos',
 		 'Malenboom',
 		 'Veluwelaan 265',
 		  NULL,
 		 '5053CE',
 		 'Otterlo',
-		 'Nederland',
+		 'NLD',
 		 '11 March 2001',
 		 'Piertje12@gmail.com',
 		 'TestWachtwoord',
 		 4,
 		 'Pannekoeken',
-		 'Nee'
+		 0,
+		 1,
+		 NULL
 )
 
 
@@ -111,7 +132,7 @@ GO
 INSERT INTO Gebruikerstelefoon
 VALUES ( 
 		1,
-		'MalleMan',
+		1,
 		310653424234
 		 
 )
@@ -129,20 +150,20 @@ GO
 --===============================================
 INSERT INTO Verkoper
 VALUES (
-		'MalleMan',
+		1,
 		'Rabobank',
 		'1234567',
 		'Reader',
 		'AB123CD456EF789'
 ),
 (
-		'HAXOR',
+		4,
 		'Rabobank',
 		'694946',
 		'Reader',
 		'B345E410G500'
 ),
-(		'Zuckerborg',
+(		3,
 		'ABN Ambro',
 		'6924234',
 		'Reader',
@@ -168,11 +189,11 @@ VALUES (
 		'22:00:00',
 		NULL,
 		NULL,
-		'MalleMan',
+		1,
 		NULL,
 		'24 April 2018',
 		'12:00:00',
-		'Ja',
+		1,
 		26.50
 ),
 
@@ -190,11 +211,11 @@ VALUES (
 		'14:30:00',
 		NULL,
 		NULL,
-		'HAXOR',
+		4,
 		NULL,
 		'8 May 2018',
 		'09:00:00',
-		'Nee',
+		0,
 		NULL
 ),
 ( 
@@ -211,11 +232,11 @@ VALUES (
 		'16:45:00',
 		NULL,
 		NULL,
-		'HAXOR',
-		'Zuckerborg',
+		4,
+		3,
 		'23 May 2018',
 		'09:00:00',
-		'Ja',
+		1,
 		190.00
 ),
 ( 
@@ -232,11 +253,11 @@ VALUES (
 		'02:00:00',
 		NULL,
 		NULL,
-		'Zuckerborg',
-		'MalleMan',
+		3,
+		1,
 		'24 May 2018',
 		'11:20:00',
-		'Ja',
+		1,
 		75.00
 )
 --===========================================
@@ -259,20 +280,20 @@ INSERT INTO Bod
 VALUES (
 		1,
 		26.50,
-		'ZwoeleMan',
+		2,
 		'24 April 2018',
 		'9:30:00'
 ),
 (
 		3,
 		190.00,
-		'Zuckerborg',
+		3,
 		'23 April 2018',
 		'8:30:00'
 ),
 (		4,
 		75.00,
-		'MalleMan',
+		1,
 		'21 April 2018',
 		'20:00:00'
 )
