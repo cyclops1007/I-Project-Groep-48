@@ -9,7 +9,7 @@
 ob_start();
 include 'Template.php';
 $login_foutmelding = "";
-if (!empty($_POST)) // name of your submit button
+if (!empty($_POST))
 {
     if (empty($_POST["username"]) || empty($_POST["password"])) {
         $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
