@@ -23,16 +23,16 @@ if (!isset($_SESSION["change"])) {
 <div id="container" class="container rounded">
     <h1>Mijn account</h1><br>
     <?php
-    if ($_SESSION['change'] == NULL || $_SESSION['change'] == 0) {
-        echo "<h2>Gebruikersnaam:</h2>";
+    if ($_SESSION['change'] != 1) {
+        echo "<h2>Gebruikersnaam: </h2>";
         echo "<h2>Naam: </h2>";
-        echo "<h2>Adres:</h2>";
-        echo "<h2>Adres-2:</h2>";
-        echo "<h2>Postcode:</h2>";
-        echo "<h2>Plaats:</h2>";
-        echo "<h2>Land:</h2>";
-        echo "<h2>Geboortedatum:</h2>";
-        echo "<h2>E-mail:</h2>";
+        echo "<h2>Adres: </h2>";
+        echo "<h2>Adres-2: </h2>";
+        echo "<h2>Postcode: </h2>";
+        echo "<h2>Plaats: </h2>";
+        echo "<h2>Land: </h2>";
+        echo "<h2>Geboortedatum: </h2>";
+        echo "<h2>E-mail: </h2>";
     } elseif ($_SESSION['change'] == 1) {
         ?>
         <form action="" method="post">
@@ -63,7 +63,7 @@ if (!isset($_SESSION["change"])) {
             </div>
         </form>
     <?php }
-    if (($_SESSION['change'] == NULL || $_SESSION['change'] == 0)) {
+    if ($_SESSION['change'] !=1) {
         ?>
         <br>
         <form action="Mijn_account.php" method="post">

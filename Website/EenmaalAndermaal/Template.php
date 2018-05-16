@@ -82,15 +82,16 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 <ol id="Breadcrumb" class="breadcrumb">
     <li class="breadcrumb-item active" aria-current="page"><a href="#">home</a></li>
     <?php
-    foreach($crumbs as $crumb){
-        echo ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
-    }
+        foreach($crumbs as $crumb){
+            echo ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
+        }
     ?>
 </ol>
 </nav>
 <?php
-echo "<pre>";// zorgt dat 't goed leesbaar is
-    print_r($_SESSION);// laat de hele sessie op dat moment zien
-echo "</pre>";?>
+    echo "<pre>";// zorgt dat 't goed leesbaar is
+        print_r($_SESSION);// laat de hele sessie op dat moment zien
+    echo "</pre>";
+?>
 </body>
 </html>

@@ -1,0 +1,22 @@
+#veilingenContainer{
+   width: 90%;
+    margin-left: 5%;
+    padding: 5%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+
+    height: 50%;
+}
+
+#veiling{
+    color: black;
+    padding: 2%;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: red;
+}
+
+#VeilingenTitel {
+    font-size: 25px;
+    text-align: center;
+}
