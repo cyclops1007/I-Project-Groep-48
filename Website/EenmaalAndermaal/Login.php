@@ -5,13 +5,21 @@
  * Date: 23-4-2018
  * Time: 15:27
  */
-//if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
-    include 'Template.php';
 
-    $login_foutmelding = "";
+//if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
+include 'Template.php';
+
+$login_foutmelding = "";
 if(isset($_POST['submit'])) // name of your submit button
 {
-        if (isset($_POST["username"]) || isset($_POST["password"])) {
+
+    if (isset($_POST["username"]) || isset($_POST["password"])) {
+
+        if (empty($_POST["username"]) || empty($_POST["password"])) {
+            $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
+            echo $login_foutmelding;
+        } else {
+
             $login_query = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username AND wachtwoord = :password");
             $login_query->execute(
                 array(
@@ -28,12 +36,23 @@ if(isset($_POST['submit'])) // name of your submit button
                 $_SESSION["username"] = $_POST["username"];
                 header("Location: Mijn_account.php");
             }
-        } else {
-            $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
-            echo $login_foutmelding;
         }
         print_r($_POST);
     }
+    if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast"){
+        include 'Template.php';
+
+        $tellen = $login_query->rowCount();
+        if ($tellen != 0) {
+            $_SESSION["username"] = $_POST["username"];
+            header("Location: Mijn_account.php");
+        } else {
+            $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
+            echo $login_foutmelding;
+        }
+    }
+    print_r($_POST);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
