@@ -34,6 +34,10 @@ $veiling = veilingen();
     <table id="tabeloverzicht" class="table">
 
 
+
+    </div>
+
+
         <tbody>
         <?php
             foreach ($veiling as $key) {
