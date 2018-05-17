@@ -31,7 +31,6 @@ include 'Template.php';
             <?php } ?>
         </tbody>
     </table>
-<?php include 'Footer.php';
-?>
+<?php include 'Footer.php'; ?>
 </body>
 </html>

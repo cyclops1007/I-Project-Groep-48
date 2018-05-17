@@ -11,14 +11,12 @@ include 'Template.php';
 <html lang="en">
 <head></head>
 <br>
-
 <div id="text-container" class="container rounded col-sm-6">
     <p>Lees deze gebruikersvoorwaarden aandachtig door voordat u de website
         gebruikt. Hierin worden de voorwaarden beschreven voor het gebruik
         van deze website.</p>
 
     <h2>Algemeen</h2>
-
     <p>Deze website (exclusief sites die eraan gekoppeld zijn) wordt
         beheerd door ons, Unilever Nederland B.V., een bedrijf dat is
         gevestigd in Nederland ('Unilever'). Deze website is alleen bestemd
@@ -29,7 +27,6 @@ include 'Template.php';
         of te gebruiken.</p>
 
     <h2>Intellectuele eigendomsrechten</h2>
-
     <p>Alle intellectuele eigendomsrechten, waaronder mede begrepen de
         auteursrechten en merkrechten, op alle teksten, afbeeldingen,
         geluiden, software en andere materialen op deze website zijn
@@ -56,7 +53,6 @@ include 'Template.php';
     </ol>
 
     <h2>Inhoud</h2>
-
     <p>Wij hebben de inhoud van deze website met de grootst mogelijke zorg
         samengesteld. De website wordt echter alleen voor informatieve
         doeleinden aangeboden. Unilever garandeert niet dat de inhoud van de
@@ -132,7 +128,6 @@ include 'Template.php';
         hieruit voortvloeien of anderszins verband houden met deze website
         worden voorgelegd aan de daartoe bevoegde rechter te Rotterdam.</p>
 </br>
-
 </div>
 </br>
 <?php include 'Footer.php';?>

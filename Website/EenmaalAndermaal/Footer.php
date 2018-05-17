@@ -7,7 +7,6 @@
  */
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,15 +19,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 <body>
+    <footer class="footer">
+        <div class="d-flex justify-content-center">
+            <span class="text-muted col-sm-7">© 2018 Copyright</span>
 
-<footer class="footer">
-    <div class="d-flex justify-content-center">
-        <span class="text-muted col-sm-7">© 2018 Copyright</span>
+            <a href="Voorwaarden.php" class="col-sm-2">Voorwaarden</a>
 
-        <a href="Voorwaarden.php" class="col-sm-2">Voorwaarden</a>
-
-        <a href="#!" class="col-sm-1">Contact</a>
-    </div>
-</footer>
+            <a href="#!" class="col-sm-1">Contact</a>
+        </div>
+    </footer>
 </body>
 </html>

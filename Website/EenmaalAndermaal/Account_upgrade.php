@@ -19,7 +19,6 @@ function showAccountUpgrade($currency) {
     <!DOCTYPE html>
     <html lang="nl">
     <head>
-
         <link rel="stylesheet" type="text/css" href="css/Account.css">
         <title>Account Upgrade</title>
     </head>

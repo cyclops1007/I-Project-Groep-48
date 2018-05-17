@@ -8,5 +8,4 @@
 $location = "http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php";
 logout();
 redirect($location);
-
 ?>

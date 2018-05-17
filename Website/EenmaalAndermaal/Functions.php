@@ -94,5 +94,6 @@ function checkingelogd(){
         redirect('index');
     }
 }
+
 ?>
 
