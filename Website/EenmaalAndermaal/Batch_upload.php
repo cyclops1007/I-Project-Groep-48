@@ -6,8 +6,7 @@
  * Time: 13:20
  */
 
-include 'general_functions.php';
-
+include 'Template.php';
 /**
  * If the user uploaded files, this function will show the uploaded files
  *
@@ -37,9 +36,7 @@ function showFiles() {
  * @param String $title Page title
  * @return void
  */
-function showBatchUpload($title) {
-    include 'Template.php';
-    ?>
+function showBatchUpload($title) {?>
     <!DOCTYPE html>
     <html lang="nl">
     <head>

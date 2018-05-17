@@ -8,8 +8,8 @@
 
 include 'Template.php';
 $veiling = veilingen();
+isAdmin();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

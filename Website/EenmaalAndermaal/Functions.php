@@ -81,6 +81,31 @@ function registreer($registreerArray){
     $sql->execute($parameters);
 }
 
+function isAdmin(){
+    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 3){
+        header("Index.php");
+    }
+}
+
+function isSeller(){
+    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 2){
+        header("Index.php");
+    }
+}
+
+function isUser(){
+    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 1){
+        header("Index.php");
+    }
+}
+
+function isGuest(){
+    if(!isset($_SESSION['Rol'])){
+        $_SESSION["Rol"] = 0;
+        header("Index.php");
+    }
+}
+
 function logout(){
     session_destroy();
 }

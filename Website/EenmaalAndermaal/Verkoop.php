@@ -7,6 +7,7 @@
  */
 
 include 'Template.php';
+isSeller();
 ?>
 <!DOCTYPE html>
 <html lang="nl">

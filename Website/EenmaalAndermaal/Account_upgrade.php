@@ -7,6 +7,7 @@
  */
 
 include 'general_functions.php';
+isUser();
 
 /**
  * Shows the Account Upgrade page to the user.

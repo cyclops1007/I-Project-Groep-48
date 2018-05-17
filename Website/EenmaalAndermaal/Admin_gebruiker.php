@@ -7,6 +7,7 @@
  */
 
 include 'Template.php';
+isAdmin();
 $data = gebruiker();
 ?>
 <!DOCTYPE html>

@@ -8,6 +8,7 @@
 //if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
 ob_start();
 include 'Template.php';
+isUser();
 $login_foutmelding = "";
 if (!empty($_POST))
 {

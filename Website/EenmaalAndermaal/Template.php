@@ -11,6 +11,7 @@ session_start();
 //if(!isset($_SESSION['rol'])){
 //    $_SESSION['rol'] = "gast";
 //}
+isGuest();
 require 'Functions.php';
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
@@ -89,9 +90,9 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 </ol>
 </nav>
 <?php
-    echo "<pre>";// zorgt dat 't goed leesbaar is
-        print_r($_SESSION);// laat de hele sessie op dat moment zien
-    echo "</pre>";
+   // echo "<pre>";// zorgt dat 't goed leesbaar is
+      //  print_r($_SESSION);// laat de hele sessie op dat moment zien
+   // echo "</pre>";
 ?>
 </body>
 </html>
