@@ -6,6 +6,7 @@
  * Time: 10:09
  */
 include 'Template.php';
+isUser();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,6 @@ include 'Template.php';
             <?php } ?>
         </tbody>
     </table>
-<?php include 'Footer.php';
-?>
+<?php include 'Footer.php'; ?>
 </body>
 </html>

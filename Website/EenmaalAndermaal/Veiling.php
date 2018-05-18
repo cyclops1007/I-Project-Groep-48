@@ -21,14 +21,12 @@ $hoogsteBod = getHoogsteBod();
         <div class = "col-lg-4">
             <div class = "col-lg-12">
                 <div id="demo" class="carousel slide" data-ride="carousel">
-
                     <!-- Indicators -->
                     <ul class="carousel-indicators">
                         <li data-target="#demo" data-slide-to="0" class="active"></li>
                         <li data-target="#demo" data-slide-to="1"></li>
                         <li data-target="#demo" data-slide-to="2"></li>
                     </ul>
-
                     <!-- The slideshow -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -41,7 +39,6 @@ $hoogsteBod = getHoogsteBod();
                             <img src="image/ny.jpg" alt="New York">
                         </div>
                     </div>
-
                     <!-- Left and right controls -->
                     <a class="carousel-control-prev" href="#demo" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
@@ -51,7 +48,7 @@ $hoogsteBod = getHoogsteBod();
                     </a>
                 </div>
             </div>
-            <hr />
+            <hr/>
             <div id="text-container" class = "container rounded col-lg-12">
                 Voorwaarden:
             </div>
@@ -63,7 +60,7 @@ $hoogsteBod = getHoogsteBod();
                     <p>Orginele prijs:<?php echo "$moneySign" . $veilingInfo['startBod'];?></p>
                     <p>Huidige prijs:<?php echo "$moneySign" . $hoogsteBod;?></p>
                     </br>
-                    <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast"){ ?>
+                    <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
                     <form action="" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>
@@ -83,6 +80,6 @@ $hoogsteBod = getHoogsteBod();
         </div>
     </div>
 </div>
-    <?php include 'Footer.php';?>
+<?php include 'Footer.php';?>
 </body>
 </html>

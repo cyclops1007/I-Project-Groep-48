@@ -8,6 +8,7 @@
 //if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
 ob_start();
 include 'Template.php';
+isUser();
 $login_foutmelding = "";
 if (!empty($_POST))
 {
@@ -53,11 +54,6 @@ if (!empty($_POST))
     <br>
     <p>Nog geen account? Klik <a href="Registreer.php">HIER</a> om te registreren!</p>
 </div>
-<?php
-//include 'Footer.php';
-//}else{
-// header("Location: http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php");
-//}
-?>
+<?php include 'Footer.php';?>
 </body>
 </html>

@@ -7,6 +7,7 @@
  */
 
 include 'general_functions.php';
+isUser();
 
 /**
  * Shows the Account Upgrade page to the user.
@@ -19,7 +20,6 @@ function showAccountUpgrade($currency) {
     <!DOCTYPE html>
     <html lang="nl">
     <head>
-
         <link rel="stylesheet" type="text/css" href="css/Account.css">
         <title>Account Upgrade</title>
     </head>
