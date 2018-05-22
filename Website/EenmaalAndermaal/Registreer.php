@@ -8,7 +8,6 @@
 
 include 'Template.php';
 //$options = getOptions();
-
 if (!empty($_POST)){
 
     $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'city', 'country', 'date', 'mail', 'password', 'password_h', 'security_q');
@@ -38,25 +37,20 @@ if (!empty($_POST)){
         $security_q     = $_POST['security_q'];
 
         registreer($_POST);
-
         $verified = true;
-
         echo "Form verstuurd";
     }
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head></head>
 <body>
 <div id="login-container" class="container w-50 rounded ">
-    <h1>Registreren</h1>
-    </br>
+    <h1>Registreren</h1></br>
 <?php
 if($verified){
-    echo "Je account is aangemaakt, <br />  verifieer het door op de activatie link te klikken in je mail.";
+    echo "Uw account is aangemaakt, <br />  verifieer het door op de activatie link te klikken in je mail.";
     $hash = md5( rand(0,1000) );
     $sql = $dbh->query("INSERT INTO Gebruikers (gebruikersnaam, voornaam, achternaam, adresregel1,
                                 adresregel2, postcode, plaatsnaam, geboortedag, mailbox, wachtwoord,
@@ -65,7 +59,6 @@ if($verified){
                                 $city, $date, $mail, $password, $security_q, $security_a, $hash)");
     $sql->execute;
 }
-
 ?>
     <form action="" method="post">
         <div class="form-group">
@@ -109,7 +102,6 @@ if($verified){
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Registreer</button>
     </form>
 </div>
-<?php include 'Footer.php';
-?>
+<?php include 'Footer.php';?>
 </body>
 </html>

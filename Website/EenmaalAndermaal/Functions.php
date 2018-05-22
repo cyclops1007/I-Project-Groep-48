@@ -89,10 +89,5 @@ function redirect($location){
     header("Location: " . $location . ".php");
 }
 
-function checkingelogd(){
-    if(empty($_SESSION['login'])){
-        redirect('index');
-    }
-}
 ?>
 

@@ -5,9 +5,9 @@
  * Date: 7-5-2018
  * Time: 10:09
  */
-
 include 'Template.php';
 $veiling = veilingen();
+isAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,14 +17,14 @@ $veiling = veilingen();
 <body>
 <table class ="table table-dark text-center">
     <thead>
-        <tr>
-            <th scope="col">Veiling nr.:</th>
-            <th scope="col">Veiling naam:</th>
-            <th scope="col">Veiling beschrijving:</th>
-            <th scope="col">Looptijd:</th>
-            <th scope="col">Startprijs:</th>
-            <th scope="col">Blokkeren veiling:</th>
-        </tr>
+    <tr>
+        <th scope="col">Veiling nr.:</th>
+        <th scope="col">Veiling naam:</th>
+        <th scope="col">Veiling beschrijving:</th>
+        <th scope="col">Looptijd:</th>
+        <th scope="col">Startprijs:</th>
+        <th scope="col">Blokkeren veiling:</th>
+    </tr>
     </thead>
     <tbody>
     <!-- For each aanroepen van veilingen -->
