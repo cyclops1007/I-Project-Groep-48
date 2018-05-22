@@ -116,19 +116,19 @@ function isGuest(){
     }
 }
 //---
-function isUBlocked(){
+function isUBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM gebruiker");
+    $sql = $dbh->query("SELECT blocked FROM gebruiker WHERE ID = $id");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker; // moet false of true returnen
 }
 //---
-function isvBlocked(){
+function isvBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM Artikel");
+    $sql = $dbh->query("SELECT blocked FROM Artikel WHERE ID = $id");
     $artikel = $sql->fetchAll();
 
     return $artikel; // moet false of true returnen
@@ -172,6 +172,14 @@ function vUnblock($id){
     $parameters = array(':ID' => $id);
 
     $sql->execute($parameters);
+}
+//---
+function deleteArtikel($id){
+    global $dbh;
+
+    $delete = $dbh->query("DELETE FROM Artikel WHERE ID = $id");
+    $delete->execute();
+
 }
 //---
 function logout(){

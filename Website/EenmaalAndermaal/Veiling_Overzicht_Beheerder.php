@@ -45,7 +45,7 @@ if (!empty($_POST) && isvBlocked() == false){
             <td><?php echo $key['startprijs']; ?></td>
             <td>
                 <form action="" method="post">
-                    <input type="image" src="<?php echo $isblocked;?>" width="30">
+                    <input type="image" src="<?php echo $isblocked;?>" width="30" value="block/unblock">
                 </form>
             </td>
         </tr>
