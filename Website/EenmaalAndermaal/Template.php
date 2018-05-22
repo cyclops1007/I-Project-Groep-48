@@ -50,6 +50,7 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
    // echo "<pre>";// zorgt dat 't goed leesbaar is
       //  print_r($_SESSION);// laat de hele sessie op dat moment zien
    // echo "</pre>";
+    include_once 'footer.php';
 ?>
 </body>
 </html>
