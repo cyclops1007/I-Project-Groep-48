@@ -37,7 +37,7 @@ isAdmin();
             <td><?php echo $key['startprijs']; ?></td>
             <td>
                 <form action="" method="post">
-                    <input type="image" src="image/block.jpg">
+                    <input type="image" src="image/block.jpg" width="30">
                 </form>
             </td>
         </tr>

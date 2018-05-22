@@ -9,6 +9,14 @@
 include 'Template.php';
 isAdmin();
 $data = gebruiker();
+$isblocked;
+if (!empty($_POST) && isblocked() == false){
+    $isblocked = "image/block.jpg";
+    block();
+}else if(!empty($_POST) && isblocked() == true){
+    $isblocked = "image/check.jpg";
+    unblock();
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -40,7 +48,7 @@ $data = gebruiker();
             <td><?php echo $key['plaatsnaam']; ?></td>
             <td>
                 <form action="" method="post">
-                    <input type="image" src="image/block.jpg" width="30">
+                    <input type="image" src="<?php echo $isblocked;?>" width="30">
                 </form>
             </td>
         </tr>

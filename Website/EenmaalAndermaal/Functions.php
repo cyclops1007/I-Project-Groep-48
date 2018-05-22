@@ -106,6 +106,35 @@ function isGuest(){
     }
 }
 
+function isblocked(){
+    global $dbh; //deze is fucked
+
+    $sql = $dbh->query("SELECT blocked FROM gebruiker");
+    $gebruiker = $sql->fetchAll();
+
+    return $gebruiker; // moet false of true returnen
+}
+
+function block($id){
+    global $dbh;
+
+    $update = $dbh->query("UPDATE gebruiker SET blocked = true WHERE ID = $id");
+    $sql = $dbh->prepare($update);
+    $parameters = array(':ID' => $id);
+
+    $sql->execute($parameters);
+}
+
+function unblock($id){
+    global $dbh;
+
+    $update = $dbh->query("UPDATE gebruiker SET blocked = false WHERE ID = $id");
+    $sql = $dbh->prepare($update);
+    $parameters = array(':ID' => $id);
+
+    $sql->execute($parameters);
+}
+
 function logout(){
     session_destroy();
 }
