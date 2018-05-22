@@ -7,7 +7,11 @@
  */
 include 'Template.php';
 isUser();
+$id;
 $artikelen = getArtikelen();
+if(!empty($_POST)){
+    deleteArtikel($id);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +29,17 @@ $artikelen = getArtikelen();
         <tbody>
             <?php foreach ($artikelen as $key) {?>
                 <tr>
-                    <th scope="row"><?php echo $auctionNr; ?></th>
-                    <th scope="row"><?php echo $auctionName; ?></th>
-                    <th scope="row"><?php echo $timeLeft; ?></th>
-                    <th scope="row"><?php echo $highestBid; ?></th>
+                    <th scope="row"><?php echo $key['auctionNr']; ?></th>
+                    <td scope="row"><a href="Veiling.php?Veiling=<?php echo $key['ID'];?>"><?php echo $key['auctionName']; ?></a></td>
+                    <td scope="row"><?php echo $key['timeLeft']; ?></td>
+                    <td scope="row"><?php echo $key['highestBid']; ?></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="image" src="image/block.jpg" width="30" value="Delete">
+                            <?php $id = $key['ID'];?>
+                            <p>Delete</p>
+                        </form>
+                    </td>
                 </tr>
             <?php } ?>
         </tbody>
