@@ -8,6 +8,14 @@
 include 'Template.php';
 $veiling = veilingen();
 isAdmin();
+$isblocked;
+if (!empty($_POST) && isvBlocked() == false){
+    $isblocked = "image/block.jpg";
+    vBlock();
+}else if(!empty($_POST) && isVBlocked() == true){
+    $isblocked = "image/check.jpg";
+    vUnblock();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +45,7 @@ isAdmin();
             <td><?php echo $key['startprijs']; ?></td>
             <td>
                 <form action="" method="post">
-                    <input type="image" src="image/block.jpg" width="30">
+                    <input type="image" src="<?php echo $isblocked;?>" width="30">
                 </form>
             </td>
         </tr>

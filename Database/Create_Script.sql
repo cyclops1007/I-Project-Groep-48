@@ -9,7 +9,7 @@ GO
 ============================================================
 */
 -- USE iproject48
-USE EenmaalAndermaal
+USE iproject48
 
 DROP TABLE Bod
 DROP TABLE Gebruikerstelefoon
@@ -26,7 +26,7 @@ DROP TABLE Landen
 GO
 
 --USE iproject48
-USE EenmaalAndermaal
+USE iproject48
 /*
 ============================================================
 VRAAG
