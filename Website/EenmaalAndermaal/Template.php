@@ -12,6 +12,7 @@ session_start();
 //    $_SESSION['rol'] = "gast";
 //}
 require 'Functions.php';
+isGuest();
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
 <!DOCTYPE html>
@@ -33,50 +34,7 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-targe  t="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="navbar-brand" href="index.php">EenmaalAndermaal <span class="sr-only">(current)</span></a>
-            <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Login.php">Profiel</a>
-                    <a class="dropdown-item" href="#">Mijn veilingen</a>
-                    <a class="dropdown-item" href="#">Boden</a>
-                    <a class="dropdown-item" href="#">Artikelen</a>
-                    <a class="dropdown-item" href="#">Gevolgde veilingen</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Veilingen
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Veilingen_overzicht.php">Overzicht</a>
-                    <a class="dropdown-item" href="#">Nieuwe veiling</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Beheer
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Veilingen</a>
-                    <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
-                    <a class="dropdown-item" href="#">Prestatie</a>
-                    <a class="dropdown-item" href="#">Batch upload</a>
-                </div>
-            </li>
-        </ul>
-        <nav aria-label="breadcrumb">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Iets zoeken" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Zoek</button>
-            </form>
-        </nav>
-    </div>
+    <?php include 'Navbar.php'; ?>
 </nav>
 <nav class="...">
 <ol id="Breadcrumb" class="breadcrumb">
@@ -89,9 +47,9 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 </ol>
 </nav>
 <?php
-    echo "<pre>";// zorgt dat 't goed leesbaar is
-        print_r($_SESSION);// laat de hele sessie op dat moment zien
-    echo "</pre>";
+   // echo "<pre>";// zorgt dat 't goed leesbaar is
+      //  print_r($_SESSION);// laat de hele sessie op dat moment zien
+   // echo "</pre>";
 ?>
 </body>
 </html>

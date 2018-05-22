@@ -9,8 +9,8 @@
 include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $hoogsteBod = getHoogsteBod();
-$veilingId = $_GET['veilingId'];
-$veilingInfo = getVeilingDetails($veilingId);
+//$veilingId = $_GET['veilingId'];
+//$veilingInfo = getVeilingDetails($veilingId);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +60,7 @@ $veilingInfo = getVeilingDetails($veilingId);
                     <p>Orginele prijs:<?php echo "$moneySign" . $veilingInfo['startBod'];?></p>
                     <p>Huidige prijs:<?php echo "$moneySign" . $hoogsteBod;?></p>
                     </br>
-                    <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast"){ ?>
+                    <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
                     <form action="" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>

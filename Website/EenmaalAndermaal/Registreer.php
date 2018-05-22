@@ -7,6 +7,7 @@
  */
 
 include 'Template.php';
+if(isset($_SESSION['Rol'])){header("Index.php");}
 //$options = getOptions();
 if (!empty($_POST)){
 
@@ -49,16 +50,16 @@ if (!empty($_POST)){
 <div id="login-container" class="container w-50 rounded ">
     <h1>Registreren</h1></br>
 <?php
-if($verified){
-    echo "Uw account is aangemaakt, <br />  verifieer het door op de activatie link te klikken in je mail.";
-    $hash = md5( rand(0,1000) );
-    $sql = $dbh->query("INSERT INTO Gebruikers (gebruikersnaam, voornaam, achternaam, adresregel1,
-                                adresregel2, postcode, plaatsnaam, geboortedag, mailbox, wachtwoord,
-                                vraagnummer, antwoordTekst, Hash) 
-                                VALUES ($username, $firstname, $lastname, $address1, $address2, $postalcode, 
-                                $city, $date, $mail, $password, $security_q, $security_a, $hash)");
-    $sql->execute;
-}
+//if($verified){
+//    echo "Uw account is aangemaakt, <br />  verifieer het door op de activatie link te klikken in je mail.";
+//    $hash = md5( rand(0,1000) );
+//    $sql = $dbh->query("INSERT INTO Gebruikers (gebruikersnaam, voornaam, achternaam, adresregel1,
+//                                adresregel2, postcode, plaatsnaam, geboortedag, mailbox, wachtwoord,
+//                                vraagnummer, antwoordTekst, Hash)
+//                                VALUES ($username, $firstname, $lastname, $address1, $address2, $postalcode,
+//                                $city, $date, $mail, $password, $security_q, $security_a, $hash)");
+//    $sql->execute;
+//}
 ?>
     <form action="" method="post">
         <div class="form-group">

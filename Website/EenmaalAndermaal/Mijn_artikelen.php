@@ -6,6 +6,7 @@
  * Time: 10:09
  */
 include 'Template.php';
+isUser();
 ?>
 <!DOCTYPE html>
 <html lang="en">
