@@ -8,8 +8,8 @@ GO
  DROP TABLES
 ============================================================
 */
-USE iproject48
---USE EenmaalAndermaal
+-- USE iproject48
+USE EenmaalAndermaal
 
 DROP TABLE Bod
 DROP TABLE Gebruikerstelefoon
@@ -21,11 +21,12 @@ DROP TABLE Voorwerp
 DROP TABLE Verkoper
 DROP TABLE Gebruiker
 DROP TABLE Vraag
+DROP TABLE Landen
 
 GO
 
-USE iproject48
---USE EenmaalAndermaal
+--USE iproject48
+USE EenmaalAndermaal
 /*
 ============================================================
 VRAAG
@@ -47,7 +48,12 @@ GO
 LANDEN
 ============================================================
 */
-
+CREATE TABLE Landen (
+	
+landNaam CHAR(100) NOT NULL,
+landCode CHAR(3) NOT NULL
+)
+GO
 /*
 ============================================================
 GEBRUIKER
@@ -55,7 +61,7 @@ GEBRUIKER
 */
 
 CREATE TABLE Gebruiker (
-gebruikersId	NUMERIC(8)		NOT NULL,
+gebruikersId	NUMERIC(8)		NOT NULL IDENTITY(1,1),
 gebruikersnaam	CHAR(30)		NOT NULL,
 voornaam		CHAR(30)		NOT NULL,
 achternaam		CHAR(30)		NOT NULL,
@@ -71,7 +77,8 @@ vraagnummer		NUMERIC(6)		NOT NULL,
 antwoordTekst	CHAR(125)		NOT NULL,
 verkoper		BIT				NOT NULL,
 verified		BIT				NULL,
-Hash			VARCHAR(32)		NULL,
+Hash			CHAR(32)		NULL,
+blocked			BIT				NOT NULL,
 
 --PK
 CONSTRAINT PK_Gebruiker PRIMARY KEY (gebruikersId),
@@ -155,14 +162,14 @@ VOORWERP
 */
 
 CREATE TABLE Voorwerp (
-voorwerpnummer			NUMERIC(10)		NOT NULL,
+voorwerpnummer			NUMERIC(10)		NOT NULL	IDENTITY(1,1),
 titel					CHAR(30)		NOT NULL,
 beschrijving			CHAR(125)		NOT NULL,
 startprijs				NUMERIC(9)		NOT NULL,
 betalingswijzeNaam		CHAR(9)			NOT NULL,
 betalingsInstructie		CHAR(23),
 plaatsnaam				CHAR(50)		NOT NULL,
-land					CHAR(50)		NOT NULL,
+landcode				CHAR(3)			NOT NULL,
 looptijd				NUMERIC(3)		NOT NULL,
 looptijdBeginDag		DATE			NOT NULL,
 looptijdBeginTijdstip	TIME,

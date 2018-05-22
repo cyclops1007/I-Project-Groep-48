@@ -6,10 +6,10 @@
  * Time: 14:13
  */
 
-$server = 'mssql2.iproject.icasites.nl';
-$databaseName = 'iproject48';
-$username = 'iproject48';
-$password = 'TgtHESqUtn';
+$server = 'localhost';
+$databaseName = 'EenmaalAndermaal';
+$username = 'sa';
+$password = 'dbrules';
 
 try{
     $dbh = new PDO ("sqlsrv:Server=$server;Database=$databaseName;
