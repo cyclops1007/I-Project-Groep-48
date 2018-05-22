@@ -7,6 +7,7 @@
  */
 include 'Template.php';
 isUser();
+$artikelen = getArtikelen();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@ isUser();
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($array as $key) {?>
+            <?php foreach ($artikelen as $key) {?>
                 <tr>
                     <th scope="row"><?php echo $auctionNr; ?></th>
                     <th scope="row"><?php echo $auctionName; ?></th>

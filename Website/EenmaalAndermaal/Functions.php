@@ -44,6 +44,15 @@ function getVeilingDetails($veilingId) {
     return $veilingInfo;
 }
 //---
+function getArtikelen(){
+    global $dbh;
+    $sessie = $_SESSION['ID'];
+    $sql = $dbh->query("SELECT * FROM Artikelen WHERE ID = $sessie");
+    $artikelen = $sql->fetch();
+
+    return $artikelen;
+}
+//---
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
