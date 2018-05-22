@@ -7,7 +7,11 @@
  */
 require_once("Database_con.php");
 
-
+/**
+ * Returns the 'gebruikersnaam', 'postcode', 'achternaam', 'voornaam' and 'plaatsnaam' from the table 'gebruiker'.
+ *
+ * @return String
+ */
 function gebruiker() {
     global $dbh;
 
@@ -16,7 +20,12 @@ function gebruiker() {
 
     return $gebruiker;
 }
-//---
+
+/**
+ * Returns all items from the table 'voorwerp'.
+ *
+ * @return String
+ */
 function veilingen() {
     global $dbh;
 
@@ -25,7 +34,12 @@ function veilingen() {
 
     return $veilingen;
 }
-//---
+
+/**
+ * Returns the highest value of the column 'bodbedrag' from the table 'Bod'.
+ *
+ * @return float
+ */
 function getHoogsteBod() {
     global $dbh;
 
@@ -34,7 +48,12 @@ function getHoogsteBod() {
 
     return $hoogsteBod;
 }
-//---
+/**
+ * Returns all the data from the table 'Voorwerp' where the $veilingId equals the 'voorwerpnummer'.
+ *
+ * @param int $veilingId
+ * @return String
+ */
 function getVeilingDetails($veilingId) {
     global $dbh;
 
@@ -43,7 +62,12 @@ function getVeilingDetails($veilingId) {
 
     return $veilingInfo;
 }
-//---
+
+/**
+ * Returns all items from the table 'Artikelen' where the value of ID matches the session ID.
+ *
+ * @return String
+ */
 function getArtikelen(){
     global $dbh;
     $sessie = $_SESSION['ID'];
