@@ -35,7 +35,11 @@ isAdmin();
             <td><?php echo $key['beschrijving']; ?></td>
             <td><?php echo $key['looptijd']; ?></td>
             <td><?php echo $key['startprijs']; ?></td>
-            <td><button type="button">Blokkeren</button> </td>
+            <td>
+                <form action="" method="post">
+                    <input type="image" src="image/block.jpg">
+                </form>
+            </td>
         </tr>
     <?php }?>
     </tbody>
