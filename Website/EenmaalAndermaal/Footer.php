@@ -25,7 +25,7 @@
 
             <a href="Voorwaarden.php" class="col-sm-2">Voorwaarden</a>
 
-            <a href="#!" class="col-sm-1">Contact</a>
+            <a href="Contact_pagina.php" class="col-sm-1">Contact</a>
         </div>
     </footer>
 </body>
