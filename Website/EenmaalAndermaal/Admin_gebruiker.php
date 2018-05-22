@@ -10,12 +10,12 @@ include 'Template.php';
 isAdmin();
 $data = gebruiker();
 $isblocked;
-if (!empty($_POST) && isblocked() == false){
+if (!empty($_POST) && isUblocked() == false){
     $isblocked = "image/block.jpg";
-    block();
-}else if(!empty($_POST) && isblocked() == true){
+    uBlock();
+}else if(!empty($_POST) && isUblocked() == true){
     $isblocked = "image/check.jpg";
-    unblock();
+    uUnblock();
 }
 ?>
 <!DOCTYPE html>
