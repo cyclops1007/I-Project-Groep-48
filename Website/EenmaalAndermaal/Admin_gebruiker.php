@@ -38,7 +38,7 @@ $data = gebruiker();
                 <td><?php echo $key['achternaam']; ?></td>
                 <td><?php echo $key['voornaam']; ?></td>
                 <td><?php echo $key['plaatsnaam']; ?></td>
-                <td><button type="button">Blokkeren</button></td>
+                <td><form action="" method="post"><input type="image" src="block.jpg"></form></td>
 
             </tr>
             <?php
