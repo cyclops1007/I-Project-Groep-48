@@ -15,7 +15,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT gebruikersnaam, postcode, achternaam, voornaam, plaatsnaam FROM  gebruiker");
+    $sql = $dbh->query("SELECT gebruikersnaam, postcode, achternaam, voornaam, plaatsnaam FROM  Gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
@@ -34,7 +34,21 @@ function veilingen() {
 
     return $veilingen;
 }
+/**
+ * Returns 'afbeelding' from the table 'afbeeldingen''.
+ *
+ * @return
+ */
+function Afbeelding()
+{
+    global $dbh;
 
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID() DESC OFFSET 0 ROWS 
+    FETCH NEXT 3 ROWS ONLY;");
+    $afbeelding = $sql->fetchALL();
+
+    return $afbeelding;
+}
 /**
  * Returns the highest value of the column 'bodbedrag' from the table 'Bod'.
  *
