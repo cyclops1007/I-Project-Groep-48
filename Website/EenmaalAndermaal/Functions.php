@@ -10,7 +10,7 @@ require_once("Database_con.php");
 /**
  * Returns the 'gebruikersnaam', 'postcode', 'achternaam', 'voornaam' and 'plaatsnaam' from the table 'gebruiker'.
  *
- * @return String
+ * @return array
  */
 function gebruiker() {
     global $dbh;
@@ -24,7 +24,7 @@ function gebruiker() {
 /**
  * Returns all items from the table 'voorwerp'.
  *
- * @return String
+ * @return array
  */
 function veilingen() {
     global $dbh;
