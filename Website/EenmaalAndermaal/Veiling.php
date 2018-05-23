@@ -12,6 +12,7 @@ $hoogsteBod = getHoogsteBod();
 $veilingId = $_GET['veilingId'];
 $array = calculateDistance($user, $destination, $amountKm, $id);
 //$veilingInfo = getVeilingDetails($veilingId);
+$product = afbeeldingVeiling();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,17 +30,15 @@ $array = calculateDistance($user, $destination, $amountKm, $id);
                         <li data-target="#demo" data-slide-to="2"></li>
                     </ul>
                     <!-- The slideshow -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="image/la.jpg" alt="Los Angeles">
+                    <?php
+                    foreach ($product as $veilingProduct) {
+                    ?>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="<?php echo $veilingProduct['afbeelding']; ?>" alt="Los Angeles">
+                            </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="image/chicago.jpg" alt="Chicago">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="image/ny.jpg" alt="New York">
-                        </div>
-                    </div>
+                    <?php } ?>
                     <!-- Left and right controls -->
                     <a class="carousel-control-prev" href="#demo" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
