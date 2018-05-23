@@ -34,8 +34,9 @@ function veilingen() {
 
     return $veilingen;
 }
+
 /**
- * Returns 'afbeelding' from the table 'afbeeldingen''.
+ * Returns 'afbeelding' from the table 'afbeeldingen'.
  *
  * @return
  */
@@ -49,6 +50,7 @@ function Afbeelding()
 
     return $afbeelding;
 }
+
 /**
  * Returns the highest value of the column 'bodbedrag' from the table 'Bod'.
  *
@@ -62,6 +64,7 @@ function getHoogsteBod() {
 
     return $hoogsteBod;
 }
+
 /**
  * Returns all the data from the table 'Voorwerp' where the $veilingId equals the 'voorwerpnummer'.
  *
@@ -73,6 +76,7 @@ function getVeilingDetails($veilingId) {
 
     $sql = $dbh->query("SELECT * FROM Voowerp WHERE $veilingId = voorwerpnummer");
     $veilingInfo = $sql->fetch();
+
 
     return $veilingInfo;
 }
@@ -90,7 +94,15 @@ function getArtikelen(){
 
     return $artikelen;
 }
-//---
+
+/**
+ * Puts a new bidding into the table 'Bod' this function will by default only be used when the value of the bidding is higher than the last registered bidding.
+ *
+ * @param int $veilingId The ID number of the item the bidding is being placed on
+ * @param float $nieuwBod The value of the new bidding
+ * @param String $gebruiker Username of the one who placed the bidding
+ * @return void
+ */
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
@@ -106,7 +118,13 @@ function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
         ':bodTijdstip'       => $tijdstip);
     $sql->execute($parameters);
 }
-//---
+
+/**
+ * Registers a new user.
+ *
+ * @param array $registreerArray Array filled with all the data needed to register a new user into the 'Gebruiker' table
+ * @return void
+ */
 function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
@@ -128,32 +146,58 @@ function registreer($registreerArray){
 
     $sql->execute($parameters);
 }
-//---
+
+/**
+ * Checks if the user has the 'Rol' Admin, if not it redirects the user to the homepage.
+ *
+ * @return void
+ */
 function isAdmin(){
     if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 3){
-        header("Index.php");
+        redirect('Index');
     }
 }
-//---
+
+/**
+ * Checks if the user has the 'Rol' Seller, if not it redirects the user to the homepage.
+ *
+ * @return void
+ */
 function isSeller(){
     if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 2){
-        header("Index.php");
+        redirect('Index');
     }
 }
-//---
+
+/**
+ * Checks if the user has the 'Rol' User, if not it redirects the user to the homepage.
+ *
+ * @return void
+ */
 function isUser(){
     if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 1){
-        header("Index.php");
+        redirect('Index');
     }
 }
-//---
+
+/**
+ * Checks if the user has the 'Rol' Guest, if not it redirects the user to the homepage.
+ *
+ * @return void
+ */
 function isGuest(){
     if(!isset($_SESSION['Rol'])){
         $_SESSION["Rol"] = 0;
-        header("Index.php");
+        redirect('Index');
     }
 }
-//---
+
+/**
+ * Checks if the user by the given userId is blocked.
+ *
+ * @param int $id The id number of the user of whom you want to know if he's blocked or not
+ * @return boolean
+ */
 function isUBlocked($id){
     global $dbh; //deze is fucked
 
@@ -162,7 +206,13 @@ function isUBlocked($id){
 
     return $gebruiker; // moet false of true returnen
 }
-//---
+
+/**
+ * Checks if the article by the given articleId is blocked.
+ *
+ * @param int $id The id number of the object of which you want to know if he's blocked or not
+ * @return boolean
+ */
 function isvBlocked($id){
     global $dbh; //deze is fucked
 
@@ -171,62 +221,105 @@ function isvBlocked($id){
 
     return $artikel; // moet false of true returnen
 }
-//---
+
+/**
+ * Blocks a user.
+ *
+ * @param int $id The id number of the user you want to block
+ * @return void
+ */
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = $id");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
     $sql->execute($parameters);
 }
-//---
+
+/**
+ * Blocks an article.
+ *
+ * @param int $id The id number of the article you want to block
+ * @return void
+ */
 function vBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = $id");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
     $sql->execute($parameters);
 }
-//---
+
+/**
+ * Unlocks a user.
+ *
+ * @param int $id The id number of the user you want to unblock
+ * @return void
+ */
 function uUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE gebruiker SET blocked = false WHERE ID = $id");
+    $update = $dbh->query("UPDATE gebruiker SET blocked = false WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
     $sql->execute($parameters);
 }
-//---
+
+/**
+ * Unlocks an article.
+ *
+ * @param int $id The id number of the article you want to unblock
+ * @return void
+ */
 function vUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE ID = $id");
+    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
     $sql->execute($parameters);
 }
-//---
+
+/**
++ * Deletes an article from the database.
++ *
++ * @param int $id The id number of the article you want to delete
++ * @return void
++ */
 function deleteArtikel($id){
     global $dbh;
 
-    $delete = $dbh->query("DELETE FROM Artikel WHERE ID = $id");
-    $delete->execute();
+    $delete = $dbh->query("DELETE FROM Artikel WHERE ID = :ID");
+    $sql = $dbh->prepare($delete);
+    $parameters = array(':ID' => $id);
+
+    $sql->execute($parameters);
 
 }
-//---
+
+/**
+ * Destroys the session.
+ *
+ * @return void
+ */
 function logout(){
     session_destroy();
 }
-//---
+
+/**
+ * Redirects the user to the desired page.
+ *
+ * @param String $location Name of the page you want to redirect to
+ * @return void
+ */
 function redirect($location){
     header("Location: " . $location . ".php");
 }
-//---
 ?>
 
