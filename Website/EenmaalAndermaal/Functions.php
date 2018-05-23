@@ -107,17 +107,17 @@ function registreer($registreerArray){
     $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :blocked)";
     $sql = $dbh->prepare($sqlregistreer);
     $parameters = array(':firstname'      => $registreerArray[0],
-    ':lastname'     => $registreerArray[1],
-    ':username'     => $registreerArray[2],
-    ':address1'     => $registreerArray[3],
-    ':address2'     => $registreerArray[4],
-    ':postalcode'   => $registreerArray[5],
-    ':city'         => $registreerArray[6],
-    ':country'      => $registreerArray[7],
-    ':datum'        => $registreerArray[8],
-    ':mail'         => $registreerArray[9],
-    ':password'     => $registreerArray[10],
-    ':blocked'      => false);
+        ':lastname'     => $registreerArray[1],
+        ':username'     => $registreerArray[2],
+        ':address1'     => $registreerArray[3],
+        ':address2'     => $registreerArray[4],
+        ':postalcode'   => $registreerArray[5],
+        ':city'         => $registreerArray[6],
+        ':country'      => $registreerArray[7],
+        ':datum'        => $registreerArray[8],
+        ':mail'         => $registreerArray[9],
+        ':password'     => $registreerArray[10],
+        ':blocked'      => false);
 
     $sql->execute($parameters);
 }
@@ -205,29 +205,32 @@ function vUnblock($id){
     $sql->execute($parameters);
 }
 //---
-function calculateDistance($user, $destination, $unit){
-    $formattedAddrFrom = str_replace(' ','+',$user);
-    $formattedAddrTo = str_replace(' ','+',$destination);
+function calculateDistance($user, $destination, $amountKm, $id){
 
-    $geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrFrom.'&sensor=false&key=GoogleAPIKey');
-    $outputFrom = json_decode($geocodeFrom);
-    $geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$formattedAddrTo.'&sensor=false&key=GoogleAPIKey');
-    $outputTo = json_decode($geocodeTo);
+    $from = $user;
+    $to = $destination;
 
-    $latitudeFrom = $outputFrom->results[0]->geometry->location->lat;
-    $longitudeFrom = $outputFrom->results[0]->geometry->location->lng;
-    $latitudeTo = $outputTo->results[0]->geometry->location->lat;
-    $longitudeTo = $outputTo->results[0]->geometry->location->lng;
+    $from = urlencode($from);
+    $to = urlencode($to);
 
-    $theta = $longitudeFrom - $longitudeTo;
-    $dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) +  cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
-    $dist = acos($dist);
-    $dist = rad2deg($dist);
-    $miles = $dist * 60 * 1.1515;
-    $unit = strtoupper($unit);
-    if ($unit == "K") {
-        return ($miles * 1.609344) . ' km';
+    $data = file_get_contents("http://maps.googleapis.com/maps/api/distancematrix/json?origins=$from&destinations=$to&language=en-EN&sensor=false");
+    $data = json_decode($data);
+    print_r($data);
+    $time = 0;
+    $distance = 0;
+
+    foreach($data->rows[0]->elements as $road) {
+        $time += $road->duration->value;
+        $distance += $road->distance->value;
     }
+    $km=$distance/1000;
+
+    $array = '';
+    if($km <= $amountKm){
+        $array .= $id;
+    }
+
+    return $array;
 }
 //---
 function deleteArtikel($id){
@@ -247,4 +250,3 @@ function redirect($location){
 }
 //---
 ?>
-
