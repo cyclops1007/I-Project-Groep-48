@@ -39,15 +39,29 @@ function veilingen() {
  *
  * @return
  */
-function Afbeelding()
+function AfbeeldingIndex()
 {
     global $dbh;
 
     $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID() DESC OFFSET 0 ROWS 
     FETCH NEXT 3 ROWS ONLY;");
-    $afbeelding = $sql->fetchALL();
+    $afbeeldingIndex = $sql->fetchALL();
 
-    return $afbeelding;
+    return $afbeeldingIndex;
+}
+/**
+ * Returns 'afbeelding' from the table 'afbeeldingen''.
+ *
+ * @return
+ */
+function AfbeeldingVeiling()
+{
+    global $dbh;
+
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID()");
+    $afbeeldingVeiling = $sql->fetchALL();
+
+    return $afbeeldingVeiling;
 }
 /**
  * Returns the highest value of the column 'bodbedrag' from the table 'Bod'.

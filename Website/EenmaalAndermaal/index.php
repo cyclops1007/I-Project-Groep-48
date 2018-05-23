@@ -6,7 +6,7 @@
  * Time: 11:15
  */
 include 'Template.php';
-$foto = afbeelding();
+$foto = afbeeldingIndex();
 ?>
 <!DOCTYPE html>
 <html lang="en">
