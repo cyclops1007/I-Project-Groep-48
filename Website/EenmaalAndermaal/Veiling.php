@@ -9,7 +9,7 @@
 include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $hoogsteBod = getHoogsteBod();
-//$veilingId = $_GET['veilingId'];
+$veilingId = $_GET['veilingId'];
 //$veilingInfo = getVeilingDetails($veilingId);
 ?>
 <!DOCTYPE html>
@@ -64,13 +64,13 @@ $hoogsteBod = getHoogsteBod();
                     <form action="" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>
-                            <input class="form-control" type="number" name="bod"><br>
+                            <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod + 0.50;?>"><br>
                         </div>
                         <button type="submit" class="btn btn-outline-light">bied</button>
                     </form>
                     <?php }
                     if(isset($_POST['bod'])){
-                        updateHoogsteBod($veilingId, $_POST['bod']);
+                        updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
                     }?>
                 </div>
                 <div id="text-container" class="container rounded col-sm-6">

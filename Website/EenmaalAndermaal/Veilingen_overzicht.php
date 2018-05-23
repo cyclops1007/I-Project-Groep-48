@@ -8,6 +8,10 @@
 
 include 'Template.php';
 $veiling = veilingen();
+
+if(isset($_SESSION['Zoekplaats'])){
+    calculateDistance();
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
