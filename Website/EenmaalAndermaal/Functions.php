@@ -168,7 +168,7 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = $id");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
