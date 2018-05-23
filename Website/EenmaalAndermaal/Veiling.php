@@ -9,8 +9,7 @@
 include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $hoogsteBod = getHoogsteBod();
-$veilingId = $_GET['veilingId'];
-$array = calculateDistance($user, $destination, $amountKm, $id);
+//$veilingId = $_GET['veilingId'];
 //$veilingInfo = getVeilingDetails($veilingId);
 $product = afbeeldingVeiling();
 ?>

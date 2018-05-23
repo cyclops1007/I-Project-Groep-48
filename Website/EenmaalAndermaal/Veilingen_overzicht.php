@@ -10,7 +10,7 @@ include 'Template.php';
 $veiling = veilingen();
 
 if(isset($_SESSION['Zoekplaats'])){
-    calculateDistance();
+    calculateDistance($user, $destination, $amountKm, $id);
 }
 ?>
 <!DOCTYPE html>

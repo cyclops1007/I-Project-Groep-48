@@ -254,8 +254,18 @@ function calculateDistance($user, $destination, $amountKm, $id){
     if($km <= $amountKm){
         $array .= $id;
     }
+    selectWithinRange($array);
+}
+//---
+function selectWithinRange($array){
+    global $dbh;
 
-    return $array;
+    $sqlSelect = "SELECT * FROM Artikel WHERE ID = :id";
+    $sql = $dbh->prepare($sqlSelect);
+    $parameters = array(
+        ":id" => $array///???\\\
+        // hier moet die array goed uitgelezen worden om de select goed uit te voeren.
+    );
 }
 //---
 function deleteArtikel($id){
