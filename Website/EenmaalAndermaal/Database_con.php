@@ -15,14 +15,15 @@
  * @param String $password Password to match the username
  * @return void
  */
-function connectDatabase($server, $databaseName, $username, $password) {
-    try {
-        $dbh = new PDO ("sqlsrv:Server=$server;Database=$databaseName;
-    ConnectionPooling=0", "$username", "$password");
-    } catch (PDOException $e) {
-        die ("Fout met database: {$e->getMessage()}");
-    }
-}
+$server = 'mssql2.iproject.icasites.nl';
+$databaseName = 'iproject48';
+$username = 'iproject48';
+$password = 'TgtHESqUtn';
 
-connectDatabase('mssql2.iproject.icasites.nl', 'iproject48', 'iproject48', 'TgtHESqUtn');
+try{
+    $dbh = new PDO ("sqlsrv:Server=$server;Database=$databaseName;
+    ConnectionPooling=0", "$username", "$password");
+}catch(PDOException $e) {
+    die ("Fout met database: {$e->getMessage()}");
+}
 ?>
