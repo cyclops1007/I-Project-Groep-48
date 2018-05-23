@@ -76,7 +76,14 @@ function getArtikelen(){
 
     return $artikelen;
 }
-//---
+/**
+ * Puts a new bidding into the table 'Bod' this function will by default only be used when the value of the bidding is higher than the last registered bidding.
+ *
+ * @param int $veilingId The ID number of the item the bidding is being placed on
+ * @param float $nieuwBod The value of the new bidding
+ * @param String $gebruiker Username of the one who placed the bidding
+ * @return void
+ */
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
