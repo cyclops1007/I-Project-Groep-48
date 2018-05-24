@@ -45,11 +45,11 @@ function showAccountUpgrade($currency) {
  * the account upgrade page, if not it will redirect to index.php
  */
 function determineWhatToShow() {
-    if(isset($_SESSION['rol']) && $_SESSION['rol'] != "gast"){
+    if(isset($_SESSION['rol']) && $_SESSION['rol'] == 1){
         showAccountUpgrade("[INSERT CURRENCY HERE]");
         //Moet nog iets toevoegen waarmee de currency bepaald wordt?
     }else{
-        redirect('index');
+        redirect('index.php');
     }
 }
 
