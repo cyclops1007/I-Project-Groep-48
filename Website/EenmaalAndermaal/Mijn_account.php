@@ -29,44 +29,45 @@ if (!isset($_SESSION["change"])) {
             foreach ($accountInfo as $key) {
                 echo "<h2>Gebruikersnaam: ". $key['gebruikersnaam'] . "</h2>";
                 echo "<h2>Naam: "          . $key['voornaam'] . "</h2>";
-                echo "<h2>Adres: "         . $key['achternaam'] . "</h2>";
-                echo "<h2>Adres-2: "       . $key['adresregel1'] . "</h2>";
-                echo "<h2>Postcode: "      . $key['adresregel2'] . "</h2>";
+                echo "<h2>Adres: "         . $key['adresregel1'] . "</h2>";
+                echo "<h2>Adres-2: "       . $key['adresregel2'] . "</h2>";
+                echo "<h2>Postcode: "      . $key['postcode'] . "</h2>";
                 echo "<h2>Plaats: "        . $key['plaatsnaam'] . "</h2>";
                 echo "<h2>Land: "          . $key['landcode'] . "</h2>";
                 echo "<h2>Geboortedatum: " . $key['geboortedag'] . "</h2>";
                 echo "<h2>E-mail: "        . $key['mailbox'] . "</h2>";
             }
         } elseif ($_SESSION['change'] == 1) {
+            foreach ($accountInfo as $key){
             ?>
             <form action="" method="post">
                 <div class="form-group">
+                    <label>Voornaam:</label>
+                    <input class="form-control" type="text" name="firstname" value="<?php echo $key['voornaam'];?>"><br>
+                    <label>Achternaam:</label>
+                    <input class="form-control" type="text" name="lastname" value="<?php echo $key['achternaam'];?>"><br>
                     <label>Gebruikersnaam:</label>
-                    <input class="form-control" type="text" name="firstname"><br>
+                    <input class="form-control" type="text" name="username" value="<?php echo $key['gebruikersnaam'];?>"><br>
                     <label>Adres:</label>
-                    <input class="form-control" type="text" name="lastname"><br>
+                    <input class="form-control" type="text" name="address1" value="<?php echo $key['adresregel1'];?>"><br>
                     <label>Adres-2:</label>
-                    <input class="form-control" type="text" name="username"><br>
-                    <label>Postcode:</label>
-                    <input class="form-control" type="text" name="address1"><br>
-                    <label>Plaats:</label>
-                    <input class="form-control" type="text" name="address2"><br>
+                    <input class="form-control" type="text" name="address2" value="<?php echo $key['adresregel2'];?>"><br>
                     <label>Land:</label>
                     <select class="form-control" name="country">
                         <?php foreach ($array as $key) { ?>
                             <option><?php echo $option ?></option>
                         <?php } ?>
                     </select><br>
-                    <label>Geboortedatum:</label>
-                    <input class="form-control" type="text" name="city"><br>
+                    <label>Plaats:</label>
+                    <input class="form-control" type="text" name="city" value="<?php echo $key['plaatsnaam'];?>"><br>
                     <label>E-mail:</label>
-                    <input class="form-control" type="text" name="mail"><br><br>
+                    <input class="form-control" type="text" name="mail" value="<?php echo $key['mailbox'];?>"><br><br>
                     <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Change"
                            value="Verander account informatie">
                     <br><br>
                 </div>
             </form>
-        <?php }
+        <?php } }
         if ($_SESSION['change'] !=1) {
             ?>
             <br>
@@ -78,6 +79,5 @@ if (!isset($_SESSION["change"])) {
             <br>
         <?php } ?>
     </div>
-<?php include 'Footer.php';?>
 </body>
 </html>
