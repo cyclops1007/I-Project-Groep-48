@@ -21,6 +21,12 @@ function gebruiker() {
     return $gebruiker;
 }
 
+/**
+ * Returns the data from the user that matches the given id.
+ *
+ * @param int $id The id number of the user you want the data from
+ * @return array
+ */
 function mijnAccount($id) {
     global $dbh;
 
