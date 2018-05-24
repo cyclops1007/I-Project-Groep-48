@@ -7,7 +7,7 @@
  */
 
 require_once('PHPMailer/PHPMailerAutoload.php');
-
+$selectMail = selectMail(); // haal hier de juiste mail op.
 $mail = new PHPMailer(true);
 
 // Send mail using Gmail

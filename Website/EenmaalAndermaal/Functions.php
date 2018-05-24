@@ -21,6 +21,15 @@ function gebruiker() {
     return $gebruiker;
 }
 
+function mijnAccount($id) {
+    global $dbh;
+
+    $sql = $dbh->query( "SELECT * FROM gebruiker WHERE gebruikersId = $id");
+    $account = $sql->fetchAll();
+
+    return $account;
+}
+
 /**
  * Returns all items from the table 'voorwerp'.
  *

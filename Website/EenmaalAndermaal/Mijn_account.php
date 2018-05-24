@@ -8,6 +8,7 @@
 
 include 'Template.php';
 isUser();
+$accountInfo = gebruiker($_SESSION['ID']);
 $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
 if (!isset($_SESSION["change"])) {
     $_SESSION["change"] = $_POST["Change"];
@@ -25,15 +26,15 @@ if (!isset($_SESSION["change"])) {
         <h1>Mijn account</h1><br>
         <?php
         if ($_SESSION['change'] != 1) {
-            echo "<h2>Gebruikersnaam: </h2>";
-            echo "<h2>Naam: </h2>";
-            echo "<h2>Adres: </h2>";
-            echo "<h2>Adres-2: </h2>";
-            echo "<h2>Postcode: </h2>";
-            echo "<h2>Plaats: </h2>";
-            echo "<h2>Land: </h2>";
-            echo "<h2>Geboortedatum: </h2>";
-            echo "<h2>E-mail: </h2>";
+            echo "<h2>Gebruikersnaam: </h2>". $accountInfo['gebruikersnaam'];
+            echo "<h2>Naam: </h2>"          . $accountInfo['voornaam'];
+            echo "<h2>Adres: </h2>"         . $accountInfo['achternaam'];
+            echo "<h2>Adres-2: </h2>"       . $accountInfo['adresregel1'];
+            echo "<h2>Postcode: </h2>"      . $accountInfo['adresregel2'];
+            echo "<h2>Plaats: </h2>"        . $accountInfo['plaatsnaam'];
+            echo "<h2>Land: </h2>"          . $accountInfo['landcode'];
+            echo "<h2>Geboortedatum: </h2>" . $accountInfo['geboortedag'];
+            echo "<h2>E-mail: </h2>"        . $accountInfo['mailbox'];
         } elseif ($_SESSION['change'] == 1) {
             ?>
             <form action="" method="post">
