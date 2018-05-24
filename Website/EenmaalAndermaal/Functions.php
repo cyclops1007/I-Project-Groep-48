@@ -230,6 +230,12 @@ function vUnblock($id){
     $sql->execute($parameters);
 }
 //---
+function getPostal($id){
+    $array = '';
+    $array .= calculateDistance($user, $destination, $amountKm, $id);
+    return $array;
+}
+//---
 function calculateDistance($user, $destination, $amountKm, $id){
 
     $from = $user;
@@ -249,12 +255,11 @@ function calculateDistance($user, $destination, $amountKm, $id){
         $distance += $road->distance->value;
     }
     $km=$distance/1000;
+        // deze code is van https://stackoverflow.com/questions/36143960/php-distance-between-2-addresses-with-google-maps
 
-    $array = '';
     if($km <= $amountKm){
-        $array .= $id;
+        return $id;
     }
-    selectWithinRange($array);
 }
 //---
 function selectWithinRange($array){
