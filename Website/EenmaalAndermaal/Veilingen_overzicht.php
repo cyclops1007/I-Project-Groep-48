@@ -8,6 +8,7 @@
 
 include 'Template.php';
 $veiling = veilingen();
+$voorwerpnummer = $_GET['voorwerpnummer'];
 
 if(isset($_SESSION['Zoekplaats'])){
     calculateDistance($user, $destination, $amountKm, $id);
@@ -22,7 +23,7 @@ if(isset($_SESSION['Zoekplaats'])){
     <table id="tabeloverzicht" class="table">
         <thead>
             <tr>
-                <th scope="col">Titel</th>
+                <th scope="col"> Titel</th>
                 <th scope="col">Beschrijving</th>
                 <th scope="col">Startprijs</th>
                 <th scope="col">Verkoper</th>
@@ -33,7 +34,7 @@ if(isset($_SESSION['Zoekplaats'])){
         foreach ($veiling as $key) {
             ?>
             <tr>
-                <th scope="col"><?php echo $key['titel']; ?></th>
+                <th scope="col"><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
                 <td><?php echo $key['beschrijving']; ?></td>
                 <td><?php echo $key['startprijs']; ?></td>
                 <td><?php echo $key['verkoper']; ?></td>
