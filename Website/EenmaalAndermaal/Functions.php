@@ -44,6 +44,7 @@ function veilingen() {
     return $veilingen;
 }
 
+//---
 function AfbeeldingIndex()
 {
     global $dbh;
