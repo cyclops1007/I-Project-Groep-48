@@ -10,7 +10,7 @@ include 'Template.php';
 $veiling = veilingen();
 
 if(isset($_SESSION['Zoekplaats'])){
-    calculateDistance($user, $destination, $amountKm, $id);
+    calculateDistance($user, $destination, $amountKm, $id);// hier komt  het id van alle artikelen, de gebruiker postcode de postcode van de random persoon en de hoeveelheid km  dat ie in moet zitten. ja klopt lekker kut.
 }
 ?>
 <!DOCTYPE html>
