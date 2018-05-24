@@ -54,7 +54,7 @@ if (!isset($_SESSION["change"])) {
                     <input class="form-control" type="text" name="address2" value="<?php echo $key['adresregel2'];?>"><br>
                     <label>Land:</label>
                     <select class="form-control" name="country">
-                        <?php foreach ($array as $key) { ?>
+                        <?php foreach ($array as $option) { ?>
                             <option><?php echo $option; ?></option>
                         <?php } ?>
                     </select><br>
