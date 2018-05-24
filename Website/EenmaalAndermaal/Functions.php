@@ -147,7 +147,7 @@ function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
 
-    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :blocked)";
+    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :hash, :blocked)";
     $sql = $dbh->prepare($sqlregistreer);
     $parameters = array(':firstname'      => $registreerArray[0],
         ':lastname'     => $registreerArray[1],
@@ -160,6 +160,9 @@ function registreer($registreerArray){
         ':datum'        => $registreerArray[8],
         ':mail'         => $registreerArray[9],
         ':password'     => $registreerArray[10],
+        ':security_q'   => $registreerArray[11],
+        ':verkoper'     => false,
+        ':verified'     => false,
         ':blocked'      => false);
 
     $sql->execute($parameters);
