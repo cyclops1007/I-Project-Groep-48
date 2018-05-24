@@ -15,10 +15,19 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT gebruikersnaam, postcode, achternaam, voornaam, plaatsnaam FROM  gebruiker");
+    $sql = $dbh->query("SELECT * FROM  gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
+}
+
+function mijnAccount($id) {
+    global $dbh;
+
+    $sql = $dbh->query( "SELECT * FROM gebruiker WHERE gebruikersId = $id");
+    $account = $sql->fetchAll();
+
+    return $account;
 }
 
 /**
