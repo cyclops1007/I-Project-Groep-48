@@ -11,7 +11,11 @@ include 'Template.php';
 $hoogsteBod = getHoogsteBod();
 //$veilingId = $_GET['veilingId'];
 //$veilingInfo = getVeilingDetails($veilingId);
+<<<<<<< HEAD
+
+=======
 $product = afbeeldingVeiling();
+>>>>>>> f5507b2a6a62b107798d1fab02bc2ad5c58cb5dd
 ?>
 <!DOCTYPE html>
 <html lang="en">
