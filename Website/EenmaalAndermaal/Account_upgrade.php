@@ -43,6 +43,8 @@ function showAccountUpgrade($currency) {
 /**
  * Determines what page to show the user based on the 'rol'. If the user has a 'rol' and it is not "gast" it will show
  * the account upgrade page, if not it will redirect to index.php
+ *
+ * @return void
  */
 function determineWhatToShow() {
     if(isset($_SESSION['rol']) && $_SESSION['rol'] == 1){
