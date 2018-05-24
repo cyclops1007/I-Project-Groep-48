@@ -44,6 +44,16 @@ function veilingen() {
     return $veilingen;
 }
 
+function artikelnummer($x) {
+    global $dbh;
+
+
+    $sql = $dbh->query("select * from voorwerp where voorwerpnummer = $x");
+    $artikelnummer = $sql->fetchALL();
+
+    return $artikelnummer;
+}
+
 //---
 function AfbeeldingIndex()
 {
@@ -61,24 +71,17 @@ function AfbeeldingIndex()
  *
  * @return array
  */
-function AfbeeldingVeiling() {
-    global $dbh;
 
-    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID()");
-    $afbeeldingVeiling = $sql->fetchALL();
-
-    return $afbeeldingVeiling;
-}
 
 /**
  * Returns the highest value of the column 'bodbedrag' from the table 'Bod'.
  *
  * @return float
  */
-function getHoogsteBod() {
+function getHoogsteBod($x) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod GROUP BY bodbedrag");
+    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE voorwerp = $x GROUP BY bodbedrag");
     $hoogsteBod = $sql->fetch();
 
     return $hoogsteBod;

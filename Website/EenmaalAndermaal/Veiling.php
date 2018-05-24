@@ -8,10 +8,12 @@
 
 include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
-$hoogsteBod = getHoogsteBod();
+$x = $_SERVER['QUERY_STRING'];
+$hoogsteBod = getHoogsteBod($x);
 //$veilingId = $_GET['veilingId'];
 //$veilingInfo = getVeilingDetails($veilingId);
-$product = afbeeldingVeiling();
+//$product = afbeeldingVeiling();
+$veiling = artikelnummer($x);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,24 +58,24 @@ $product = afbeeldingVeiling();
             <div class = row>
                 <div class="col-sm-6">
                     <h1>Titel</h1>
-                    <p>Orginele prijs:<?php echo "$moneySign" . $veilingInfo['startBod'];?></p>
-                    <p>Huidige prijs:<?php echo "$moneySign" . $hoogsteBod;?></p>
+                    <p>Orginele prijs:<?php echo "$moneySign" . $veiling[0]['startprijs'];?></p>
+                    <p>Huidige prijs:<?php echo "$moneySign" . $hoogsteBod[0];?></p>
                     </br>
                     <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
                     <form action="" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>
-                            <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod + 0.50;?>"><br>
+                            <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod[0] + 0.50;?>"><br>
                         </div>
                         <button type="submit" class="btn btn-outline-light">bied</button>
                     </form>
                     <?php }
                     if(isset($_POST['bod'])){
-                        updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
+                        updateHoogsteBod($x, $_POST['bod'], $_SESSION['ID']);
                     }?>
                 </div>
                 <div id="text-container" class="container rounded col-sm-6">
-                    <p><strong>Beschrijving:</strong><?php $veilingInfo['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>
+                    <p><strong>Beschrijving:</strong><?php echo $veiling[0]['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>
                 </div>
             </div>
         </div>
