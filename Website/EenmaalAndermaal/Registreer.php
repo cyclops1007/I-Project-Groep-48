@@ -20,7 +20,6 @@ if (!empty($_POST)){
             $error = true;
         }
     }
-
     if ($error) {
         echo "All fields are required.";
     } else {
@@ -37,9 +36,18 @@ if (!empty($_POST)){
         $password       = $_POST['password'];
         $security_q     = $_POST['security_q'];
 
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $password_h = $_POST['password_h'];
+        $isCorrect = password_verify($password_h, $hashed_password);
+
+        if($isCorrect){
+            echo "hoi";
+        }else{
+
+        };
+
         registreer($_POST);
-        $verified = true;
-        echo "Form verstuurd";
+        echo "Je account is gemaakt! <br/> Klik op de activatie link op uw mail om uw account the verifiëren";
     }
 }
 ?>
@@ -94,8 +102,8 @@ if (!empty($_POST)){
             <label>Beveiligingsvraag:</label>
             <select class="form-control" name="security_q">
                 <?php //foreach ($array as $key) { ?>
-                    <option><?php// echo $option
-                        $security_a = "";
+                    <option name="security_a"><?php// echo $option
+
                         ?></option>
                 <?php //} ?>
             </select><br>
