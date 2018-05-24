@@ -50,11 +50,18 @@ function veilingen() {
     return $veilingen;
 }
 
-function artikelnummer($x) {
+/**
+ * Returns all the data from the table 'Voorwerp' where the $veilingId equals the 'voorwerpnummer'.
+ *
+ * @param int $veilingId
+ * @return String
+ */
+
+function artikelnummer($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select * from voorwerp where voorwerpnummer = $x");
+    $sql = $dbh->query("select * from voorwerp where voorwerpnummer = $veilingId");
     $artikelnummer = $sql->fetchALL();
 
     return $artikelnummer;
@@ -91,21 +98,6 @@ function getHoogsteBod($x) {
     $hoogsteBod = $sql->fetch();
 
     return $hoogsteBod;
-}
-
-/**
- * Returns all the data from the table 'Voorwerp' where the $veilingId equals the 'voorwerpnummer'.
- *
- * @param int $veilingId
- * @return String
- */
-function getVeilingDetails($veilingId) {
-    global $dbh;
-
-    $sql = $dbh->query("SELECT * FROM Voowerp WHERE $veilingId = voorwerpnummer");
-    $veilingInfo = $sql->fetch();
-
-    return $veilingInfo;
 }
 
 /**

@@ -10,8 +10,7 @@ include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $x = $_SERVER['QUERY_STRING'];
 $hoogsteBod = getHoogsteBod($x);
-//$veilingId = $_GET['veilingId'];
-//$veilingInfo = getVeilingDetails($veilingId);
+
 //$product = afbeeldingVeiling();
 $veiling = artikelnummer($x);
 ?>
