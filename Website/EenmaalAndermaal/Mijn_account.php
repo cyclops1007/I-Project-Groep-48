@@ -55,7 +55,7 @@ if (!isset($_SESSION["change"])) {
                     <label>Land:</label>
                     <select class="form-control" name="country">
                         <?php foreach ($array as $key) { ?>
-                            <option><?php echo $option ?></option>
+                            <option><?php echo $option; ?></option>
                         <?php } ?>
                     </select><br>
                     <label>Plaats:</label>
