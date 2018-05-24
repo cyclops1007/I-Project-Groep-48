@@ -11,6 +11,7 @@ include 'Template.php';
 $hoogsteBod = getHoogsteBod();
 //$veilingId = $_GET['veilingId'];
 //$veilingInfo = getVeilingDetails($veilingId);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
