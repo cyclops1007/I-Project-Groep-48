@@ -39,7 +39,7 @@ if (!empty($_POST) && isvBlocked() == false){
     <?php foreach ($veiling as $key) {?>
         <tr>
             <th scope="row"><?php echo $key['voorwerpnummer']; ?></th>
-            <td><?php echo $key['titel']; ?></td>
+            <td><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
             <td><?php echo $key['beschrijving']; ?></td>
             <td><?php echo $key['looptijd']; ?></td>
             <td><?php echo $key['startprijs']; ?></td>
