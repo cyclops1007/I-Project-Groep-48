@@ -6,6 +6,17 @@
  * Time: 14:13
  */
 
+
+/**
+ * Connects the website to the database through the template page.
+ *
+ * @param String $server The server we're trying to connect to
+ * @param String $databaseName Name of the database we're trying to access
+ * @param String $username Username to log into the database
+ * @param String $password Password to match the username
+ * @return void
+ */
+
 $server = 'mssql2.iproject.icasites.nl';
 $databaseName = 'iproject48';
 $username = 'iproject48';
@@ -17,5 +28,4 @@ try{
 }catch(PDOException $e){
     die ("Fout met database: {$e->getMessage()}");
 }
-
 ?>

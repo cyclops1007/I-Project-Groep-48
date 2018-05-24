@@ -11,7 +11,11 @@ include 'Template.php';
 $hoogsteBod = getHoogsteBod();
 //$veilingId = $_GET['veilingId'];
 //$veilingInfo = getVeilingDetails($veilingId);
+<<<<<<< HEAD
 
+=======
+$product = afbeeldingVeiling();
+>>>>>>> f5507b2a6a62b107798d1fab02bc2ad5c58cb5dd
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,17 +33,15 @@ $hoogsteBod = getHoogsteBod();
                         <li data-target="#demo" data-slide-to="2"></li>
                     </ul>
                     <!-- The slideshow -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="image/la.jpg" alt="Los Angeles">
+                    <?php
+                    foreach ($product as $veilingProduct) {
+                    ?>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="<?php echo $veilingProduct['afbeelding']; ?>" alt="Los Angeles">
+                            </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="image/chicago.jpg" alt="Chicago">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="image/ny.jpg" alt="New York">
-                        </div>
-                    </div>
+                    <?php } ?>
                     <!-- Left and right controls -->
                     <a class="carousel-control-prev" href="#demo" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
@@ -65,13 +67,13 @@ $hoogsteBod = getHoogsteBod();
                     <form action="" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>
-                            <input class="form-control" type="number" name="bod"><br>
+                            <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod + 0.50;?>"><br>
                         </div>
                         <button type="submit" class="btn btn-outline-light">bied</button>
                     </form>
                     <?php }
                     if(isset($_POST['bod'])){
-                        updateHoogsteBod($veilingId, $_POST['bod']);
+                        updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
                     }?>
                 </div>
                 <div id="text-container" class="container rounded col-sm-6">

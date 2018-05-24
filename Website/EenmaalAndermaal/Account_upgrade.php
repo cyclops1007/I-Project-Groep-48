@@ -49,7 +49,7 @@ function determineWhatToShow() {
         showAccountUpgrade("[INSERT CURRENCY HERE]");
         //Moet nog iets toevoegen waarmee de currency bepaald wordt?
     }else{
-        redirect(index);
+        redirect('index');
     }
 }
 

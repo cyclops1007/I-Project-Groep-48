@@ -51,7 +51,6 @@ function showBatchUpload($title) {?>
             </form>
             <?php showFiles(); ?>
         </div>
-        <?php include_once 'Footer.php'; ?>
     </body>
     </html>
     <?php
@@ -65,7 +64,7 @@ function determineWhatToShow() {
     if(!isset($_SESSION['rol']) && $_SESSION['rol'] == "beheerder"){
         showBatchUpload("Batch Upload");
     } else {
-        redirectToIndex();
+        redirect('index');
     }
 }
 

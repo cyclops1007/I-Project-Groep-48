@@ -7,7 +7,11 @@
  */
 require_once("Database_con.php");
 
-
+/**
+ * Returns the 'gebruikersnaam', 'postcode', 'achternaam', 'voornaam' and 'plaatsnaam' from the table 'gebruiker'.
+ *
+ * @return String
+ */
 function gebruiker() {
     global $dbh;
 
@@ -16,7 +20,12 @@ function gebruiker() {
 
     return $gebruiker;
 }
-//---
+
+/**
+ * Returns all items from the table 'voorwerp'.
+ *
+ * @return String
+ */
 function veilingen() {
     global $dbh;
 
@@ -25,7 +34,37 @@ function veilingen() {
 
     return $veilingen;
 }
-//---
+
+function AfbeeldingIndex()
+{
+    global $dbh;
+
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID() DESC OFFSET 0 ROWS 
+    FETCH NEXT 3 ROWS ONLY;");
+    $afbeeldingIndex = $sql->fetchALL();
+
+    return $afbeeldingIndex;
+}
+/**
+ * Returns 'afbeelding' from the table 'afbeeldingen''.
+ *
+ * @return
+ */
+function AfbeeldingVeiling()
+{
+    global $dbh;
+
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID()");
+    $afbeeldingVeiling = $sql->fetchALL();
+
+    return $afbeeldingVeiling;
+}
+
+/**
+ * Returns the highest value of the column 'bodbedrag' from the table 'Bod'.
+ *
+ * @return float
+ */
 function getHoogsteBod() {
     global $dbh;
 
@@ -34,7 +73,12 @@ function getHoogsteBod() {
 
     return $hoogsteBod;
 }
-//---
+/**
+ * Returns all the data from the table 'Voorwerp' where the $veilingId equals the 'voorwerpnummer'.
+ *
+ * @param int $veilingId
+ * @return String
+ */
 function getVeilingDetails($veilingId) {
     global $dbh;
 
@@ -43,7 +87,12 @@ function getVeilingDetails($veilingId) {
 
     return $veilingInfo;
 }
-//---
+
+/**
+ * Returns all items from the table 'Artikelen' where the value of ID matches the session ID.
+ *
+ * @return String
+ */
 function getArtikelen(){
     global $dbh;
     $sessie = $_SESSION['ID'];
@@ -52,7 +101,14 @@ function getArtikelen(){
 
     return $artikelen;
 }
-//---
+/**
+ * Puts a new bidding into the table 'Bod' this function will by default only be used when the value of the bidding is higher than the last registered bidding.
+ *
+ * @param int $veilingId The ID number of the item the bidding is being placed on
+ * @param float $nieuwBod The value of the new bidding
+ * @param String $gebruiker Username of the one who placed the bidding
+ * @return void
+ */
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
@@ -76,17 +132,17 @@ function registreer($registreerArray){
     $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :blocked)";
     $sql = $dbh->prepare($sqlregistreer);
     $parameters = array(':firstname'      => $registreerArray[0],
-    ':lastname'     => $registreerArray[1],
-    ':username'     => $registreerArray[2],
-    ':address1'     => $registreerArray[3],
-    ':address2'     => $registreerArray[4],
-    ':postalcode'   => $registreerArray[5],
-    ':city'         => $registreerArray[6],
-    ':country'      => $registreerArray[7],
-    ':datum'        => $registreerArray[8],
-    ':mail'         => $registreerArray[9],
-    ':password'     => $registreerArray[10],
-    ':blocked'      => false);
+        ':lastname'     => $registreerArray[1],
+        ':username'     => $registreerArray[2],
+        ':address1'     => $registreerArray[3],
+        ':address2'     => $registreerArray[4],
+        ':postalcode'   => $registreerArray[5],
+        ':city'         => $registreerArray[6],
+        ':country'      => $registreerArray[7],
+        ':datum'        => $registreerArray[8],
+        ':mail'         => $registreerArray[9],
+        ':password'     => $registreerArray[10],
+        ':blocked'      => false);
 
     $sql->execute($parameters);
 }
@@ -137,7 +193,7 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = $id");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -174,6 +230,44 @@ function vUnblock($id){
     $sql->execute($parameters);
 }
 //---
+function calculateDistance($user, $destination, $amountKm, $id){
+
+    $from = $user;
+    $to = $destination;
+
+    $from = urlencode($from);
+    $to = urlencode($to);
+
+    $data = file_get_contents("http://maps.googleapis.com/maps/api/distancematrix/json?origins=$from&destinations=$to&language=en-EN&sensor=false");
+    $data = json_decode($data);
+    print_r($data);
+    $time = 0;
+    $distance = 0;
+
+    foreach($data->rows[0]->elements as $road) {
+        $time += $road->duration->value;
+        $distance += $road->distance->value;
+    }
+    $km=$distance/1000;
+
+    $array = '';
+    if($km <= $amountKm){
+        $array .= $id;
+    }
+    selectWithinRange($array);
+}
+//---
+function selectWithinRange($array){
+    global $dbh;
+
+    $sqlSelect = "SELECT * FROM Artikel WHERE ID = :id";
+    $sql = $dbh->prepare($sqlSelect);
+    $parameters = array(
+        ":id" => $array///???\\\
+        // hier moet die array goed uitgelezen worden om de select goed uit te voeren.
+    );
+}
+//---
 function deleteArtikel($id){
     global $dbh;
 
@@ -191,4 +285,3 @@ function redirect($location){
 }
 //---
 ?>
-
