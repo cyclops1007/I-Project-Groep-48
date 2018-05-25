@@ -6,7 +6,7 @@
  * Time: 10:09
  */
 include 'Template.php';
-isUser();
+//isUser();
 $id;
 $artikelen = getArtikelen();
 if(!empty($_POST)){
@@ -29,10 +29,10 @@ if(!empty($_POST)){
         <tbody>
             <?php foreach ($artikelen as $key) {?>
                 <tr>
-                    <th scope="row"><?php echo $key['auctionNr']; ?></th>
-                    <td scope="row"><a href="Veiling.php?Veiling=<?php echo $key['ID'];?>"><?php echo $key['auctionName']; ?></a></td>
-                    <td scope="row"><?php echo $key['timeLeft']; ?></td>
-                    <td scope="row"><?php echo $key['highestBid']; ?></td>
+                    <th scope="row"><?= $key['auctionNr']; ?></th>
+                    <td scope="row"><a href="Veiling.php?Veiling=<?= $key['ID'];?>"><?= $key['auctionName']; ?></a></td>
+                    <td scope="row"><?= $key['timeLeft']; ?></td>
+                    <td scope="row"><?= $key['highestBid']; ?></td>
                     <td>
                         <form action="" method="post">
                             <input type="image" src="image/block.jpg" width="30" value="Delete">
@@ -44,6 +44,5 @@ if(!empty($_POST)){
             <?php } ?>
         </tbody>
     </table>
-<?php include 'Footer.php'; ?>
 </body>
 </html>

@@ -103,7 +103,7 @@ function getHoogsteBod($x) {
 /**
  * Returns all items from the table 'Artikelen' where the value of ID matches the session ID.
  *
- * @return String
+ * @return array
  */
 function getArtikelen(){
     global $dbh;
