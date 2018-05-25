@@ -13,7 +13,9 @@ $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
 if (!isset($_SESSION["change"])) {
     $_SESSION["change"] = $_POST["Change"];
 } else {
-
+    if(isset($_POST)){
+        updateAccount($_POST);
+    }
     //$_SESSION["change"] = NULL;
 }
 ?>
