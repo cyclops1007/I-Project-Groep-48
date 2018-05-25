@@ -8,11 +8,10 @@
 
 include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
-$x = $_SERVER['QUERY_STRING'];
-$hoogsteBod = getHoogsteBod($x);
-
+$veilingId = $_SERVER['QUERY_STRING'];
+$hoogsteBod = getHoogsteBod($veilingId);
 //$product = afbeeldingVeiling();
-$veiling = artikelnummer($x);
+$veiling = artikelnummer($veilingId);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +69,7 @@ $veiling = artikelnummer($x);
                     </form>
                     <?php }
                     if(isset($_POST['bod'])){
-                        updateHoogsteBod($x, $_POST['bod'], $_SESSION['ID']);
+                        updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
                     }?>
                 </div>
                 <div id="text-container" class="container rounded col-sm-6">

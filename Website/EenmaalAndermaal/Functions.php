@@ -114,6 +114,28 @@ function getArtikelen(){
     return $artikelen;
 }
 
+function updateAccount($array){
+    global $dbh;
+    $sessie = $_SESSION['ID'];
+    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = ':voornaam',
+                                                             achternaam = ':achternaam',
+                                                             gebruikersnaam = ':gebruikersnaam',
+                                                             adresregel1 = ':adresregel1',
+                                                             adresregel2 = ':adresregel2',
+                                                             plaats = ':plaats',
+                                                             mailbox = ':mailbox'
+                                                             WHERE ID = $sessie");
+    $sql = $dbh->prepare($sqlUpdate);
+    $parameters = array(':voornaam' => $array[0],
+        ':achternaam' => $array[1],
+        ':gebruikersnaam' => $array[2],
+        ':adresregel1' => $array[3],
+        ':adresregel2' => $array[4],
+        ':plaats' => $array[5],
+        ':mailbox' => $array[6]);
+    $sql->execute($parameters);
+}
+
 /**
  * Puts a new bidding into the table 'Bod' this function will by default only be used when the value of the bidding is higher than the last registered bidding.
  *
