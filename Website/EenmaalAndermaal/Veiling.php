@@ -7,11 +7,13 @@
  */
 
 include 'Template.php';
+include 'Ajax.html';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $veilingId = $_SERVER['QUERY_STRING'];
 $hoogsteBod = getHoogsteBod($veilingId);
 //$product = afbeeldingVeiling();
 $veiling = artikelnummer($veilingId);
+$hoogsteBodUrl = "Hoogste_bod.php?t=\"" . Math.random()
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,15 +59,15 @@ $veiling = artikelnummer($veilingId);
                 <div class="col-sm-6">
                     <h1>Titel</h1>
                     <p>Orginele prijs:<?php echo "$moneySign" . $veiling[0]['startprijs'];?></p>
-                    <p>Huidige prijs:<?php echo "$moneySign" . $hoogsteBod[0];?></p>
-                    </br>
+                    <p id="hoogsteBod">Huidige prijs:<?php echo "$moneySign" . $hoogsteBod[0];?></p>
+                    <br>
                     <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
                     <form action="" method="post">
                         <div class="form-group">
                             <label>Mijn bod:</label>
                             <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod[0] + 0.50;?>"><br>
                         </div>
-                        <button type="submit" class="btn btn-outline-light">bied</button>
+                        <button type="submit" class="btn btn-outline-light" onclick="<script>loadDoc("Hoogste_bod.php?t=" + Math.random(), updateBidding())</script>">bied</button>
                     </form>
                     <?php }
                     if(isset($_POST['bod'])){
