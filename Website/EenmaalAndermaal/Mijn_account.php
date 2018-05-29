@@ -13,10 +13,10 @@ $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
 if (!isset($_SESSION["change"])) {
     $_SESSION["change"] = $_POST["Change"];
 } else {
-    if(isset($_POST)){
+    if(isset($_POST['firstname']) && !empty($_POST)){
         updateAccount($_POST);
     }
-    //$_SESSION["change"] = NULL;
+    $_SESSION["change"] = NULL;
 }
 ?>
 <!DOCTYPE html>
@@ -46,31 +46,33 @@ if (!isset($_SESSION["change"])) {
             <form action="" method="post">
                 <div class="form-group">
                     <label>Voornaam:</label>
-                    <input class="form-control" type="text" name="firstname" value="<?php echo $key['voornaam'];?>"><br>
+                    <input class="form-control" type="text" name="voornaam" value="<?php echo $key['voornaam'];?>"><br>
                     <label>Achternaam:</label>
-                    <input class="form-control" type="text" name="lastname" value="<?php echo $key['achternaam'];?>"><br>
+                    <input class="form-control" type="text" name="achternaam" value="<?php echo $key['achternaam'];?>"><br>
                     <label>Gebruikersnaam:</label>
-                    <input class="form-control" type="text" name="username" value="<?php echo $key['gebruikersnaam'];?>"><br>
+                    <input class="form-control" type="text" name="gebruikersnaam" value="<?php echo $key['gebruikersnaam'];?>"><br>
                     <label>Adres:</label>
-                    <input class="form-control" type="text" name="address1" value="<?php echo $key['adresregel1'];?>"><br>
+                    <input class="form-control" type="text" name="adresregel1" value="<?php echo $key['adresregel1'];?>"><br>
                     <label>Adres-2:</label>
-                    <input class="form-control" type="text" name="address2" value="<?php echo $key['adresregel2'];?>"><br>
+                    <input class="form-control" type="text" name="adresregel2" value="<?php echo $key['adresregel2'];?>"><br>
                     <label>Land:</label>
-                    <select class="form-control" name="country">
+                    <select class="form-control" name="land">
                         <?php foreach ($array as $option) { ?>
                             <option><?php echo $option; ?></option>
                         <?php } ?>
                     </select><br>
                     <label>Plaats:</label>
-                    <input class="form-control" type="text" name="city" value="<?php echo $key['plaatsnaam'];?>"><br>
+                    <input class="form-control" type="text" name="plaatsnaam" value="<?php echo $key['plaatsnaam'];?>"><br>
                     <label>E-mail:</label>
-                    <input class="form-control" type="text" name="mail" value="<?php echo $key['mailbox'];?>"><br><br>
+                    <input class="form-control" type="text" name="mailbox" value="<?php echo $key['mailbox'];?>"><br><br>
                     <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Change"
                            value="Verander account informatie">
                     <br><br>
                 </div>
             </form>
-        <?php } }
+        <?php
+            }
+        }
         if ($_SESSION['change'] !=1) {
             ?>
             <br>
