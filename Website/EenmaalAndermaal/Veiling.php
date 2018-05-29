@@ -7,17 +7,45 @@
  */
 
 include 'Template.php';
-include 'Ajax.html';
+
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $veilingId = $_SERVER['QUERY_STRING'];
 $hoogsteBod = getHoogsteBod($veilingId);
 //$product = afbeeldingVeiling();
 $veiling = artikelnummer($veilingId);
-$hoogsteBodUrl = "Hoogste_bod.php?t=\"" . Math.random()
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+<head>
+    <script>
+        var link = "Hoogste_bod.php?t=" + Math.random();
+        var xhttp;
+
+        if (window.XMLHttpRequest) {
+            // code for modern browsers
+            xhttp = new XMLHttpRequest();
+        } else {
+            // code for old IE browsers
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        function loadDoc(url, Function) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    Function(this);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        function updateBidding() {
+            document.getElementById("hoogsteBod").innerHTML = this.responseText;
+        }
+    </script>
+</head>
 <body>
 <div class="container">
     <div class ="row">
@@ -67,7 +95,7 @@ $hoogsteBodUrl = "Hoogste_bod.php?t=\"" . Math.random()
                             <label>Mijn bod:</label>
                             <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod[0] + 0.50;?>"><br>
                         </div>
-                        <button type="submit" class="btn btn-outline-light" onclick="<script>loadDoc("Hoogste_bod.php?t=" + Math.random(), updateBidding())</script>">bied</button>
+                        <button type="submit" class="btn btn-outline-light" onclick="loadDoc(link, updateBidding())">bied</button>
                     </form>
                     <?php }
                     if(isset($_POST['bod'])){
