@@ -171,23 +171,24 @@ function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
 
-    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :hash, :blocked)";
+    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :city, :datum, :mail, :password, :verkoper, :verified, :hash, :blocked)";
     $sql = $dbh->prepare($sqlregistreer);
-    $parameters = array(':firstname'      => $registreerArray[0],
-        ':lastname'     => $registreerArray[1],
-        ':username'     => $registreerArray[2],
-        ':address1'     => $registreerArray[3],
-        ':address2'     => $registreerArray[4],
-        ':postalcode'   => $registreerArray[5],
-        ':city'         => $registreerArray[6],
-        ':country'      => $registreerArray[7],
-        ':datum'        => $registreerArray[8],
-        ':mail'         => $registreerArray[9],
-        ':password'     => $registreerArray[10],
-        ':security_q'   => $registreerArray[11],
+    $parameters = array(':firstname'      => $registreerArray['firstname'],
+        ':lastname'     => $registreerArray['lastname'],
+        ':username'     => $registreerArray['username'],
+        ':address1'     => $registreerArray['address1'],
+        ':address2'     => $registreerArray['address2'],
+        ':postalcode'   => $registreerArray['postalcode'],
+        ':city'         => $registreerArray['city'],
+        //':country'      => $registreerArray[7],
+        ':datum'        => $registreerArray['date'],
+        ':mail'         => $registreerArray['mail'],
+        ':password'     => $registreerArray['password'],
+        //':security_q'   => $registreerArray[11],
         ':verkoper'     => false,
         ':verified'     => false,
         ':blocked'      => false);
+    print_r($registreerArray);
 
     $sql->execute($parameters);
 }
