@@ -18,6 +18,7 @@ $veiling = artikelnummer($veilingId);
 <html lang="en">
 <head>
     <script>
+        //Javascript for getting the current highest bidding
         var link = "Hoogste_bod.php?t=" + Math.random();
         var xhttp;
 
@@ -44,6 +45,32 @@ $veiling = artikelnummer($veilingId);
         function updateBidding() {
             document.getElementById("hoogsteBod").innerHTML = this.responseText;
         }
+
+        //javascript for countdown timer
+        var now = new Date().getTime();
+
+        var countDownDate = now.setHours(now.getHours()+12);
+
+        var x = setInterval(function() {
+
+            // Find the distance between now an the count down date
+            var countDownTime = countDownDate - now;
+
+            // Time calculations for hours, minutes and seconds
+            var hours = Math.floor((countDownTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((countDownTime % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((countDownTime % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("resterendeVeilingDuur").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("resterendeVeilingDuur").innerHTML = "GESLOTEN";
+            }
+        }, 1000);
     </script>
 </head>
 <body>
@@ -88,6 +115,7 @@ $veiling = artikelnummer($veilingId);
                     <h1>Titel</h1>
                     <p>Orginele prijs:<?php echo "$moneySign" . $veiling[0]['startprijs'];?></p>
                     <p id="hoogsteBod">Huidige prijs:<?php echo "$moneySign" . $hoogsteBod[0];?></p>
+                    <p id="resterendeVeilingDuur"></p>
                     <br>
                     <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
                     <form action="" method="post">

@@ -7,7 +7,8 @@
  */
 
 $veilingId = $_SERVER['QUERY_STRING'];
-$hoogsteBod = getHoogsteBod($veilingId)
+$hoogsteBod = getHoogsteBod($veilingId);
+
 ?>
 
 Huidige prijs:<?php echo "$moneySign" . $hoogsteBod[0];?>
