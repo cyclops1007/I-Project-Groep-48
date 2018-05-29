@@ -26,7 +26,7 @@ if (!empty($_POST) && isUblocked() == false){
 <body>
     <table id="tabeloverzicht" class="table">
         <thead>
-        <tr>
+        <tr>                            6 66
             <th scope="col">Gebruikersnaam</th>
             <th scope="col">Gebruikers ID</th>
             <th scope="col">Achternaam</th>

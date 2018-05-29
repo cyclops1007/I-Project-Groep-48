@@ -29,7 +29,7 @@ include 'Template.php';
                 <br>6525 EE Nijmegen
                 <br>Telefoon: (024) 890 45 00
                 <br>Fax: (024) 890 45 23
-                <br>Mail: <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">eenmaalandermaal2018@gmail.com</a>
+                <br>Mail: <a href="mailto:eenmaalandermaal12028@gmail.com?Subject=Hello%20again" target="_top">eenmaalandermaal2018@gmail.com</a>
             </p>
             
             <h2>Postadres</h2>
