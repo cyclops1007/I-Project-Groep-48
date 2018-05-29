@@ -8,7 +8,7 @@
 //if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
 ob_start();
 include 'Template.php';
-isUser();
+isGuest();
 $login_foutmelding = "";
 if (!empty($_POST))
 {
@@ -23,6 +23,7 @@ if (!empty($_POST))
                 'password' => $_POST["password"]
             )
         );
+        print_r($login_query);
         $tellen = $login_query->rowCount();
         if ($tellen == 0) {
             $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
