@@ -6,7 +6,7 @@
  * Time: 10:09
  */
 include 'Template.php';
-isUser();
+//isUser();
 $id;
 $artikelen = getArtikelen();
 if(!empty($_POST)){
@@ -15,35 +15,34 @@ if(!empty($_POST)){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
-<body>
-    <table class="table table-dark text-center">
-        <thead>
-            <tr>
-                <th scope="col">Veiling nr.: </th>
-                <th scope="col">Veiling naam: </th>
-                <th scope="col">Tijd tot sluiting: </th>
-                <th scope="col">Hoogste bod: </th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($artikelen as $key) {?>
+    <head></head>
+    <body>
+        <table class="table table-dark text-center">
+            <thead>
                 <tr>
-                    <th scope="row"><?php echo $key['auctionNr']; ?></th>
-                    <td scope="row"><a href="Veiling.php?Veiling=<?php echo $key['ID'];?>"><?php echo $key['auctionName']; ?></a></td>
-                    <td scope="row"><?php echo $key['timeLeft']; ?></td>
-                    <td scope="row"><?php echo $key['highestBid']; ?></td>
-                    <td>
-                        <form action="" method="post">
-                            <input type="image" src="image/block.jpg" width="30" value="Delete">
-                            <?php $id = $key['ID'];?>
-                            <p>Delete</p>
-                        </form>
-                    </td>
+                    <th scope="col">Veiling nr.: </th>
+                    <th scope="col">Veiling naam: </th>
+                    <th scope="col">Tijd tot sluiting: </th>
+                    <th scope="col">Hoogste bod: </th>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-<?php include 'Footer.php'; ?>
-</body>
+            </thead>
+            <tbody>
+                <?php foreach ($artikelen as $key) {?>
+                    <tr>
+                        <th scope="row"><?= $key['auctionNr']; ?></th>
+                        <td scope="row"><a href="Veiling.php?Veiling=<?= $key['ID'];?>"><?= $key['auctionName']; ?></a></td>
+                        <td scope="row"><?= $key['timeLeft']; ?></td>
+                        <td scope="row"><?= $key['highestBid']; ?></td>
+                        <td>
+                            <form action="" method="post">
+                                <input type="image" src="image/block.jpg" width="30" value="Delete">
+                                <?php $id = $key['ID'];?>
+                                <p>Delete</p>
+                            </form>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </body>
 </html>
