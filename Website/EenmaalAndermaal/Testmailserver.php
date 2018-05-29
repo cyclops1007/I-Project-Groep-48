@@ -6,37 +6,36 @@
  * Time: 09:50
  */
 
-require_once('PHPMailer/PHPMailerAutoload.php');
-$selectMail = selectMail(); // haal hier de juiste mail op.
-$mail = new PHPMailer(true);
+require('PHPMailer/PHPMailerAutoload.php');
+$mail = new PHPMailer();
 
 // Send mail using Gmail
-    $mail->IsSMTP(); // telling the class to use SMTP
+    //$mail->IsSMTP(); // telling the class to use SMTP
+    $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
     $mail->SMTPAuth = true; // enable SMTP authentication
-    $mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+    $mail->SMTPSecure = "ssl"; // sets the prefix to the server
     $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
     $mail->Port = 465; // set the SMTP port for the GMAIL server
     $mail->Username = "eenmaalandermaal2018@gmail.com"; // GMAIL username
     $mail->Password = "nuggetlover1!"; // GMAIL password
 
+/*
 // Typical mail data
-$mail->AddAddress('eenmaalandermaal2018@gmail.com'); //to
 $mail->SetFrom('eenmaalandermaal2018@gmail.com'); //send from
-$mail->Subject = "Signup | verification"; //title
-$mail->Body = "Thanks for signing up!
-                please click this link to activate your account:
-                http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email='.$mail'
-"; //contents
-
-
+$mail->AddAddress('emerson_martina@yahoo.com'); //to
+$mail->Subject = "Test"; //title
+$mail->Body = "Thanks for signing up!"; //contents
 
 try{
     $mail->Send();
     echo "Success!";
 } catch(Exception $e){
     // Something went bad
-    echo "Fail :(";
+    echo $e;
 }
+*/
+
+
 
 
 ?>
