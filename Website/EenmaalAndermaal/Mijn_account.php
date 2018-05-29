@@ -36,7 +36,6 @@ if (!isset($_SESSION["change"])) {
                 echo "<h2>Adres: "         . $key['adresregel1'] . "</h2>";
                 echo "<h2>Adres-2: "       . $key['adresregel2'] . "</h2>";
                 echo "<h2>Postcode: "      . $key['postcode'] . "</h2>";
-                echo "<h2>Plaats: "        . $key['plaatsnaam'] . "</h2>";
                 echo "<h2>Land: "          . $key['landcode'] . "</h2>";
                 echo "<h2>Geboortedatum: " . $key['geboortedag'] . "</h2>";
                 echo "<h2>E-mail: "        . $key['mailbox'] . "</h2>";
@@ -63,7 +62,7 @@ if (!isset($_SESSION["change"])) {
                         <?php } ?>
                     </select><br>
                     <label>Plaats:</label>
-                    <input class="form-control" type="text" name="plaatsnaam" value="<?php echo $key['plaatsnaam'];?>"><br>
+                    <input class="form-control" type="text" name="postcode" value="<?php echo $key['postcode'];?>"><br>
                     <label>E-mail:</label>
                     <input class="form-control" type="text" name="mailbox" value="<?php echo $key['mailbox'];?>"><br><br>
                     <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Change"

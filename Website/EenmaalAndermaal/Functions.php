@@ -15,7 +15,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM  gebruiker");
+    $sql = $dbh->query("SELECT TOP 50 * FROM  gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
@@ -44,7 +44,7 @@ function mijnAccount($id) {
 function veilingen() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM  voorwerp");
+    $sql = $dbh->query("SELECT TOP 50 *  FROM voorwerp");
     $veilingen = $sql->fetchAll();
 
     return $veilingen;
@@ -116,23 +116,22 @@ function getArtikelen(){
 
 function updateAccount($array){
     global $dbh;
-    $sessie = $_SESSION['ID'];
+    //$sessie = $_SESSION['ID'];
     $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = :voornaam,
                                                              achternaam = :achternaam,
                                                              gebruikersnaam = :gebruikersnaam,
                                                              adresregel1 = :adresregel1,
                                                              adresregel2 = :adresregel2,
-                                                             plaats = :plaats,
+                                                             postcode = :postcode,
                                                              mailbox = :mailbox
-                                                             WHERE ID = $sessie");
+                                                             WHERE gebruikersId = 1");
     $sql = $dbh->prepare($sqlUpdate);
     $parameters = array(':voornaam' => $array['voornaam'],
         ':achternaam' => $array['achternaam'],
         ':gebruikersnaam' => $array['gebruikersnaam'],
         ':adresregel1' => $array['adresregel1'],
         ':adresregel2' => $array['adresregel2'],
-        ':land' => $array['land'],
-        ':plaats' => $array['plaats'],
+        ':postcode' => $array['postcode'],
         ':mailbox' => $array['mailbox']);
     $sql->execute($parameters);
 }
