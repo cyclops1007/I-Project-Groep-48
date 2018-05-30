@@ -105,10 +105,9 @@ function getHoogsteBod($x) {
  *
  * @return array
  */
-function getArtikelen(){
+function getArtikelen($id){
     global $dbh;
-    $sessie = $_SESSION['ID'];
-    $sql = $dbh->query("SELECT * FROM Artikelen WHERE ID = $sessie");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE verkoper = $id");
     $artikelen = $sql->fetch();
 
     return $artikelen;
@@ -117,13 +116,14 @@ function getArtikelen(){
 function updateAccount($array){
     global $dbh;
     //$sessie = $_SESSION['ID'];
-    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = :voornaam,
-                                                             achternaam = :achternaam,
-                                                             gebruikersnaam = :gebruikersnaam,
-                                                             adresregel1 = :adresregel1,
-                                                             adresregel2 = :adresregel2,
-                                                             postcode = :postcode,
-                                                             mailbox = :mailbox
+    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam,
+                                                             achternaam,
+                                                             gebruikersnaam,
+                                                             adresregel1,
+                                                             adresregel2,
+                                                             postcode,
+                                                             mailbox
+                                                             VALUES (:voornaam, :achternaam, :gebruikersnaam, :adresregel1, :adresregel2, :postcode, :mailbox)
                                                              WHERE gebruikersId = 1");
     $sql = $dbh->prepare($sqlUpdate);
     $parameters = array(':voornaam' => $array['voornaam'],
@@ -170,24 +170,23 @@ function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
 
-    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :city, :datum, :mail, :password, :verkoper, :verified, :hash, :blocked)";
+    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :hash, :blocked)";
     $sql = $dbh->prepare($sqlregistreer);
-    $parameters = array(':firstname'      => $registreerArray['firstname'],
-        ':lastname'     => $registreerArray['lastname'],
-        ':username'     => $registreerArray['username'],
-        ':address1'     => $registreerArray['address1'],
-        ':address2'     => $registreerArray['address2'],
-        ':postalcode'   => $registreerArray['postalcode'],
-        ':city'         => $registreerArray['city'],
-        //':country'      => $registreerArray[7],
-        ':datum'        => $registreerArray['date'],
-        ':mail'         => $registreerArray['mail'],
-        ':password'     => $registreerArray['password'],
-        //':security_q'   => $registreerArray[11],
+    $parameters = array(':firstname'      => $registreerArray[0],
+        ':lastname'     => $registreerArray[1],
+        ':username'     => $registreerArray[2],
+        ':address1'     => $registreerArray[3],
+        ':address2'     => $registreerArray[4],
+        ':postalcode'   => $registreerArray[5],
+        ':city'         => $registreerArray[6],
+        ':country'      => $registreerArray[7],
+        ':datum'        => $registreerArray[8],
+        ':mail'         => $registreerArray[9],
+        ':password'     => $registreerArray[10],
+        ':security_q'   => $registreerArray[11],
         ':verkoper'     => false,
         ':verified'     => false,
         ':blocked'      => false);
-    print_r($registreerArray);
 
     $sql->execute($parameters);
 }
@@ -358,7 +357,7 @@ function calculateDistance($user, $destination, $amountKm, $id){
         $distance += $road->distance->value;
     }
     $km=$distance/1000;
-        // deze code is van https://stackoverflow.com/questions/36143960/php-distance-between-2-addresses-with-google-maps
+    // deze code is van https://stackoverflow.com/questions/36143960/php-distance-between-2-addresses-with-google-maps
 
     if($km <= $amountKm){
         return $id;
@@ -383,12 +382,13 @@ function selectWithinRange($array){
  * @param int $id The id number of the article you want to delete
  * @return void
  */
-function deleteArtikel($id){
+function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = $dbh->query("DELETE FROM Artikel WHERE ID = :ID");
+    $delete = $dbh->query("DELETE FROM Artikel WHERE verkoper = :ID AND voorwerpnummer = :vID");
     $sql = $dbh->prepare($delete);
-    $parameters = array(':ID' => $id);
+    $parameters = array(':ID' => $id,
+        ':vID' => $vID);
 
     $sql->execute($parameters);
 
