@@ -15,7 +15,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT TOP 50 * FROM  gebruiker");
+    $sql = $dbh->query("SELECT TOP 50 * FROM  Gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
@@ -30,7 +30,7 @@ function gebruiker() {
 function mijnAccount($id) {
     global $dbh;
 
-    $sql = $dbh->query( "SELECT * FROM gebruiker WHERE gebruikersId = $id");
+    $sql = $dbh->query( "SELECT * FROM Gebruiker WHERE gebruikersId = $id");
     $account = $sql->fetchAll();
 
     return $account;
@@ -246,7 +246,7 @@ function isGuest(){
 function isUBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM gebruiker WHERE ID = $id");
+    $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE ID = $id");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker; // moet false of true returnen
@@ -308,7 +308,7 @@ function vBlock($id){
 function uUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE gebruiker SET blocked = false WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Gebruiker SET blocked = false WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
