@@ -23,13 +23,20 @@ if (!empty($_POST))
                 'password' => $_POST["password"]
             )
         );
-        print_r($login_query);
         $tellen = $login_query->rowCount();
         if ($tellen == 0) {
             $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
             echo $login_foutmelding;
         } else {
-            $_SESSION["username"] = $_POST["username"];
+            function id($gebruikersnaam)
+            {
+                global $dbh;
+                $sql = $dbh->query("SELECT gebruikersId FROM Gebruiker WHERE gebruikersnaam = $gebruikersnaam");
+                $id = $sql->fetchall();
+                return $id;
+            }
+            $_SESSION['ID'] = id($_POST["username"]);
+            $_SESSION['username'] = $_POST['username'];
             header("Location: Mijn_account.php");
         }
         print_r($_POST);

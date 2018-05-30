@@ -5,7 +5,8 @@
  * Date: 8-5-2018
  * Time: 9:57
  */
-$location = "http://localhost/I-Project-Groep-48/Website/EenmaalAndermaal/index.php";
+include 'Functions.php';
+$location = 'index';
 logout();
 redirect($location);
 ?>

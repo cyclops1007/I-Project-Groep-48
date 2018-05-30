@@ -63,7 +63,7 @@ if (!empty($_POST)){
 
             } catch(Exception $e){
                 // Something went bad
-                echo "Fail :(";
+                echo $e;
             }
             
           
