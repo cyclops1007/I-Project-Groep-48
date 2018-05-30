@@ -40,9 +40,11 @@ button a:hover {
 .carousel-inner img {
     margin: auto;
     display: block;
-    height: auto;
+
     max-width: 100%;
     line-height: 1;
+
+    height: auto;
     width: 100%;
 }
 

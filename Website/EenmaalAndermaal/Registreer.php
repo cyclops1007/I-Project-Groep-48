@@ -8,10 +8,10 @@
 
 include 'Template.php';
 if(isset($_SESSION['Rol'])){header("Index.php");}
-//$options = getOptions();
+$options = getOptions();
 if (!empty($_POST)){
 
-    $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'city', 'date', 'mail', 'password', 'password_h');
+    $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'city', 'country', 'date', 'mail', 'password', 'password_h');
 
     $error = false;
     $verified = false;
@@ -30,7 +30,7 @@ if (!empty($_POST)){
         $address2       = $_POST['address2'];
         $postalcode     = $_POST['postalcode'];
         $city           = $_POST['city'];
-        //$country        = $_POST['country'];
+        $country        = $_POST['country'];
         $date           = $_POST['date'];
         $mailaddress     = $_POST['mail'];
         $password       = $_POST['password'];
@@ -107,12 +107,12 @@ if (!empty($_POST)){
             <input class="form-control" type="text" name="postalcode"><br>
             <label>Plaats:</label>
             <input class="form-control" type="text" name="city"><br>
-    <!--        <label>Land:</label>
+            <label>Land:</label>
             <select class="form-control" name="country">
-                <?php //foreach ($options as $key) { ?>
-                    <option><?php// echo $key ?></option>
-                <?php //} ?>
-            </select><br> -->
+                <?php foreach ($options as $key) { ?>
+                    <option><?php echo $key['landnaam'] ?></option>
+                <?php } ?>
+            </select><br>
             <label>Geboortedatum:</label>
             <input class="form-control" type="text" name="date"><br>
             <label>Mail:</label>

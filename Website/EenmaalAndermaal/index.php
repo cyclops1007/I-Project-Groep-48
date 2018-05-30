@@ -44,18 +44,24 @@ function carousel() {
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
+            <div class="carousel-inner active">
             <!-- The slideshow -->
             <?php
-            foreach ($foto as $voorwerp) {
-                ?>
-                <div class="carousel-inner">
+            foreach ($foto as $voorwerp){
+                if ($voorwerp === reset($foto)) { ?>
                     <div class="carousel-item active">
-                        <img src="<?= $voorwerp['afbeelding']; ?>" alt="Los Angeles">
+                <?php }else{ ?>
+                    <div class="carousel-item">
+                <?php } ?>
+
+
+                        <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                     </div>
-                </div>
+
                 <?php
             }
             ?>
+            </div>
             <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#demo" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
