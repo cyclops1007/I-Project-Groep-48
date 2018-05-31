@@ -21,6 +21,15 @@ function gebruiker() {
     return $gebruiker;
 }
 
+function showResult() {
+    global $dbh;
+
+    $sql = $dbh->query("select titel from voorwerp");
+    $showResult = $sql->fetchALL();
+
+    return $showResult;
+}
+
 /**
  * Returns the data from the user that matches the given id.
  *
