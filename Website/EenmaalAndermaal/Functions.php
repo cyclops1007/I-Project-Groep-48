@@ -70,10 +70,20 @@ function artikelnummer($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select * from voorwerp where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("select *  from voorwerp where voorwerpnummer = $veilingId");
     $artikelnummer = $sql->fetchALL();
 
     return $artikelnummer;
+}
+
+function artikelfoto($veilingId) {
+    global $dbh;
+
+
+    $sql = $dbh->query("select afbeelding  from afbeeldingen where voorwerpnummer = $veilingId");
+    $artikelfoto = $sql->fetchALL();
+
+    return $artikelfoto;
 }
 
 //---

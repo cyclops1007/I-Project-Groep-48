@@ -13,6 +13,7 @@ $veilingId = $_SERVER['QUERY_STRING'];
 $hoogsteBod = getHoogsteBod($veilingId);
 //$product = afbeeldingVeiling();
 $veiling = artikelnummer($veilingId);
+$foto = artikelfoto($veilingId);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,33 +78,30 @@ $veiling = artikelnummer($veilingId);
 <div class="container">
     <div class ="row">
         <div class = "col-lg-4">
-            <div class = "col-lg-12">
-                <div id="demo" class="carousel slide" data-ride="carousel">
+            <div class="col-md-6">
+                <div id="demo" class="carousel slide" data-ride="carousel" style="margin-left: -100%; width: 600px; ma ">
                     <!-- Indicators -->
-                    <ul class="carousel-indicators">
-                        <li data-target="#demo" data-slide-to="0" class="active"></li>
-                        <li data-target="#demo" data-slide-to="1"></li>
-                        <li data-target="#demo" data-slide-to="2"></li>
-                    </ul>
-                    <!-- The slideshow -->
-                    <?php
-                    foreach ($product as $veilingProduct) {
-                    ?>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="<?php echo $veilingProduct['afbeelding']; ?>" alt="Los Angeles">
+                    <div class="carousel-inner active">
+                        <!-- The slideshow -->
+                        <?php
+                        foreach ($foto as $voorwerp){
+                        if ($voorwerp === reset($foto)) { ?>
+                        <div class="carousel-item active">
+                            <?php }else{ ?>
+                            <div class="carousel-item">
+                                <?php } ?>
+
+
+                                <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                             </div>
+
+                            <?php
+                            }
+                            ?>
                         </div>
-                    <?php } ?>
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#demo" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>
+                        <!-- Left and right controls -->
+                    </div>
                 </div>
-            </div>
             <hr/>
             <div id="text-container" class = "container rounded col-lg-12">
                 Voorwaarden:
