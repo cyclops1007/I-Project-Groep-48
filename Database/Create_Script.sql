@@ -8,8 +8,8 @@ GO
  DROP TABLES
 ============================================================
 */
--- USE iproject48
-USE iproject48
+ USE iproject48
+--USE EenmaalAndermaal
 
 DROP TABLE Bod
 DROP TABLE Gebruikerstelefoon
@@ -25,8 +25,6 @@ DROP TABLE Landen
 
 GO
 
---USE iproject48
-USE iproject48
 /*
 ============================================================
 VRAAG
@@ -119,10 +117,9 @@ RUBRIEK
 */
 
 CREATE TABLE Rubriek (
-rubriekNummer	NUMERIC(5)		NOT NULL,
-rubriekNaam		CHAR(30)		NOT NULL,
-rubriek			NUMERIC(5),
-volgnr			NUMERIC(2)		NOT NULL,
+rubriekNummer	NUMERIC(6)		NOT NULL,
+rubriekNaam		CHAR(100)		NOT NULL,
+rubriek			NUMERIC(6),
 
 --PK
 CONSTRAINT PK_Rubriek PRIMARY KEY(rubrieknummer),
@@ -201,7 +198,7 @@ VOORWERP_IN_RUBRIEK
 
 CREATE TABLE Voorwerp_in_Rubriek (
 voorwerp					NUMERIC(10)		NOT NULL,
-rubriek_op_Laagste_Niveau	NUMERIC(5)		NOT NULL,
+rubriek_op_Laagste_Niveau	NUMERIC(6)		NOT NULL,
 
 --PK
 CONSTRAINT PK_Voorwerp_in_Rubriek PRIMARY KEY(voorwerp, rubriek_op_Laagste_Niveau),

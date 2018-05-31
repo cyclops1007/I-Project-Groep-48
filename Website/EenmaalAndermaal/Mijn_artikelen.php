@@ -7,8 +7,8 @@
  */
 include 'Template.php';
 //isUser();
-$id = 1;
-$vID = 1;
+$id = $_SESSION['ID'][0];
+$vID = 271518732479;// voorlopig id dit klopt nog niet!
 $artikelen = array(getArtikelen($id));
 if(!empty($_POST)){
     deleteArtikel($id, $vID);
