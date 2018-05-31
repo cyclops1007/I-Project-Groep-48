@@ -15,7 +15,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM  gebruiker");
+    $sql = $dbh->query("SELECT TOP 50 * FROM  Gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
@@ -39,7 +39,7 @@ function showResult() {
 function mijnAccount($id) {
     global $dbh;
 
-    $sql = $dbh->query( "SELECT * FROM gebruiker WHERE gebruikersId = $id");
+    $sql = $dbh->query( "SELECT * FROM Gebruiker WHERE gebruikersId = $id");
     $account = $sql->fetchAll();
 
     return $account;
@@ -53,7 +53,7 @@ function mijnAccount($id) {
 function veilingen() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM  voorwerp");
+    $sql = $dbh->query("SELECT TOP 50 *  FROM voorwerp");
     $veilingen = $sql->fetchAll();
 
     return $veilingen;
@@ -114,10 +114,9 @@ function getHoogsteBod($x) {
  *
  * @return array
  */
-function getArtikelen(){
+function getArtikelen($id){
     global $dbh;
-    $sessie = $_SESSION['ID'];
-    $sql = $dbh->query("SELECT * FROM Artikelen WHERE ID = $sessie");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE verkoper = $id");
     $artikelen = $sql->fetch();
 
     return $artikelen;
@@ -126,24 +125,26 @@ function getArtikelen(){
 function updateAccount($array){
     global $dbh;
     $sessie = $_SESSION['ID'];
-    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = ':voornaam',
-                                                             achternaam = ':achternaam',
-                                                             gebruikersnaam = ':gebruikersnaam',
-                                                             adresregel1 = ':adresregel1',
-                                                             adresregel2 = ':adresregel2',
-                                                             plaats = ':plaats',
-                                                             mailbox = ':mailbox'
-                                                             WHERE ID = $sessie");
+    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam,
+                                                             achternaam,
+                                                             gebruikersnaam,
+                                                             adresregel1,
+                                                             adresregel2,
+                                                             postcode,
+                                                             mailbox
+                                                             VALUES (:voornaam, :achternaam, :gebruikersnaam, :adresregel1, :adresregel2, :postcode, :mailbox)
+                                                             WHERE gebruikersId = $sessie");
     $sql = $dbh->prepare($sqlUpdate);
-    $parameters = array(':voornaam' => $array[0],
-        ':achternaam' => $array[1],
-        ':gebruikersnaam' => $array[2],
-        ':adresregel1' => $array[3],
-        ':adresregel2' => $array[4],
-        ':plaats' => $array[5],
-        ':mailbox' => $array[6]);
+    $parameters = array(':voornaam' => $array['voornaam'],
+        ':achternaam' => $array['achternaam'],
+        ':gebruikersnaam' => $array['gebruikersnaam'],
+        ':adresregel1' => $array['adresregel1'],
+        ':adresregel2' => $array['adresregel2'],
+        ':postcode' => $array['postcode'],
+        ':mailbox' => $array['mailbox']);
     $sql->execute($parameters);
 }
+
 
 /**
  * Puts a new bidding into the table 'Bod' this function will by default only be used when the value of the bidding is higher than the last registered bidding.
@@ -178,27 +179,33 @@ function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
 function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
+    try {
+        $sqlregistreer = "INSERT INTO Gebruiker (voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst) VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion)";
+        $sql = $dbh->prepare($sqlregistreer);
+        $parameters = array(':firstname' => $registreerArray['firstname'],
+            ':lastname' => $registreerArray['lastname'],
+            ':username' => $registreerArray['username'],
+            ':address1' => $registreerArray['address1'],
+            ':address2' => $registreerArray['address2'],
+            ':postalcode' => $registreerArray['postalcode'],
+            ':country' => "DEU",
+            ':datum' => $registreerArray['date'],
+            ':mail' => $registreerArray['mail'],
+            ':password' => $registreerArray['password'],
+            ':security_q' => 1,
+            ':verkoper' => 1,
+            ':verified' => NULL,
+            ':blocked' => 0,
+            ':aquestion' => "Test!");
 
-    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :hash, :blocked)";
-    $sql = $dbh->prepare($sqlregistreer);
-    $parameters = array(':firstname'      => $registreerArray[0],
-        ':lastname'     => $registreerArray[1],
-        ':username'     => $registreerArray[2],
-        ':address1'     => $registreerArray[3],
-        ':address2'     => $registreerArray[4],
-        ':postalcode'   => $registreerArray[5],
-        ':city'         => $registreerArray[6],
-        ':country'      => $registreerArray[7],
-        ':datum'        => $registreerArray[8],
-        ':mail'         => $registreerArray[9],
-        ':password'     => $registreerArray[10],
-        ':security_q'   => $registreerArray[11],
-        ':verkoper'     => false,
-        ':verified'     => false,
-        ':blocked'      => false);
+        $sql->execute($parameters);
 
-    $sql->execute($parameters);
+        print_r($parameters);
+    }catch(Exception $e){
+        echo $e;
+    }
 }
+
 
 /**
  * Checks if the user has the 'Rol' Admin, if not it redirects the user to the homepage.
@@ -206,7 +213,7 @@ function registreer($registreerArray){
  * @return void
  */
 function isAdmin(){
-    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 3){
+    if(!isset($_SESSION['rol']) || $_SESSION['rol'] < 3){
         redirect('Index');
     }
 }
@@ -217,7 +224,7 @@ function isAdmin(){
  * @return void
  */
 function isSeller(){
-    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 2){
+    if(!isset($_SESSION['rol']) || $_SESSION['rol'] < 2){
         redirect('Index');
     }
 }
@@ -228,7 +235,7 @@ function isSeller(){
  * @return void
  */
 function isUser(){
-    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 1){
+    if(!isset($_SESSION['rol']) || $_SESSION['rol'] < 1){
         redirect('Index');
     }
 }
@@ -239,8 +246,8 @@ function isUser(){
  * @return void
  */
 function isGuest(){
-    if(!isset($_SESSION['Rol'])){
-        $_SESSION["Rol"] = 0;
+    if(!isset($_SESSION['rol'])){
+        $_SESSION["rol"] = 0;
         redirect('Index');
     }
 }
@@ -254,7 +261,7 @@ function isGuest(){
 function isUBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM gebruiker WHERE ID = $id");
+    $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE ID = $id");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker; // moet false of true returnen
@@ -316,7 +323,7 @@ function vBlock($id){
 function uUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE gebruiker SET blocked = false WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Gebruiker SET blocked = false WHERE ID = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -366,7 +373,7 @@ function calculateDistance($user, $destination, $amountKm, $id){
         $distance += $road->distance->value;
     }
     $km=$distance/1000;
-        // deze code is van https://stackoverflow.com/questions/36143960/php-distance-between-2-addresses-with-google-maps
+    // deze code is van https://stackoverflow.com/questions/36143960/php-distance-between-2-addresses-with-google-maps
 
     if($km <= $amountKm){
         return $id;
@@ -391,12 +398,13 @@ function selectWithinRange($array){
  * @param int $id The id number of the article you want to delete
  * @return void
  */
-function deleteArtikel($id){
+function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = $dbh->query("DELETE FROM Artikel WHERE ID = :ID");
+    $delete = ("SELECT * FROM Voorwerp WHERE verkoper = ':ID' AND voorwerpnummer = ':vID'");
     $sql = $dbh->prepare($delete);
-    $parameters = array(':ID' => $id);
+    $parameters = array(':ID' => $id,
+        ':vID' => $vID);
 
     $sql->execute($parameters);
 
@@ -420,4 +428,16 @@ function logout(){
 function redirect($location){
     header("Location: " . $location . ".php");
 }
+
+function id($gebruikersnaam)
+{
+    global $dbh;
+    $sqlid = "SELECT gebruikersId, rol FROM Gebruiker WHERE gebruikersnaam = :gebruikersnaam";
+    $sql = $dbh->prepare($sqlid);
+    $parameters = array(':gebruikersnaam'   => $gebruikersnaam);
+    $sql->execute($parameters);
+    $account = $sql->fetch();
+    return $account;
+}
+
 ?>

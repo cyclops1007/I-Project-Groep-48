@@ -12,10 +12,10 @@ $data = gebruiker();
 $isblocked;
 if (!empty($_POST) && isUblocked() == false){
     $isblocked = "image/block.jpg";
-    uBlock();
+    uBlock($_SESSION['ID']);
 }else if(!empty($_POST) && isUblocked() == true){
     $isblocked = "image/check.jpg";
-    uUnblock();
+    uUnblock($_SESSION['ID']);
 }
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ if (!empty($_POST) && isUblocked() == false){
 <body>
     <table id="tabeloverzicht" class="table">
         <thead>
-        <tr>
+        <tr>                            
             <th scope="col">Gebruikersnaam</th>
             <th scope="col">Gebruikers ID</th>
             <th scope="col">Achternaam</th>

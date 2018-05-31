@@ -7,42 +7,42 @@
  */
 include 'Template.php';
 //isUser();
-$id;
-$artikelen = getArtikelen();
+$id = $_SESSION['ID'][0];
+$vID = 271518732479;// voorlopig id dit klopt nog niet!
+$artikelen = array(getArtikelen($id));
 if(!empty($_POST)){
-    deleteArtikel($id);
+    deleteArtikel($id, $vID);
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head></head>
-    <body>
-        <table class="table table-dark text-center">
-            <thead>
-                <tr>
-                    <th scope="col">Veiling nr.: </th>
-                    <th scope="col">Veiling naam: </th>
-                    <th scope="col">Tijd tot sluiting: </th>
-                    <th scope="col">Hoogste bod: </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($artikelen as $key) {?>
-                    <tr>
-                        <th scope="row"><?= $key['auctionNr']; ?></th>
-                        <td scope="row"><a href="Veiling.php?Veiling=<?= $key['ID'];?>"><?= $key['auctionName']; ?></a></td>
-                        <td scope="row"><?= $key['timeLeft']; ?></td>
-                        <td scope="row"><?= $key['highestBid']; ?></td>
-                        <td>
-                            <form action="" method="post">
-                                <input type="image" src="image/block.jpg" width="30" value="Delete">
-                                <?php $id = $key['ID'];?>
-                                <p>Delete</p>
-                            </form>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </body>
+<head></head>
+<body>
+<table class="table table-dark text-center">
+    <thead>
+    <tr>
+        <th scope="col">Veiling nr.: </th>
+        <th scope="col">Veiling naam: </th>
+        <th scope="col">Einddatum: </th>
+        <th scope="col">Startbod: </th>
+        <th scope="col">Be&eumlindig Veiling:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($artikelen as $key) {?>
+        <tr>
+            <th scope="row"><?php echo $key['voorwerpnummer']; ?></th>
+            <td scope="row"><a href="veiling.php?<?php echo $key['voorwerpnummer'];?>"><?php echo $key['titel']; ?></a></td>
+            <td scope="row"><?php echo $key['looptijdEindeDag']; ?></td>
+            <td scope="row"><?php echo $key['startprijs']; ?></td>
+            <td>
+                <form action="" method="post">
+                    <input type="image" src="image/block.jpg" width="30" value="Delete">
+                </form>
+            </td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+</body>
 </html>

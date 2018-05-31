@@ -8,7 +8,7 @@
 //if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
 ob_start();
 include 'Template.php';
-isUser();
+isGuest();
 $login_foutmelding = "";
 if (!empty($_POST))
 {
@@ -28,7 +28,11 @@ if (!empty($_POST))
             $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
             echo $login_foutmelding;
         } else {
-            $_SESSION["username"] = $_POST["username"];
+            $username = $_POST["username"];
+            $x = id($username);
+            $_SESSION['ID'] = $x[0];
+            $_SESSION["rol"] = $x[1];
+            $_SESSION['username'] = $_POST['username'];
             header("Location: Mijn_account.php");
         }
         print_r($_POST);
