@@ -11,12 +11,12 @@ if(isset($_SESSION['Rol'])){header("Index.php");}
 //$options = getOptions();
 if (!empty($_POST)){
 
-    $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'city', 'date', 'mail', 'password', 'password_h');
+    $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'date', 'mail', 'password', 'password_h');
 
     $error = false;
-    $verified = false;
     foreach ($required as $field) {
         if (empty($_POST[$field])) {
+            print_r($_POST);
             $error = true;
         }
     }
@@ -78,18 +78,6 @@ if (!empty($_POST)){
 <body>
 <div id="login-container" class="container w-50 rounded ">
     <h1>Registreren</h1></br>
-    <?php
-    //if($verified){
-    //    echo "Uw account is aangemaakt, <br />  verifieer het door op de activatie link te klikken in je mail.";
-    //    $hash = md5( rand(0,1000) );
-    //    $sql = $dbh->query("INSERT INTO Gebruikers (gebruikersnaam, voornaam, achternaam, adresregel1,
-    //                                adresregel2, postcode, plaatsnaam, geboortedag, mailbox, wachtwoord,
-    //                                vraagnummer, antwoordTekst, Hash)
-    //                                VALUES ($username, $firstname, $lastname, $address1, $address2, $postalcode,
-    //                                $city, $date, $mail, $password, $security_q, $security_a, $hash)");
-    //    $sql->execute;
-    //}
-    ?>
     <form action="" method="post">
         <div class="form-group">
             <label>Voornaam:</label>
@@ -130,6 +118,5 @@ if (!empty($_POST)){
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Registreer</button>
     </form>
 </div>
-<?php include 'Footer.php';?>
 </body>
 </html>

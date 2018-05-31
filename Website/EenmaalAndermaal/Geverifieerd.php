@@ -17,7 +17,7 @@ if($_GET['email']){
     $search->execute();
     $match = $search->fetchColumn();
 
-    echo $match;exit; //verwijder na testen
+    echo $match; //verwijder na testen
     if($match > 0){
         // We have a match, activate the account
         $activeer = $dbh->prepare("UPDATE Gebruiker SET verified = '1' WHERE mailbox=$mailaddress");
