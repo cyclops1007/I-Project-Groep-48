@@ -7,8 +7,8 @@
  */
 
 include 'Template.php';
-//isUser();
-$accountInfo = mijnAccount($_SESSION['ID'][0]);
+isUser();
+$accountInfo = mijnAccount($_SESSION['ID']);
 $_SESSION['change'];
 $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
 print_r($_SESSION);

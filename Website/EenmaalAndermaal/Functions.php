@@ -115,7 +115,7 @@ function getArtikelen($id){
 
 function updateAccount($array){
     global $dbh;
-    //$sessie = $_SESSION['ID'];
+    $sessie = $_SESSION['ID'];
     $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam,
                                                              achternaam,
                                                              gebruikersnaam,
@@ -124,7 +124,7 @@ function updateAccount($array){
                                                              postcode,
                                                              mailbox
                                                              VALUES (:voornaam, :achternaam, :gebruikersnaam, :adresregel1, :adresregel2, :postcode, :mailbox)
-                                                             WHERE gebruikersId = 1");
+                                                             WHERE gebruikersId = $sessie");
     $sql = $dbh->prepare($sqlUpdate);
     $parameters = array(':voornaam' => $array['voornaam'],
         ':achternaam' => $array['achternaam'],
@@ -135,6 +135,7 @@ function updateAccount($array){
         ':mailbox' => $array['mailbox']);
     $sql->execute($parameters);
 }
+
 
 /**
  * Puts a new bidding into the table 'Bod' this function will by default only be used when the value of the bidding is higher than the last registered bidding.
@@ -169,27 +170,33 @@ function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
 function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
+    try {
+        $sqlregistreer = "INSERT INTO Gebruiker (voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst) VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion)";
+        $sql = $dbh->prepare($sqlregistreer);
+        $parameters = array(':firstname' => $registreerArray['firstname'],
+            ':lastname' => $registreerArray['lastname'],
+            ':username' => $registreerArray['username'],
+            ':address1' => $registreerArray['address1'],
+            ':address2' => $registreerArray['address2'],
+            ':postalcode' => $registreerArray['postalcode'],
+            ':country' => "DEU",
+            ':datum' => $registreerArray['date'],
+            ':mail' => $registreerArray['mail'],
+            ':password' => $registreerArray['password'],
+            ':security_q' => 1,
+            ':verkoper' => 1,
+            ':verified' => NULL,
+            ':blocked' => 0,
+            ':aquestion' => "Test!");
 
-    $sqlregistreer = "INSERT INTO Gebruiker VALUES(:firstname, :lastname, :address1, :address2, :postalcode, :city, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :hash, :blocked)";
-    $sql = $dbh->prepare($sqlregistreer);
-    $parameters = array(':firstname'      => $registreerArray[0],
-        ':lastname'     => $registreerArray[1],
-        ':username'     => $registreerArray[2],
-        ':address1'     => $registreerArray[3],
-        ':address2'     => $registreerArray[4],
-        ':postalcode'   => $registreerArray[5],
-        ':city'         => $registreerArray[6],
-        ':country'      => $registreerArray[7],
-        ':datum'        => $registreerArray[8],
-        ':mail'         => $registreerArray[9],
-        ':password'     => $registreerArray[10],
-        ':security_q'   => $registreerArray[11],
-        ':verkoper'     => false,
-        ':verified'     => false,
-        ':blocked'      => false);
+        $sql->execute($parameters);
 
-    $sql->execute($parameters);
+        print_r($parameters);
+    }catch(Exception $e){
+        echo $e;
+    }
 }
+
 
 /**
  * Checks if the user has the 'Rol' Admin, if not it redirects the user to the homepage.
@@ -197,7 +204,7 @@ function registreer($registreerArray){
  * @return void
  */
 function isAdmin(){
-    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 3){
+    if(!isset($_SESSION['rol']) || $_SESSION['rol'] < 3){
         redirect('Index');
     }
 }
@@ -208,7 +215,7 @@ function isAdmin(){
  * @return void
  */
 function isSeller(){
-    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 2){
+    if(!isset($_SESSION['rol']) || $_SESSION['rol'] < 2){
         redirect('Index');
     }
 }
@@ -219,7 +226,7 @@ function isSeller(){
  * @return void
  */
 function isUser(){
-    if(!isset($_SESSION['Rol']) || $_SESSION['Rol'] < 1){
+    if(!isset($_SESSION['rol']) || $_SESSION['rol'] < 1){
         redirect('Index');
     }
 }
@@ -230,8 +237,8 @@ function isUser(){
  * @return void
  */
 function isGuest(){
-    if(!isset($_SESSION['Rol'])){
-        $_SESSION["Rol"] = 0;
+    if(!isset($_SESSION['rol'])){
+        $_SESSION["rol"] = 0;
         redirect('Index');
     }
 }
@@ -412,4 +419,16 @@ function logout(){
 function redirect($location){
     header("Location: " . $location . ".php");
 }
+
+function id($gebruikersnaam)
+{
+    global $dbh;
+    $sqlid = "SELECT gebruikersId, rol FROM Gebruiker WHERE gebruikersnaam = :gebruikersnaam";
+    $sql = $dbh->prepare($sqlid);
+    $parameters = array(':gebruikersnaam'   => $gebruikersnaam);
+    $sql->execute($parameters);
+    $account = $sql->fetch();
+    return $account;
+}
+
 ?>

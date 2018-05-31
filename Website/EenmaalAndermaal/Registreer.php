@@ -8,10 +8,10 @@
 
 include 'Template.php';
 if(isset($_SESSION['Rol'])){header("Index.php");}
-$options = getOptions();
+//$options = getOptions();
 if (!empty($_POST)){
 
-    $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'city', 'country', 'date', 'mail', 'password', 'password_h');
+    $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'city', 'date', 'mail', 'password', 'password_h');
 
     $error = false;
     $verified = false;
@@ -29,12 +29,11 @@ if (!empty($_POST)){
         $address1       = $_POST['address1'];
         $address2       = $_POST['address2'];
         $postalcode     = $_POST['postalcode'];
-        $city           = $_POST['city'];
-        $country        = $_POST['country'];
+        //$country        = 1;
         $date           = $_POST['date'];
         $mailaddress     = $_POST['mail'];
         $password       = $_POST['password'];
-       // $security_q     = $_POST['security_q'];
+        //$security_q     = "ff nog nikslolxd";
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $password_h = $_POST['password_h'];
@@ -54,7 +53,7 @@ if (!empty($_POST)){
             Password: . '' . $password . <br> .
             ------------------------ . <br> .
          
-            <a href='http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email= . $mailaddress'>please click this link to activate your account</a>";
+            <a href='http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
 
             $mail->isHTML(true);
             try{
@@ -65,8 +64,8 @@ if (!empty($_POST)){
                 // Something went bad
                 echo $e;
             }
-            
-          
+
+
         }else{
             echo "Wachtwoord komt niet overeen";
         };
@@ -79,18 +78,18 @@ if (!empty($_POST)){
 <body>
 <div id="login-container" class="container w-50 rounded ">
     <h1>Registreren</h1></br>
-<?php
-//if($verified){
-//    echo "Uw account is aangemaakt, <br />  verifieer het door op de activatie link te klikken in je mail.";
-//    $hash = md5( rand(0,1000) );
-//    $sql = $dbh->query("INSERT INTO Gebruikers (gebruikersnaam, voornaam, achternaam, adresregel1,
-//                                adresregel2, postcode, plaatsnaam, geboortedag, mailbox, wachtwoord,
-//                                vraagnummer, antwoordTekst, Hash)
-//                                VALUES ($username, $firstname, $lastname, $address1, $address2, $postalcode,
-//                                $city, $date, $mail, $password, $security_q, $security_a, $hash)");
-//    $sql->execute;
-//}
-?>
+    <?php
+    //if($verified){
+    //    echo "Uw account is aangemaakt, <br />  verifieer het door op de activatie link te klikken in je mail.";
+    //    $hash = md5( rand(0,1000) );
+    //    $sql = $dbh->query("INSERT INTO Gebruikers (gebruikersnaam, voornaam, achternaam, adresregel1,
+    //                                adresregel2, postcode, plaatsnaam, geboortedag, mailbox, wachtwoord,
+    //                                vraagnummer, antwoordTekst, Hash)
+    //                                VALUES ($username, $firstname, $lastname, $address1, $address2, $postalcode,
+    //                                $city, $date, $mail, $password, $security_q, $security_a, $hash)");
+    //    $sql->execute;
+    //}
+    ?>
     <form action="" method="post">
         <div class="form-group">
             <label>Voornaam:</label>
@@ -105,14 +104,12 @@ if (!empty($_POST)){
             <input class="form-control" type="text" name="address2"><br>
             <label>Postcode:</label>
             <input class="form-control" type="text" name="postalcode"><br>
-            <label>Plaats:</label>
-            <input class="form-control" type="text" name="city"><br>
-            <label>Land:</label>
+            <!--        <label>Land:</label>
             <select class="form-control" name="country">
-                <?php foreach ($options as $key) { ?>
-                    <option><?php echo $key['landnaam'] ?></option>
-                <?php } ?>
-            </select><br>
+                <?php //foreach ($options as $key) { ?>
+                    <option><?php// echo $key ?></option>
+                <?php //} ?>
+            </select><br> -->
             <label>Geboortedatum:</label>
             <input class="form-control" type="text" name="date"><br>
             <label>Mail:</label>
@@ -126,7 +123,7 @@ if (!empty($_POST)){
                 <?php //foreach ($array as $key) { ?>
                     <option name="security_a"><?php// echo $option
 
-                        ?></option>
+            ?></option>
                 <?php //} ?>
             </select><br>-->
         </div>

@@ -29,8 +29,9 @@ if (!empty($_POST))
             echo $login_foutmelding;
         } else {
             $username = $_POST["username"];
-            $_SESSION['ID'] = id($username);
-            $_SESSION["Rol"] = rol($username);
+            $x = id($username);
+            $_SESSION['ID'] = $x[0];
+            $_SESSION["rol"] = $x[1];
             $_SESSION['username'] = $_POST['username'];
             header("Location: Mijn_account.php");
         }

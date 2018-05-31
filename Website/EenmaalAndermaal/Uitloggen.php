@@ -8,5 +8,6 @@
 include 'Functions.php';
 $location = 'index';
 logout();
-redirect($location);
+print_r($_SESSION);
+//redirect($location);
 ?>
