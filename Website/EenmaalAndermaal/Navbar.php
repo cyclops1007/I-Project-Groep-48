@@ -7,7 +7,7 @@
  */
 $profiel = "";
 $profielN = "";
-if($_SESSION['rol'] == 0){
+if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
     $profiel = "Login.php";
     $profielN = "Login";
 }else{
@@ -26,9 +26,10 @@ if($_SESSION['rol'] == 0){
                 Account
             </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <?php if($_SESSION['rol'] == 0 ){ ?>
+            <?php if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){ ?>
                 <a class="dropdown-item" href="Login.php">Login</a>
             <?php }else{ ?>
+                <a class="dropdown-item" href="Uitloggen.php">Uitloggen</a>
                 <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
                 <a class="dropdown-item" href="#">Mijn biedingen</a>
                 <a class="dropdown-item" href="#">Meldingen</a>
