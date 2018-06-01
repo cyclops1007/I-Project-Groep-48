@@ -5,8 +5,7 @@
  * Date: 24-4-2018
  * Time: 11:15
  */
-//include 'Template.php';
-include 'Functions.php';
+include 'Template.php';
 include 'Database_con.php';
 
 /**

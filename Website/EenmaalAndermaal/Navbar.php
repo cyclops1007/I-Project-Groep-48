@@ -67,7 +67,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
     <div style="margin-right: 1%;">
         <?php
             if($_SESSION['rol'] != 0 && isset($_SESSION['rol'])) {
-                echo "U bent ingelogd als: " . $ingelogd['gebruikersnaam'];
+                echo "U bent ingelogd als: " . $ingelogd[0]['gebruikersnaam'];
             }
         ?>
     </div>

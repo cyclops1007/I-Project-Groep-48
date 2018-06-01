@@ -102,12 +102,9 @@ textarea {
 /* Landscape phones and down */
 @media (max-width: 480px) {  }
 
-#tabeloverzicht {
-    background-color: #424A51;
-}
-
 #login-container {
     margin-bottom: 10%;
+    background-color: #424A51;
 }
 
 .carousel-tekst{
