@@ -7,6 +7,7 @@
  */
 
 include 'Template.php';
+isAdmin();
 /**
  * If the user uploaded files, this function will show the uploaded files
  *

@@ -7,7 +7,7 @@
  */
 include 'Functions.php';
 $location = 'index';
+session_start();
 logout();
-print_r($_SESSION);
-//redirect($location);
+redirect($location);
 ?>
