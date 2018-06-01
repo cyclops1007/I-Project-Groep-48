@@ -432,10 +432,12 @@ function selectWithinRange($array){
 function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = ("SELECT * FROM Voorwerp WHERE verkoper = ':ID' AND voorwerpnummer = ':vID'");
+    $delete = ("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
     $sql = $dbh->prepare($delete);
-    $parameters = array(':ID' => $id,
-        ':vID' => $vID);
+    $parameters = array(
+        ':ID' => $id,
+        ':vID' => $vID
+    );
 
     $sql->execute($parameters);
 
