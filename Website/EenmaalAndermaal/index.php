@@ -5,7 +5,9 @@
  * Date: 24-4-2018
  * Time: 11:15
  */
-include 'Template.php';
+//include 'Template.php';
+include 'Functions.php';
+include 'Database_con.php';
 
 /**
  * Contains the basic html for the page, calling to the carousel and the container function.
