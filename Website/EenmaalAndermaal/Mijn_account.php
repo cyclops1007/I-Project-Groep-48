@@ -11,7 +11,6 @@ isUser();
 $accountInfo = mijnAccount($_SESSION['ID']);
 $_SESSION['change'];
 $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
-print_r($_SESSION);
 if (!isset($_SESSION['change'])) {
     $_SESSION['change'] = $_POST["Change"];
 } else {
