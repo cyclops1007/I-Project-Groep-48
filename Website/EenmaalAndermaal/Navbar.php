@@ -11,6 +11,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
     $profiel = "Login.php";
     $profielN = "Login";
 }else{
+    $ingelogd = ingelogd($_SESSION['ID']);
     $profiel = "Mijn_account.php";
     $profielN = "Mijn profiel";
 }
@@ -25,18 +26,18 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
             <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Account
             </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <?php if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){ ?>
-                <a class="dropdown-item" href="Login.php">Login</a>
-            <?php }else{ ?>
-                <a class="dropdown-item" href="Uitloggen.php">Uitloggen</a>
-                <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
-                <a class="dropdown-item" href="#">Mijn biedingen</a>
-                <a class="dropdown-item" href="#">Meldingen</a>
-            <?php if($_SESSION['rol'] >= 2){?>
-                <a class="dropdown-item" href="Mijn_artikelen.php">Mijn veilingen</a>
-            <?php }} ?>
-        </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <?php if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){ ?>
+                    <a class="dropdown-item" href="Login.php">Login</a>
+                <?php }else{  ?>
+                    <a class="dropdown-item" href="Uitloggen.php">Uitloggen</a>
+                    <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
+                    <a class="dropdown-item" href="#">Mijn biedingen</a>
+                    <a class="dropdown-item" href="#">Meldingen</a>
+                    <?php if($_SESSION['rol'] >= 2){?>
+                        <a class="dropdown-item" href="Mijn_artikelen.php">Mijn veilingen</a>
+                    <?php }} ?>
+            </div>
         </li>
         <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,25 +45,28 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Veilingen_overzicht.php">Overzicht</a>
-              <?php if($_SESSION['rol'] >= 2 ){ ?>
-                  <a class="dropdown-item" href="Verkoop.php">Nieuwe veiling</a>
-              <?php } ?>
+                <?php if($_SESSION['rol'] >= 2 ){ ?>
+                    <a class="dropdown-item" href="Verkoop.php">Nieuwe veiling</a>
+                <?php } ?>
             </div>
         </li>
         <?php if($_SESSION["rol"] == 3){?>
-        <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Beheer
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
-                <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
-                <a class="dropdown-item" href="#">Prestatie</a>
-                <a class="dropdown-item" href="Batch_upload.php">Batch upload</a>
-            </div>
-        </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Beheer
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
+                    <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
+                    <a class="dropdown-item" href="#">Prestatie</a>
+                    <a class="dropdown-item" href="Batch_upload.php">Batch upload</a>
+                </div>
+            </li>
         <?php } ?>
     </ul>
+    <div style="margin-right: 1%;">
+        <?php echo "U bent ingelogd als: " . $ingelogd['gebruikersnaam']; ?>
+    </div>
     <nav aria-label="breadcrumb">
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Iets zoeken" aria-label="Search">

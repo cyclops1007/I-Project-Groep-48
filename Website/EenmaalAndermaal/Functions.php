@@ -21,6 +21,15 @@ function gebruiker() {
     return $gebruiker;
 }
 
+function ingelogd($id){
+    global $dbh;
+
+    $sql = $dbh->query("SELECT gebruikersnaam FROM Gebruiker WHERE gebruikersId = $id");
+    $gebruikersnaam = $sql->fetchAll();
+
+    return $gebruikersnaam;
+}
+
 function showResult() {
     global $dbh;
 
