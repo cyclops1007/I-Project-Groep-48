@@ -49,7 +49,7 @@ if (!empty($_POST) && isvBlocked() == false){
                         } else {
                             echo "image/check.jpg";
                         }
-                    ?>" width="30" value="block/unblock">
+                    ?>" width="30" value="<?php echo $key['voorwerpnummer'];?>">
                 </form>
             </td>
         </tr>

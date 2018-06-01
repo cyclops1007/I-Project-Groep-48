@@ -54,7 +54,7 @@ if (!empty($_POST) && isUblocked($_POST) == false){
                         } else {
                             echo "image/check.jpg";
                         }
-                    ?>" width="30" value="<?php $key['gebruikersId'];?>">
+                    ?>" width="30" value="<?php echo $key['gebruikersId'];?>">
                 </form>
             </td>
         </tr>
