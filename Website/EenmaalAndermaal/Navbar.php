@@ -30,7 +30,7 @@ if($_SESSION['rol'] == 0){
                 <a class="dropdown-item" href="Login.php">Login</a>
             <?php }else{ ?>
                 <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
-                <a class="dropdown-item" href="#">Mijn boden</a>
+                <a class="dropdown-item" href="#">Mijn biedingen</a>
                 <a class="dropdown-item" href="#">Meldingen</a>
             <?php if($_SESSION['rol'] >= 2){?>
                 <a class="dropdown-item" href="Mijn_artikelen.php">Mijn veilingen</a>

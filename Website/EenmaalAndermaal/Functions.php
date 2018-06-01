@@ -70,7 +70,7 @@ function artikelnummer($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select *  from voorwerp where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("select *  from Voorwerp where voorwerpnummer = $veilingId");
     $artikelnummer = $sql->fetchALL();
 
     return $artikelnummer;
@@ -113,10 +113,31 @@ function AfbeeldingIndex()
 function getHoogsteBod($x) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE voorwerp = $x GROUP BY bodbedrag");
+    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE Voorwerp = $x GROUP BY bodbedrag");
     $hoogsteBod = $sql->fetch();
 
     return $hoogsteBod;
+}
+
+function valuta($soortgeld){
+    $geld = "";
+    switch ($soortgeld){
+        case "EUR":
+           $geld = "&euro;";
+           break;
+        case "GBP":
+            $geld = "&pound;";
+            break;
+        case "USD":
+            $geld = "&dollar;";
+            break;
+
+        default:
+            $geld = "&euro;";
+
+    }
+
+    return $geld;
 }
 
 /**

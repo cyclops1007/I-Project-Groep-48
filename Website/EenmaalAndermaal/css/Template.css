@@ -13,6 +13,7 @@ body{
     margin-bottom: 60px;
 }
 
+
 nav {
     background-color: #5f4b8b;
 }
@@ -21,6 +22,7 @@ nav {
     background-color: #AFA5C5;
     color: white;
 }
+
 
 button a:hover {
     color: black;

@@ -11,8 +11,10 @@ include 'Template.php';
 //Soort geld moet nog opgehaald kunnen worden uit de database.
 $veilingId = $_SERVER['QUERY_STRING'];
 $hoogsteBod = getHoogsteBod($veilingId);
+
 //$product = afbeeldingVeiling();
 $veiling = artikelnummer($veilingId);
+$valuta = valuta($veiling[0]['valuta']);
 $foto = artikelfoto($veilingId);
 ?>
 <!DOCTYPE html>
@@ -79,8 +81,14 @@ $foto = artikelfoto($veilingId);
     <div class ="row">
         <div class = "col-lg-4">
             <div class="col-md-6">
-                <div id="demo" class="carousel slide" data-ride="carousel" style="margin-left: -100%; width: 600px; ma ">
+                <div id="demo" class="carousel slide" data-ride="carousel" style="margin-left: -250%; width: 600px; ma ">
                     <!-- Indicators -->
+                    <ul class="carousel-indicators">
+                        <li data-target="#demo" data-slide-to="0" class="active"></li>
+                        <li data-target="#demo" data-slide-to="1"></li>
+                        <li data-target="#demo" data-slide-to="2"></li>
+                    </ul>
+                    <div class="carousel-inner active">
                     <div class="carousel-inner active">
                         <!-- The slideshow -->
                         <?php
@@ -90,8 +98,6 @@ $foto = artikelfoto($veilingId);
                             <?php }else{ ?>
                             <div class="carousel-item">
                                 <?php } ?>
-
-
                                 <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                             </div>
 
@@ -100,6 +106,12 @@ $foto = artikelfoto($veilingId);
                             ?>
                         </div>
                         <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
                     </div>
                 </div>
             <hr/>
@@ -107,12 +119,13 @@ $foto = artikelfoto($veilingId);
                 Voorwaarden:
             </div>
         </div>
+            </div>
         <div class = "col-lg-8">
             <div class = row>
                 <div class="col-sm-6">
                     <h1>Titel</h1>
-                    <p>Orginele prijs:<?php echo "$moneySign" . $veiling[0]['startprijs'];?></p>
-                    <p id="hoogsteBod">Huidige prijs:<?php echo "$moneySign" . $hoogsteBod[0];?></p>
+                    <p>Orginele prijs:<?php echo "$valuta" . $veiling[0]['startprijs'];?></p>
+                    <p id="hoogsteBod">Huidige prijs:<?php echo "$valuta" . $hoogsteBod[0];?></p>
                     <p id="resterendeVeilingDuur"></p>
                     <br>
                     <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
@@ -129,7 +142,7 @@ $foto = artikelfoto($veilingId);
                     }?>
                 </div>
                 <div id="text-container" class="container rounded col-sm-6">
-                    <p><strong>Beschrijving:</strong><?php echo $veiling[0]['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>
+                    <p><strong>Beschrijving: </strong><?php echo $veiling[0]['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>
                 </div>
             </div>
         </div>
