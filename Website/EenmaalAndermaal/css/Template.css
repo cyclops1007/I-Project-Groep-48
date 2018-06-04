@@ -13,6 +13,7 @@ body{
     margin-bottom: 60px;
 }
 
+
 nav {
     background-color: #5f4b8b;
 }
@@ -21,6 +22,7 @@ nav {
     background-color: #AFA5C5;
     color: white;
 }
+
 
 button a:hover {
     color: black;
@@ -100,8 +102,11 @@ textarea {
 /* Landscape phones and down */
 @media (max-width: 480px) {  }
 
-#tabeloverzicht {
+#login-container {
+    margin-bottom: 10%;
     background-color: #424A51;
+}
 
-
+.carousel-tekst{
+    text-align: center;
 }

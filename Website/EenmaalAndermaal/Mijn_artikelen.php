@@ -18,7 +18,7 @@ if(!empty($_POST)){
 <html lang="en">
 <head></head>
 <body>
-<table class="table table-dark text-center">
+<table id="login-container" class="table table-dark text-center">
     <thead>
     <tr>
         <th scope="col">Veiling nr.: </th>

@@ -63,7 +63,7 @@ if (!empty($_POST))
 <html lang="en">
 <head></head>
 <body>
-<div id="login-container" class="container w-50 rounded ">
+<div id="login-container" class="container w-50 rounded" style="padding-bottom: 1%;">
     <h1>Login</h1>
     <br>
     <form action="" method="post">

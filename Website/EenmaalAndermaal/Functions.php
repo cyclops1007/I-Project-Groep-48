@@ -21,6 +21,15 @@ function gebruiker() {
     return $gebruiker;
 }
 
+function ingelogd($id){
+    global $dbh;
+
+    $sql = $dbh->query("SELECT gebruikersnaam FROM Gebruiker WHERE gebruikersId = $id");
+    $gebruikersnaam = $sql->fetchAll();
+
+    return $gebruikersnaam;
+}
+
 function showResult() {
     global $dbh;
 
@@ -70,7 +79,7 @@ function artikelnummer($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select *  from voorwerp where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("select *  from Voorwerp where voorwerpnummer = $veilingId");
     $artikelnummer = $sql->fetchALL();
 
     return $artikelnummer;
@@ -113,10 +122,31 @@ function AfbeeldingIndex()
 function getHoogsteBod($x) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE voorwerp = $x GROUP BY bodbedrag");
+    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE Voorwerp = $x GROUP BY bodbedrag");
     $hoogsteBod = $sql->fetch();
 
     return $hoogsteBod;
+}
+
+function valuta($soortgeld){
+    $geld = "";
+    switch ($soortgeld){
+        case "EUR":
+           $geld = "&euro;";
+           break;
+        case "GBP":
+            $geld = "&pound;";
+            break;
+        case "USD":
+            $geld = "&dollar;";
+            break;
+
+        default:
+            $geld = "&euro;";
+
+    }
+
+    return $geld;
 }
 
 /**
@@ -271,7 +301,7 @@ function isGuest(){
 function isUBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE ID = $id");
+    $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE gebruikersId = $id");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker; // moet false of true returnen
@@ -286,7 +316,7 @@ function isUBlocked($id){
 function isvBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM Artikel WHERE ID = $id");
+    $sql = $dbh->query("SELECT blocked FROM Artikel WHERE gebruikersId = $id");
     $artikel = $sql->fetchAll();
 
     return $artikel; // moet false of true returnen
@@ -301,7 +331,7 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -317,7 +347,7 @@ function uBlock($id){
 function vBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -333,7 +363,7 @@ function vBlock($id){
 function uUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Gebruiker SET blocked = false WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Gebruiker SET blocked = false WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -349,7 +379,7 @@ function uUnblock($id){
 function vUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -411,10 +441,12 @@ function selectWithinRange($array){
 function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = ("SELECT * FROM Voorwerp WHERE verkoper = ':ID' AND voorwerpnummer = ':vID'");
+    $delete = ("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
     $sql = $dbh->prepare($delete);
-    $parameters = array(':ID' => $id,
-        ':vID' => $vID);
+    $parameters = array(
+        ':ID' => $id,
+        ':vID' => $vID
+    );
 
     $sql->execute($parameters);
 
