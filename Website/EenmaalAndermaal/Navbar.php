@@ -29,10 +29,11 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <?php if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){ ?>
                     <a class="dropdown-item" href="Login.php">Login</a>
+                    <a class="dropdown-item" href="Registreer.php">Registreer</a>
                 <?php }else{  ?>
                     <a class="dropdown-item" href="Uitloggen.php">Uitloggen</a>
                     <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
-                    <a class="dropdown-item" href="#">Mijn biedingen</a>
+                    <a class="dropdown-item" href="Mijn_artikelen.php">Mijn biedingen</a>
                     <a class="dropdown-item" href="#">Meldingen</a>
                     <?php if($_SESSION['rol'] >= 2){?>
                         <a class="dropdown-item" href="Mijn_artikelen.php">Mijn veilingen</a>
