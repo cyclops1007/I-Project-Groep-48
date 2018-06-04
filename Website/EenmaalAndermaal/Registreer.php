@@ -41,29 +41,29 @@ if (!empty($_POST)){
 
         if($isCorrect){
             registreer($_POST);
-            require 'Testmailserver.php';
-            $mail->AddAddress($mailaddress);
-            $mail->SetFrom('eenmaalandermaal2018@gmail.com'); //send from
-            $mail->Subject = "Signup | verification"; //title
-            $mail->Body = "Thanks for signing up! . <br> .
-            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below. . <br> .
+            $subject = "Signup | verification"; //title
+            $email = "Thanks for signing up! <br>
+            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below. <br>
             
-            ------------------------ . <br> .
-            Username: . '' . $username . <br> . 
-            Password: . '' . $password . <br> .
-            ------------------------ . <br> .
+            ------------------------ <br>
+            Username: '' $username <br> 
+            Password: '' $password <br>
+            ------------------------ <br>
          
             <a href='http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
+            $to = $mailaddress;
+            $from = 'eenmaalandermaal2018@gmail.com'; //send from
+            $headers = array();
+            $headers[] = "MIME-Version: 1.0";
+            $headers[] = "Content-type: text/html; charset=iso-8859-1";
+            $headers[] = "From: EenmaalAndermaal <{$from}>";
+            $headers[] = "Reply-To: EenmaalAndermaal <{$from}>";
+            $headers[] = "X-Mailer: PHP/" . phpversion();
+            mail($to, $subject, $email, implode("\r\n", $headers), "-f" . $from);
 
-            $mail->isHTML(true);
-            try{
-                $mail->Send();
+
                 echo "Je account is gemaakt! <br/> Klik op de activatie link op uw mail om uw account the verifiëren";
 
-            } catch(Exception $e){
-                // Something went bad
-                echo $e;
-            }
 
 
         }else{
