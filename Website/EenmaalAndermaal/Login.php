@@ -9,55 +9,9 @@
 ob_start();
 include 'Template.php';
 isGuest();
-$login_foutmelding = "";
-$verifeer = $dbh->prepare("Select * FROM Gebruiker WHERE gebruikersnaam = :username AND verified = 1 ");
-$verifeer->execute(
-        array('username' => $_POST["username"])
-);
-
-$tel = $verifeer->rowCount();
-
-if($tel = 0){
-    $geverifieerd = 0;
-}
-else{
-    $geverifieerd = 1;
-}
+Login();
 
 
-if (!empty($_POST))
-{
-    if (empty($_POST["username"]) || empty($_POST["password"])) {
-        $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
-        echo $login_foutmelding;
-    } elseif($geverifieerd = 0){
-        $login_foutmelding = '<p class="login">U account is nog niet geverifieerd. Klik a.u.b. op de link in u mailbox om uw account the verifieeren</p>';
-        echo $login_foutmelding;
-    }
-
-    else {
-        $login_query = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username AND wachtwoord = :password");
-        $login_query->execute(
-            array(
-                'username' => $_POST["username"],
-                'password' => $_POST["password"]
-            )
-        );
-        $tellen = $login_query->rowCount();
-        if ($tellen == 0) {
-            $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
-            echo $login_foutmelding;
-        } else {
-            $username = $_POST["username"];
-            $x = id($username);
-            $_SESSION['ID'] = $x[0];
-            $_SESSION["rol"] = $x[1];
-            $_SESSION['username'] = $_POST['username'];
-            header("Location: Mijn_account.php");
-        }
-        print_r($_POST);
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
