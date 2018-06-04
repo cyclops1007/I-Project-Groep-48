@@ -12,18 +12,18 @@ if($_GET['email']){
 
     //verify data
     $mailaddress     = $_GET['email'];
-    $sql = "SELECT count(*) From Gebruiker WHERE verified IS NULL";
+    $sql = "SELECT count(*) From Gebruiker WHERE verified IS NULL AND mailbox='$mailaddress'";
     $search = $dbh->prepare($sql);
     $search->execute();
     $match = $search->fetchColumn();
 
-    echo $match; //verwijder na testen
     if($match > 0){
         // We have a match, activate the account
-        $activeer = $dbh->prepare("UPDATE Gebruiker SET verified = '1' WHERE mailbox=$mailaddress");
+        $activeer = $dbh->prepare("UPDATE Gebruiker SET verified = 1 WHERE mailbox='$mailaddress'");
         $activeer->execute();
+        header( "refresh:5;url=Login.php" );
         echo "Je account is geactiveerd, je kan nu inloggen!";
-        header("Location: Login.php");
+
 
     }else{
         // No match -> invalid url or account has already been activated.
