@@ -15,8 +15,8 @@ $veiling = artikelnummer($veilingId);
 $valuta = valuta($veiling[0]['valuta']);
 $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
-$endTimeArray = getEndDate($veilingId);
-$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
+//$endTimeArray = getEndDate($veilingId);
+//$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
 
 ?>
 <!DOCTYPE html>
@@ -135,7 +135,7 @@ $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEind
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label>Mijn bod:</label>
-                                    <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
+                                    <input class="form-control" type="number" step=".01" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
                                 </div>
                                 <button type="submit" class="btn btn-outline-light" onclick="loadDoc('Hoogste_bod.php', updateBidding())">bied</button>
                             </form>

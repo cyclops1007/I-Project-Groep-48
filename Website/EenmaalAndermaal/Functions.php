@@ -26,7 +26,7 @@ function gebruiker() {
 function zoek($title) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM rubriek WHERE rubrieknaam LIKE '%$title%'  ");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE titel LIKE '%$title%'  ");
     $zoek = $sql->fetchALL();
 
     return $zoek;
