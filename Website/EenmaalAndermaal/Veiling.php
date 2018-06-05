@@ -119,6 +119,12 @@ $hoogsteBod = getHoogsteBod($veilingId);
                     <hr/>
                     <div id="text-container" class = "container rounded col-lg-12">
                         Voorwaarden:
+                        <br>1. Er mag alleen een geboden worden met hele getallen!
+                        <br>2. Het getal van een nieuw bod moet hoger zijn dan het huidige bod.
+                        <br>3.
+
+
+                        <br>
                     </div>
                 </div>
             </div>
