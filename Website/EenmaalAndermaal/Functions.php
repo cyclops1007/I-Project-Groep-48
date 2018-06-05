@@ -445,7 +445,7 @@ function deleteArtikel($id, $vID){
     );
     $delete->execute($parameters);
     $count = $delete->rowCount();
-    echo $count;
+    header("Location: Mijn_artiekelen.php");
 }
 
 /**
@@ -479,6 +479,7 @@ function id($gebruikersnaam)
 }
 
 function login(){
+    global $dbh;
     $login_foutmelding = "";
 
     if (!empty($_POST))

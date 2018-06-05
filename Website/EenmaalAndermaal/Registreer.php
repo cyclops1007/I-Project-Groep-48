@@ -118,5 +118,6 @@ if (!empty($_POST)){
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Registreer</button>
     </form>
 </div>
+<?php include "Footer.php"; ?>
 </body>
 </html>

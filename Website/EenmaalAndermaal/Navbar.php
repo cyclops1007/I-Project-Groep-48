@@ -60,7 +60,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                     <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
                     <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
                     <a class="dropdown-item" href="#">Prestatie</a>
-                    <a class="dropdown-item" href="Batch_upload.php">Batch upload</a>
+                    <a class="dropdown-item" href="rubriek_aanpassen.php">Batch upload</a>
                 </div>
             </li>
         <?php } ?>

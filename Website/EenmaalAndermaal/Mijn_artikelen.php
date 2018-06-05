@@ -6,8 +6,7 @@
  * Time: 10:09
  */
 include 'Template.php';
-//isUser();
-// voorlopig id dit klopt nog niet!
+isUser();
 $id = $_SESSION['ID'];
 $artikelen = array(getArtikelen($id));
 if(isset($_POST['voorwerpnummer'])){
