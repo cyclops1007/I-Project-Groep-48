@@ -15,8 +15,8 @@ $veiling = artikelnummer($veilingId);
 $valuta = valuta($veiling[0]['valuta']);
 $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
-$endTimeArray = getEndDate($veilingId);
-$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
+//$endTimeArray = getEndDate($veilingId);
+//$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
 
 ?>
 <!DOCTYPE html>
@@ -106,8 +106,8 @@ $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEind
                 <div class = row>
                     <div class="col-sm-6">
                         <h1>Titel</h1>
-                        <p>Orginele prijs: <?php echo "$valuta" . $veiling[0]['startprijs'];?></p>
-                        <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0];?></p>
+                        <p>Orginele prijs: <?php echo "$valuta" . $veiling[0]['startprijs'] . ',00';?></p>
+                        <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0] . ',00';?></p>
                         <p><?= $_POST['bod']; ?></p>
                         <p id="resterendeVeilingDuur"></p>
                         <br>
@@ -115,7 +115,7 @@ $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEind
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label>Mijn bod:</label>
-                                    <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
+                                    <input class="form-control" type="number" step=".01" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
                                 </div>
                                 <button type="submit" class="btn btn-outline-light" onclick="loadDoc()">bied</button>
                             </form>

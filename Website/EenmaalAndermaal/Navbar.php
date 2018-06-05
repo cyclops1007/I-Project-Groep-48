@@ -7,6 +7,11 @@
  */
 $profiel = "";
 $profielN = "";
+if(isset($_POST['search'])){
+    $_SESSION['zoek'] = $_POST['search'];
+    header("Location: Veilingen_overzicht.php");
+}
+
 if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
     $profiel = "Login.php";
     $profielN = "Login";
@@ -59,7 +64,6 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
                     <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
-                    <a class="dropdown-item" href="#">Prestatie</a>
                     <a class="dropdown-item" href="rubriek_aanpassen.php">Batch upload</a>
                 </div>
             </li>
@@ -73,9 +77,9 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
         ?>
     </div>
     <nav aria-label="breadcrumb">
-        <form action="veiling.php" method="post">
-            <input type="text" name="search" />
-            <input type="submit" value="Submit" />
+        <form class="form-inline my-2 my-lg-0" action="veiling.php" method="post">
+            <input class="form-control mr-sm-2" type="text" name="search" />
+            <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Submit" />
         </form>
     </nav>
 </div>
