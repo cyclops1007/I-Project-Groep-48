@@ -9,9 +9,6 @@
 include 'Template.php';
 $veiling = veilingen();
 
-if(isset($_SESSION['Zoekplaats'])){
-    calculateDistance($user, $destination, $amountKm, $id);// hier komt  het id van alle artikelen, de gebruiker postcode de postcode van de random persoon en de hoeveelheid km  dat ie in moet zitten. ja klopt lekker kut.
-}
 try {
 
     // Het aantal voorwerpen in de tabel
@@ -49,24 +46,18 @@ try {
     echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
 
     // Prepare the paged query
-    $stmt = $dbh->prepare('
-        SELECT * FROM Voorwerp ORDER BY name LIMIT :limit OFFSET :offset');
-
-    // Bind the query params
-    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt = $dbh->prepare("SELECT voorwerpnummer From Voorwerp ORDER BY titel 
+                                OFFSET $offset ROWS
+                                FETCH NEXT $limit ROWS ONLY");
     $stmt->execute();
+    $rows = $stmt->fetchAll(pdo::FETCH_ASSOC);
+
 
     // Do we have any results?
-    if ($stmt->rowCount() > 0) {
+    if ($rows > 0) {
         // Define how we want to fetch the results
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $iterator = new IteratorIterator($stmt);
 
-        // Display the results
-        foreach ($iterator as $row) {
-            echo '<p>', $row['gebruiker'], '</p>';
-        }
 
     } else {
         echo '<p>No results could be displayed.</p>';
