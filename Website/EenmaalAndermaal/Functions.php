@@ -35,6 +35,15 @@ function zoek() {
 
 }
 
+function ingelogd($id){
+    global $dbh;
+
+    $sql = $dbh->query("SELECT gebruikersnaam FROM Gebruiker WHERE gebruikersId = $id");
+    $gebruikersnaam = $sql->fetchAll();
+
+    return $gebruikersnaam;
+}
+
 function showResult() {
     global $dbh;
 
@@ -145,12 +154,9 @@ function valuta($soortgeld){
         case "USD":
             $geld = "&dollar;";
             break;
-
         default:
             $geld = "&euro;";
-
     }
-
     return $geld;
 }
 
@@ -306,7 +312,7 @@ function isGuest(){
 function isUBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE ID = $id");
+    $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE gebruikersId = $id");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker; // moet false of true returnen
@@ -321,7 +327,7 @@ function isUBlocked($id){
 function isvBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM Artikel WHERE ID = $id");
+    $sql = $dbh->query("SELECT blocked FROM Artikel WHERE gebruikersId = $id");
     $artikel = $sql->fetchAll();
 
     return $artikel; // moet false of true returnen
@@ -336,7 +342,7 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -352,7 +358,7 @@ function uBlock($id){
 function vBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -368,7 +374,7 @@ function vBlock($id){
 function uUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Gebruiker SET blocked = false WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Gebruiker SET blocked = false WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -384,7 +390,7 @@ function uUnblock($id){
 function vUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE ID = :ID");
+    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -446,13 +452,14 @@ function selectWithinRange($array){
 function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = ("SELECT * FROM Voorwerp WHERE verkoper = ':ID' AND voorwerpnummer = ':vID'");
-    $sql = $dbh->prepare($delete);
-    $parameters = array(':ID' => $id,
-        ':vID' => $vID);
-
-    $sql->execute($parameters);
-
+    $delete = $dbh->prepare("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
+    $parameters = array(
+        ':ID' => $id,
+        ':vID' => $vID
+    );
+    $delete->execute($parameters);
+    $count = $delete->rowCount();
+    echo $count;
 }
 
 /**
@@ -483,6 +490,60 @@ function id($gebruikersnaam)
     $sql->execute($parameters);
     $account = $sql->fetch();
     return $account;
+}
+
+function login(){
+    $login_foutmelding = "";
+
+    if (!empty($_POST))
+    {
+        $verifeer = $dbh->prepare("Select * FROM Gebruiker WHERE gebruikersnaam = :username AND verified = 1 ");
+        $verifeer->execute(
+            array(
+                ':username' => $_POST["username"]
+            )
+        );
+
+        $tel = $verifeer->rowCount();
+
+        if($tel == 0){
+            $geverifieerd = 0;
+        }
+        else{
+            $geverifieerd = 1;
+        }
+
+        if (empty($_POST["username"]) || empty($_POST["password"])) {
+            $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
+            echo $login_foutmelding;
+        } elseif($geverifieerd == 0){
+            $login_foutmelding = '<p class="login">U account is nog niet geverifieerd. Klik a.u.b. op de link in u mailbox om uw account the verifieeren</p>';
+            echo $login_foutmelding;
+        }
+
+        else {
+            $login_query = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username AND wachtwoord = :password");
+            $login_query->execute(
+                array(
+                    'username' => $_POST["username"],
+                    'password' => $_POST["password"]
+                )
+            );
+            $tellen = $login_query->rowCount();
+            if ($tellen == 0) {
+                $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
+                echo $login_foutmelding;
+            } else {
+                $username = $_POST["username"];
+                $x = id($username);
+                $_SESSION['ID'] = $x[0];
+                $_SESSION["rol"] = $x[1];
+                $_SESSION['username'] = $_POST['username'];
+                header("Location: Mijn_account.php");
+            }
+            print_r($_POST);
+        }
+    }
 }
 
 ?>

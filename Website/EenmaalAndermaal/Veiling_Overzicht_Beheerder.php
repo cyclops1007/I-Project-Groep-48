@@ -8,13 +8,10 @@
 include 'Template.php';
 $veiling = veilingen();
 isAdmin();
-$isblocked;
 if (!empty($_POST) && isvBlocked() == false){
-    $isblocked = "image/block.jpg";
-    vBlock();
+    vBlock($_POST);
 }else if(!empty($_POST) && isVBlocked() == true){
-    $isblocked = "image/check.jpg";
-    vUnblock();
+    vUnblock($_POST);
 }
 ?>
 <!DOCTYPE html>
@@ -23,7 +20,7 @@ if (!empty($_POST) && isvBlocked() == false){
     <link rel="stylesheet" type="text/css" href="css/Template.css">
 </head>
 <body>
-<table class ="table table-dark text-center">
+<table id="login-container" class="table table-dark text-center">
     <thead>
     <tr>
         <th scope="col">Veiling nr.:</th>
@@ -45,7 +42,14 @@ if (!empty($_POST) && isvBlocked() == false){
             <td><?php echo $key['startprijs']; ?></td>
             <td>
                 <form action="" method="post">
-                    <input type="image" src="<?php echo $isblocked;?>" width="30" value="block/unblock">
+                    <input type="image" src="
+                    <?php
+                        if($key['blocked'] == 0){
+                            echo "image/block.jpg";
+                        } else {
+                            echo "image/check.jpg";
+                        }
+                    ?>" width="30" value="<?php echo $key['voorwerpnummer'];?>">
                 </form>
             </td>
         </tr>

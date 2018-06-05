@@ -83,7 +83,7 @@ try {
     <link rel="stylesheet" type="text/css" href="css/Template.css">
 </head>
 <body>
-    /*<table id="tabeloverzicht" class="table">
+    <table id="login-container" class="table">
         <thead>
             <tr>
                 <th scope="col"> Titel</th>

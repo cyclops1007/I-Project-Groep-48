@@ -6,6 +6,7 @@
  * Time: 11:15
  */
 include 'Template.php';
+include 'Database_con.php';
 
 /**
  * Contains the basic html for the page, calling to the carousel and the container function.
@@ -53,11 +54,11 @@ function carousel() {
                 <?php }else{ ?>
                     <div class="carousel-item">
                 <?php } ?>
-
-
+		    <div class="carousel-tekst">
+			    <p>Klik op de afbeelding om naar de veiling te gaan</p>
+		    </div>
                         <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                     </div>
-
                 <?php
             }
             ?>
