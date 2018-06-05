@@ -270,7 +270,27 @@ function registreer($registreerArray){
         echo $e;
     }
 }
+function verkoop($verkoopArray){
+    global $dbh;
+    //pre_r($verkoopArray);
+    try {
+        $sqlverkoop = "INSERT INTO voorwerp (titel, catogorie, beschrijving, startprijs, betalingswijze, postalcode) VALUES(:Titel, :Catogorie, :Beschrijving, :Startprijs, :Betalingswijze, :Postalcode)";
+        $sql = $dbh->prepare($sqlverkoop);
+        $parameters = array(':Titel' => $verkoopArray['Titel'],
+            ':Catogorie' => $verkoopArray['Catogorie'],
+            ':Beschrijving' => $verkoopArray['Beschrijving'],
+            ':Startprijs' => $verkoopArray['Startprijs'],
+            ':Betalingswijze' => $verkoopArray['Betalingswijze'],
+            ':Postalcode' => $verkoopArray['postalcode']);
 
+
+        $sql->execute($parameters);
+
+        print_r($parameters);
+    }catch(Exception $e){
+        echo $e;
+    }
+}
 
 /**
  * Checks if the user has the 'Rol' Admin, if not it redirects the user to the homepage.
