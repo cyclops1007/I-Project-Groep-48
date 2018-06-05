@@ -21,7 +21,6 @@ $hoogsteBod = getHoogsteBod($veilingId);
 <head>
     <script>
         //Javascript for getting the current highest bidding
-        var link = "Hoogste_bod.php?t=" + Math.random();
         var xhttp;
 
         if (window.XMLHttpRequest) {
@@ -33,14 +32,12 @@ $hoogsteBod = getHoogsteBod($veilingId);
         }
 
         function loadDoc(url, Function) {
-            var xhttp;
-            xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     Function(this);
                 }
             };
-            xhttp.open("GET", url, true);
+            xhttp.open("POST", url, true);
             xhttp.send();
         }
 
@@ -133,7 +130,7 @@ $hoogsteBod = getHoogsteBod($veilingId);
                                     <label>Mijn bod:</label>
                                     <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
                                 </div>
-                                <button type="submit" class="btn btn-outline-light" onclick="loadDoc(link, updateBidding())">bied</button>
+                                <button type="submit" class="btn btn-outline-light" onclick="loadDoc('Hoogste_bod.php', updateBidding())">bied</button>
                             </form>
                         <?php }
                         if(isset($_POST['bod'])){
