@@ -74,38 +74,73 @@ if (!empty($_POST)){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+<head>
+    <script>
+        var xhttp;
+
+        if (window.XMLHttpRequest) {
+            // code for modern browsers
+            xhttp = new XMLHttpRequest();
+        } else {
+            // code for old IE browsers
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        function loadDoc(url, $elementID) {
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    if($elementID = 'voornaamfout') {
+                        document.getElementById('voornaamfout').innerHTML = "";
+                    }
+                    document.getElementById($elementID).innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", url, true);
+            xhttp.send();
+        }
+    </script>
+</head>
 <body>
 <div id="login-container" class="container w-50 rounded ">
-    <h1>Registreren</h1></br>
+    <h1>Registreren</h1><br>
     <form action="" method="post">
         <div class="form-group">
-            <label>Voornaam:</label>
-            <input class="form-control" type="text" name="firstname"><br>
-            <label>Achternaam:</label>
-            <input class="form-control" type="text" name="lastname"><br>
-            <label>Gebruikersnaam:</label>
-            <input class="form-control" type="text" name="username"><br>
-            <label>Adres:</label>
-            <input class="form-control" type="text" name="address1"><br>
-            <label>Adres-2:</label>
-            <input class="form-control" type="text" name="address2"><br>
-            <label>Postcode:</label>
-            <input class="form-control" type="text" name="postalcode"><br>
+            <label for="voornaam">Voornaam:</label>
+            <input id="voornaam" class="form-control" type="text" name="firstname"><br>
+            <p id="voornaamfout" onkeyup="loadDoc(url, 'voornaamfout')"></p><br>
+            <label for="achternaam">Achternaam:</label>
+            <input id="achternaam" class="form-control" type="text" name="lastname"><br>
+            <p id="achternaamfout"></p><br>
+            <label for="gebruikersnaam">Gebruikersnaam:</label>
+            <input id="gebruikersnaam" class="form-control" type="text" name="username"><br>
+            <p id="gebruikersnaamfout"></p><br>
+            <label for="adres">Adres:</label>
+            <input id="adres" class="form-control" type="text" name="address1"><br>
+            <p id="adresfout"></p><br>
+            <label for="adres-2">Adres-2:</label>
+            <input id="adres-2" class="form-control" type="text" name="address2"><br>
+            <p id="adres-2fout"></p><br>
+            <label for="postcode">Postcode:</label>
+            <input id="postcode" class="form-control" type="text" name="postalcode"><br>
+            <p id="postcodefout"></p><br>
             <!--        <label>Land:</label>
             <select class="form-control" name="country">
                 <?php //foreach ($options as $key) { ?>
                     <option><?php// echo $key ?></option>
                 <?php //} ?>
             </select><br> -->
-            <label>Geboortedatum:</label>
-            <input class="form-control" type="text" name="date"><br>
-            <label>Mail:</label>
-            <input class="form-control" type="text" name="mail"><br>
-            <label>Wachtwoord:</label>
-            <input class="form-control" type="password" name="password"><br>
-            <label>Wachtwoord-herhalen:</label>
-            <input class="form-control" type="password" name="password_h"><br>
+            <label for="geboortedatum">Geboortedatum:</label>
+            <input id="geboortedatum" class="form-control" type="text" name="date"><br>
+            <p id="geboortedatumfout"></p><br>
+            <label for="mail">Mail:</label>
+            <input id="mail" class="form-control" type="text" name="mail"><br>
+            <p id="mailfout"></p><br>
+            <label for="wachtwoord">Wachtwoord:</label>
+            <input id="wachtwoord" class="form-control" type="password" name="password"><br>
+            <p id="wachtwoordfout"></p><br>
+            <label for="wachtwoord-herhalen">Wachtwoord-herhalen:</label>
+            <input id="wachtwoord-herhalen" class="form-control" type="password" name="password_h"><br>
+            <p id="wachtwoord-herhalenfout"></p><br>
             <!--         <label>Beveiligingsvraag:</label>
            <select class="form-control" name="security_q">
                 <?php //foreach ($array as $key) { ?>

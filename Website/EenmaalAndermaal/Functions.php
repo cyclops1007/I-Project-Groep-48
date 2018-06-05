@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kay
@@ -19,6 +20,19 @@ function gebruiker() {
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
+
+}
+
+function zoek() {
+    $name = $_Post['search'];
+
+    global $dbh;
+
+    $sql = $dbh->query("SELECT * FROM rubriek WHERE rubrieknaam LIKE '%search%'  ");
+    $zoek = $sql->fetchALL();
+
+    return $zoek;
+
 }
 
 function ingelogd($id){
@@ -33,7 +47,7 @@ function ingelogd($id){
 function showResult() {
     global $dbh;
 
-    $sql = $dbh->query("select titel from voorwerp");
+    $sql = $dbh->query("SELECT titel FROM voorwerp");
     $showResult = $sql->fetchALL();
 
     return $showResult;
@@ -79,7 +93,7 @@ function artikelnummer($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select *  from Voorwerp where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $veilingId");
     $artikelnummer = $sql->fetchALL();
 
     return $artikelnummer;
@@ -89,7 +103,7 @@ function artikelfoto($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select afbeelding  from afbeeldingen where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen WHERE voorwerpnummer = $veilingId");
     $artikelfoto = $sql->fetchALL();
 
     return $artikelfoto;
