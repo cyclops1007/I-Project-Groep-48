@@ -23,12 +23,10 @@ function gebruiker() {
 
 }
 
-function zoek() {
-    $name = $_Post['search'];
-
+function zoek($title) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM rubriek WHERE rubrieknaam LIKE '%search%'  ");
+    $sql = $dbh->query("SELECT * FROM rubriek WHERE rubrieknaam LIKE '%$title%'  ");
     $zoek = $sql->fetchALL();
 
     return $zoek;
@@ -44,10 +42,19 @@ function ingelogd($id){
     return $gebruikersnaam;
 }
 
+function getLanden(){
+    global $dbh;
+
+    $sql = $dbh->query("SELECT landcode FROM Landen");
+    $land = $sql->fetchAll();
+
+    return $land;
+}
+
 function showResult() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT titel FROM voorwerp");
+    $sql = $dbh->query("SELECT titel FROM ");
     $showResult = $sql->fetchALL();
 
     return $showResult;
@@ -392,52 +399,6 @@ function vUnblock($id){
     $parameters = array(':ID' => $id);
 
     $sql->execute($parameters);
-}
-
-//---
-function getPostal($id){
-    $array = '';
-    $array .= calculateDistance($user, $destination, $amountKm, $id);
-    return $array;
-}
-
-//---
-function calculateDistance($user, $destination, $amountKm, $id){
-
-    $from = $user;
-    $to = $destination;
-
-    $from = urlencode($from);
-    $to = urlencode($to);
-
-    $data = file_get_contents("http://maps.googleapis.com/maps/api/distancematrix/json?origins=$from&destinations=$to&language=en-EN&sensor=false");
-    $data = json_decode($data);
-    print_r($data);
-    $time = 0;
-    $distance = 0;
-
-    foreach($data->rows[0]->elements as $road) {
-        $time += $road->duration->value;
-        $distance += $road->distance->value;
-    }
-    $km=$distance/1000;
-    // deze code is van https://stackoverflow.com/questions/36143960/php-distance-between-2-addresses-with-google-maps
-
-    if($km <= $amountKm){
-        return $id;
-    }
-}
-
-//---
-function selectWithinRange($array){
-    global $dbh;
-
-    $sqlSelect = "SELECT * FROM Artikel WHERE ID = :id";
-    $sql = $dbh->prepare($sqlSelect);
-    $parameters = array(
-        ":id" => $array///???\\\
-        // hier moet die array goed uitgelezen worden om de select goed uit te voeren.
-    );
 }
 
 /**
