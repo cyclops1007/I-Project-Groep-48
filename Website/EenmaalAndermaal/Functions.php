@@ -164,24 +164,21 @@ function getArtikelen($id){
 
 function updateAccount($array){
     global $dbh;
+
     $sessie = $_SESSION['ID'];
-    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam,
-                                                             achternaam,
-                                                             gebruikersnaam,
-                                                             adresregel1,
-                                                             adresregel2,
-                                                             postcode,
-                                                             mailbox
-                                                             VALUES (:voornaam, :achternaam, :gebruikersnaam, :adresregel1, :adresregel2, :postcode, :mailbox)
-                                                             WHERE gebruikersId = $sessie");
+    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = :voornaam, achternaam = :achternaam, 
+                              gebruikersnaam = :gebruikersnaam, adresregel1 = :adresregel1, adresregel2 = :adresregel2, 
+                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = $sessie");
     $sql = $dbh->prepare($sqlUpdate);
-    $parameters = array(':voornaam' => $array['voornaam'],
+    $parameters = array(
+        ':voornaam' => $array['voornaam'],
         ':achternaam' => $array['achternaam'],
         ':gebruikersnaam' => $array['gebruikersnaam'],
         ':adresregel1' => $array['adresregel1'],
         ':adresregel2' => $array['adresregel2'],
         ':postcode' => $array['postcode'],
-        ':mailbox' => $array['mailbox']);
+        ':mailbox' => $array['mailbox']
+    );
     $sql->execute($parameters);
 }
 
