@@ -37,9 +37,16 @@ $valuta = valuta($veiling[0]['valuta']);
     <?php
     try {
 
+        if(isset($_SESSION['zoek'])){
+            $veiling = $_SESSION['zoek'];
+            $total = $dbh->query("
+        SELECT COUNT(*) FROM Voorwerp WHERE titel LIKE '%$veiling%'")->fetchColumn();
+        }
         // Het aantal voorwerpen in de tabel
-        $total = $dbh->query('
+        else{
+            $total = $dbh->query('
         SELECT COUNT(*) FROM Voorwerp')->fetchColumn();
+        }
 
         // Aantal veilingen per pagina
         $limit = 20;
@@ -72,12 +79,21 @@ $valuta = valuta($veiling[0]['valuta']);
         echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
 
         // Prepare the paged query
-        $stmt = $dbh->prepare("SELECT * From Voorwerp ORDER BY titel 
+    if(isset($_SESSION['zoek'])) {
+        $veiling = $_SESSION['zoek'];
+        $stmt = $dbh->prepare("SELECT * From Voorwerp WHERE titel LIKE '%$veiling%' ORDER BY titel 
                                 OFFSET $offset ROWS
                                 FETCH NEXT $limit ROWS ONLY");
         $stmt->execute();
         $rows = $stmt->fetchAll(pdo::FETCH_ASSOC);
-
+    }
+    else{
+            $stmt = $dbh->prepare("SELECT * From Voorwerp ORDER BY titel 
+                                OFFSET $offset ROWS
+                                FETCH NEXT $limit ROWS ONLY");
+            $stmt->execute();
+            $rows = $stmt->fetchAll(pdo::FETCH_ASSOC);
+        }
 
         // Do we have any results?
         if ($rows > 0) {
