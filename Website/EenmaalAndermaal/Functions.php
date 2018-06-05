@@ -23,12 +23,10 @@ function gebruiker() {
 
 }
 
-function zoek() {
-    $name = $_Post['search'];
-
+function zoek($title) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM rubriek WHERE rubrieknaam LIKE '%search%'  ");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE titel LIKE '%$title%'  ");
     $zoek = $sql->fetchALL();
 
     return $zoek;
@@ -44,10 +42,19 @@ function ingelogd($id){
     return $gebruikersnaam;
 }
 
+function getLanden(){
+    global $dbh;
+
+    $sql = $dbh->query("SELECT landcode FROM Landen");
+    $land = $sql->fetchAll();
+
+    return $land;
+}
+
 function showResult() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT titel FROM voorwerp");
+    $sql = $dbh->query("SELECT titel FROM ");
     $showResult = $sql->fetchALL();
 
     return $showResult;
@@ -136,7 +143,7 @@ function AfbeeldingIndex()
 function getHoogsteBod($x) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE Voorwerp = $x GROUP BY bodbedrag");
+    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE Voorwerp = $x");
     $hoogsteBod = $sql->fetch();
 
     return $hoogsteBod;
@@ -179,7 +186,7 @@ function updateAccount($array){
     $sessie = $_SESSION['ID'];
     $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = :voornaam, achternaam = :achternaam, 
                               gebruikersnaam = :gebruikersnaam, adresregel1 = :adresregel1, adresregel2 = :adresregel2, 
-                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = $sessie");
+                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = '$sessie'");
     $sql = $dbh->prepare($sqlUpdate);
     $parameters = array(
         ':voornaam' => $array['voornaam'],
@@ -205,17 +212,27 @@ function updateAccount($array){
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
-    $datum = date("Y/m/d");
-    $tijdstip = date("h/i/sa");
+    $datum = "'" . date("Y/m/d") . "'";
+    $tijdstip = "'" . date("h:i:s") . "'";
 
-    $sqlUpdate = $dbh->query("INSERT INTO Bod VALUES (':veilingId', ':bodBedrag', ':gebruiker', ':bodDatum', ':bodTijdstip')");
+    $sqlUpdate = "INSERT INTO Bod VALUES (:veilingId, :bodBedrag, :gebruiker, :bodDatum, :bodTijdstip)";
     $sql = $dbh->prepare($sqlUpdate);
-    $parameters = array(':veilingId'         => $veilingId,
+    $parameters = [
+        ':veilingId'         => $veilingId,
         ':bodBedrag'         => $nieuwBod,
         ':gebruiker'         => $gebruiker,
         ':bodDatum'          => $datum,
-        ':bodTijdstip'       => $tijdstip);
-    $sql->execute($parameters);
+        ':bodTijdstip'       => $tijdstip
+    ];
+    echo $sqlUpdate;
+    foreach($parameters as $parameter){
+        echo $parameter . '<br>';
+    }
+    try {
+        $sql->execute($parameters);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
 }
 
 /**
@@ -394,52 +411,6 @@ function vUnblock($id){
     $sql->execute($parameters);
 }
 
-//---
-function getPostal($id){
-    $array = '';
-    $array .= calculateDistance($user, $destination, $amountKm, $id);
-    return $array;
-}
-
-//---
-function calculateDistance($user, $destination, $amountKm, $id){
-
-    $from = $user;
-    $to = $destination;
-
-    $from = urlencode($from);
-    $to = urlencode($to);
-
-    $data = file_get_contents("http://maps.googleapis.com/maps/api/distancematrix/json?origins=$from&destinations=$to&language=en-EN&sensor=false");
-    $data = json_decode($data);
-    print_r($data);
-    $time = 0;
-    $distance = 0;
-
-    foreach($data->rows[0]->elements as $road) {
-        $time += $road->duration->value;
-        $distance += $road->distance->value;
-    }
-    $km=$distance/1000;
-    // deze code is van https://stackoverflow.com/questions/36143960/php-distance-between-2-addresses-with-google-maps
-
-    if($km <= $amountKm){
-        return $id;
-    }
-}
-
-//---
-function selectWithinRange($array){
-    global $dbh;
-
-    $sqlSelect = "SELECT * FROM Artikel WHERE ID = :id";
-    $sql = $dbh->prepare($sqlSelect);
-    $parameters = array(
-        ":id" => $array///???\\\
-        // hier moet die array goed uitgelezen worden om de select goed uit te voeren.
-    );
-}
-
 /**
  * Deletes an article from the database.
  *
@@ -484,6 +455,17 @@ function id($gebruikersnaam)
     $sqlid = "SELECT gebruikersId, rol FROM Gebruiker WHERE gebruikersnaam = :gebruikersnaam";
     $sql = $dbh->prepare($sqlid);
     $parameters = array(':gebruikersnaam'   => $gebruikersnaam);
+    $sql->execute($parameters);
+    $account = $sql->fetch();
+    return $account;
+}
+
+function getEndDate($voorwerpnummer){
+    global $dbh;
+
+    $sqltijd = "SELECT looptijdEindeDag, looptijdEindeTijdstip FROM Voorwerp WHERE voorwerpnummer = :voorwerpnummer";
+    $sql = $dbh->prepare($sqltijd);
+    $parameters = array(':voorwerpnummer'   => $voorwerpnummer);
     $sql->execute($parameters);
     $account = $sql->fetch();
     return $account;

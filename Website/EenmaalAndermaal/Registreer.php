@@ -7,8 +7,8 @@
  */
 
 include 'Template.php';
-if(isset($_SESSION['Rol'])){header("Index.php");}
-//$options = getOptions();
+if(isset($_SESSION['rol'])){header("index.php");}
+$options = getLanden();
 if (!empty($_POST)){
 
     $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'date', 'mail', 'password', 'password_h');
@@ -123,12 +123,12 @@ if (!empty($_POST)){
             <label for="postcode">Postcode:</label>
             <input id="postcode" class="form-control" type="text" name="postalcode"><br>
             <p id="postcodefout"></p><br>
-            <!--        <label>Land:</label>
+                    <label>Land:</label>
             <select class="form-control" name="country">
-                <?php //foreach ($options as $key) { ?>
-                    <option><?php// echo $key ?></option>
-                <?php //} ?>
-            </select><br> -->
+                <?php foreach ($options as $land) { ?>
+                    <option><?php echo $land ?></option>
+                <?php } ?>
+            </select><br>
             <label for="geboortedatum">Geboortedatum:</label>
             <input id="geboortedatum" class="form-control" type="text" name="date"><br>
             <p id="geboortedatumfout"></p><br>
