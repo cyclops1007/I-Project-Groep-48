@@ -126,8 +126,8 @@ $hoogsteBod = getHoogsteBod($veilingId);
                 <div class = row>
                     <div class="col-sm-6">
                         <h1>Titel</h1>
-                        <p>Orginele prijs: <?php echo "$valuta" . $veiling[0]['startprijs'];?></p>
-                        <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0];?></p>
+                        <p>Orginele prijs: <?php echo "$valuta" . $veiling[0]['startprijs'] . ',00';?></p>
+                        <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0] . ',00';?></p>
                         <p><?= $_POST['bod']; ?></p>
                         <p id="resterendeVeilingDuur"></p>
                         <br>
