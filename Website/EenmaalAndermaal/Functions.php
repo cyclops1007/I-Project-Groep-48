@@ -186,7 +186,7 @@ function updateAccount($array){
     $sessie = $_SESSION['ID'];
     $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = :voornaam, achternaam = :achternaam, 
                               gebruikersnaam = :gebruikersnaam, adresregel1 = :adresregel1, adresregel2 = :adresregel2, 
-                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = $sessie");
+                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = '$sessie'");
     $sql = $dbh->prepare($sqlUpdate);
     $parameters = array(
         ':voornaam' => $array['voornaam'],

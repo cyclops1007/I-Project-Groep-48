@@ -9,8 +9,10 @@
 include 'Template.php';
 if(isset($_SESSION['zoek'])){
     $veiling = zoek($_SESSION['zoek']);
-}else{}
-$veiling = veilingen();
+}else{
+    $veiling = veilingen();
+}
+
 $valuta = valuta($veiling[0]['valuta']);
 
 try {
