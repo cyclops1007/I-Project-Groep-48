@@ -8,7 +8,8 @@
 
 $veilingId = $_SERVER['QUERY_STRING'];
 $hoogsteBod = getHoogsteBod($veilingId);
+$valuta = valuta($veiling[0]['valuta']);
 
 ?>
 
-Huidige prijs:<?php echo "$moneySign" . $hoogsteBod[0];?>
+Huidige prijs:<?php echo "$valuta" . $hoogsteBod[0];?>

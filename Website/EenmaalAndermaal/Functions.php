@@ -143,7 +143,7 @@ function AfbeeldingIndex()
 function getHoogsteBod($x) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE Voorwerp = $x GROUP BY bodbedrag");
+    $sql = $dbh->query("SELECT MAX(bodbedrag) FROM Bod WHERE Voorwerp = $x");
     $hoogsteBod = $sql->fetch();
 
     return $hoogsteBod;
@@ -212,17 +212,27 @@ function updateAccount($array){
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
-    $datum = date("Y/m/d");
-    $tijdstip = date("h/i/sa");
+    $datum = "'" . date("Y/m/d") . "'";
+    $tijdstip = "'" . date("h:i:s") . "'";
 
-    $sqlUpdate = $dbh->query("INSERT INTO Bod VALUES (':veilingId', ':bodBedrag', ':gebruiker', ':bodDatum', ':bodTijdstip')");
+    $sqlUpdate = "INSERT INTO Bod VALUES (:veilingId, :bodBedrag, :gebruiker, :bodDatum, :bodTijdstip)";
     $sql = $dbh->prepare($sqlUpdate);
-    $parameters = array(':veilingId'         => $veilingId,
+    $parameters = [
+        ':veilingId'         => $veilingId,
         ':bodBedrag'         => $nieuwBod,
         ':gebruiker'         => $gebruiker,
         ':bodDatum'          => $datum,
-        ':bodTijdstip'       => $tijdstip);
-    $sql->execute($parameters);
+        ':bodTijdstip'       => $tijdstip
+    ];
+    echo $sqlUpdate;
+    foreach($parameters as $parameter){
+        echo $parameter . '<br>';
+    }
+    try {
+        $sql->execute($parameters);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
 }
 
 /**
@@ -445,6 +455,17 @@ function id($gebruikersnaam)
     $sqlid = "SELECT gebruikersId, rol FROM Gebruiker WHERE gebruikersnaam = :gebruikersnaam";
     $sql = $dbh->prepare($sqlid);
     $parameters = array(':gebruikersnaam'   => $gebruikersnaam);
+    $sql->execute($parameters);
+    $account = $sql->fetch();
+    return $account;
+}
+
+function getEndDate($voorwerpnummer){
+    global $dbh;
+
+    $sqltijd = "SELECT looptijdEindeDag, looptijdEindeTijdstip FROM Voorwerp WHERE voorwerpnummer = :voorwerpnummer";
+    $sql = $dbh->prepare($sqltijd);
+    $parameters = array(':voorwerpnummer'   => $voorwerpnummer);
     $sql->execute($parameters);
     $account = $sql->fetch();
     return $account;
