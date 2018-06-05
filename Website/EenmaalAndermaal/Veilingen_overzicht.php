@@ -9,10 +9,6 @@
 include 'Template.php';
 $veiling = veilingen();
 
-
-if(isset($_SESSION['Zoekplaats'])){
-    calculateDistance($user, $destination, $amountKm, $id);// hier komt  het id van alle artikelen, de gebruiker postcode de postcode van de random persoon en de hoeveelheid km  dat ie in moet zitten. ja klopt lekker kut.
-}
 try {
 
     // Het aantal voorwerpen in de tabel
@@ -50,24 +46,18 @@ try {
     echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
 
     // Prepare the paged query
-    $stmt = $dbh->prepare('
-        SELECT * FROM Voorwerp ORDER BY name LIMIT :limit OFFSET :offset');
-
-    // Bind the query params
-    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt = $dbh->prepare("SELECT voorwerpnummer From Voorwerp ORDER BY titel 
+                                OFFSET $offset ROWS
+                                FETCH NEXT $limit ROWS ONLY");
     $stmt->execute();
+    $rows = $stmt->fetchAll(pdo::FETCH_ASSOC);
+
 
     // Do we have any results?
-    if ($stmt->rowCount() > 0) {
+    if ($rows > 0) {
         // Define how we want to fetch the results
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $iterator = new IteratorIterator($stmt);
 
-        // Display the results
-        foreach ($iterator as $row) {
-            echo '<p>', $row['gebruiker'], '</p>';
-        }
 
     } else {
         echo '<p>No results could be displayed.</p>';
@@ -83,32 +73,32 @@ try {
     <link rel="stylesheet" type="text/css" href="css/Template.css">
 </head>
 <body>
-    <table id="login-container" class="table">
-        <thead>
-            <tr>
-                <th scope="col"> Titel</th>
-                <th scope="col"> Afbeelding</th>
-                <th scope="col">Beschrijving</th>
-                <th scope="col">Startprijs</th>
-                <th scope="col">Verkoper</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-        foreach ($veiling as $key) {
-            ?>
-            <tr>
-                <th scope="col"><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
-                <td><img src="<?php echo 'http://iproject5.icasites.nl/thumbnails/' . $key['thumbnail']; ?>"></td>
-                <td><?php echo $key['beschrijving']; ?></td>
-                <td><?php echo $key['startprijs'] . ',00'; ?></td>
-                <td><?php echo $key['verkoper']; ?></td>
-            </tr>
-            <?php
-        }
+<table id="login-container" class="table">
+    <thead>
+    <tr>
+        <th scope="col"> Titel</th>
+        <th scope="col"> Afbeelding</th>
+        <th scope="col">Beschrijving</th>
+        <th scope="col">Startprijs</th>
+        <th scope="col">Verkoper</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($veiling as $key) {
         ?>
-        </tbody>
-    </table>
+        <tr>
+            <th scope="col"><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
+            <td><img src="<?php echo 'http://iproject5.icasites.nl/thumbnails/' . $key['thumbnail']; ?>"></td>
+            <td><?php echo $key['beschrijving']; ?></td>
+            <td><?php echo $key['startprijs'] . ',00'; ?></td>
+            <td><?php echo $key['verkoper']; ?></td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
 <?php include "Footer.php"; ?>
 </body>
 </html>
