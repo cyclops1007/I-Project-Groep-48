@@ -140,12 +140,9 @@ function valuta($soortgeld){
         case "USD":
             $geld = "&dollar;";
             break;
-
         default:
             $geld = "&euro;";
-
     }
-
     return $geld;
 }
 
@@ -441,15 +438,14 @@ function selectWithinRange($array){
 function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = ("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
-    $sql = $dbh->prepare($delete);
+    $delete = $dbh->prepare("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
     $parameters = array(
         ':ID' => $id,
         ':vID' => $vID
     );
-
-    $sql->execute($parameters);
-
+    $delete->execute($parameters);
+    $count = $delete->rowCount();
+    echo $count;
 }
 
 /**
