@@ -24,28 +24,8 @@ $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEind
 <head>
     <script>
         //Javascript for getting the current highest bidding
-        var xhttp;
-
-        if (window.XMLHttpRequest) {
-            // code for modern browsers
-            xhttp = new XMLHttpRequest();
-        } else {
-            // code for old IE browsers
-            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        function loadDoc(url, Function) {
-            xhttp.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    Function(this);
-                }
-            };
-            xhttp.open("POST", url, true);
-            xhttp.send();
-        }
-
-        function updateBidding() {
-            document.getElementById("hoogsteBod").innerHTML = this.responseText;
+        function loadDoc() {
+            document.getElementById("hoogsteBod").innerHTML = 'Huidige prijs: ';
         }
 
         //javascript for countdown timer
@@ -137,7 +117,7 @@ $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEind
                                     <label>Mijn bod:</label>
                                     <input class="form-control" type="number" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
                                 </div>
-                                <button type="submit" class="btn btn-outline-light" onclick="loadDoc('Hoogste_bod.php', updateBidding())">bied</button>
+                                <button type="submit" class="btn btn-outline-light" onclick="loadDoc()">bied</button>
                             </form>
                         <?php }
                         if(isset($_POST['bod'])){

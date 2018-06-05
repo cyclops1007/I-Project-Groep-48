@@ -205,27 +205,19 @@ function updateAccount($array){
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
-    $datum = "'" . date("Y/m/d") . "'";
-    $tijdstip = "'" . date("h:i:s") . "'";
+    $datum = date("Y/m/d");
+    $tijdstip = date("h:i:s");
 
-    $sqlUpdate = "INSERT INTO Bod VALUES (:veilingId, :bodBedrag, :gebruiker, :bodDatum, :bodTijdstip)";
-    $sql = $dbh->prepare($sqlUpdate);
-    $parameters = [
-        ':veilingId'         => $veilingId,
-        ':bodBedrag'         => $nieuwBod,
-        ':gebruiker'         => $gebruiker,
-        ':bodDatum'          => $datum,
-        ':bodTijdstip'       => $tijdstip
-    ];
-    echo $sqlUpdate;
-    foreach($parameters as $parameter){
-        echo $parameter . '<br>';
-    }
-    try {
-        $sql->execute($parameters);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+    $sqlUpdate = $dbh->prepare("INSERT INTO Bod VALUES (:veilingId, :bodBedrag, :gebruiker, :bodDatum, :bodTijdstip)");
+    $sqlUpdate->execute(
+        array(
+            ':veilingId'         => $veilingId,
+            ':bodBedrag'         => $nieuwBod,
+            ':gebruiker'         => $gebruiker,
+            ':bodDatum'          => $datum,
+            ':bodTijdstip'       => $tijdstip
+        )
+    );
 }
 
 /**
