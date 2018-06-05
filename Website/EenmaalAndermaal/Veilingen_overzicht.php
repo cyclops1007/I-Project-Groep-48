@@ -73,32 +73,32 @@ try {
     <link rel="stylesheet" type="text/css" href="css/Template.css">
 </head>
 <body>
-    <table id="login-container" class="table">
-        <thead>
-            <tr>
-                <th scope="col"> Titel</th>
-                <th scope="col"> Afbeelding</th>
-                <th scope="col">Beschrijving</th>
-                <th scope="col">Startprijs</th>
-                <th scope="col">Verkoper</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-        foreach ($veiling as $key) {
-            ?>
-            <tr>
-                <th scope="col"><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
-                <td><img src="<?php echo 'http://iproject5.icasites.nl/thumbnails/' . $key['thumbnail']; ?>"></td>
-                <td><?php echo $key['beschrijving']; ?></td>
-                <td><?php echo $key['startprijs'] . ',00'; ?></td>
-                <td><?php echo $key['verkoper']; ?></td>
-            </tr>
-            <?php
-        }
+<table id="login-container" class="table">
+    <thead>
+    <tr>
+        <th scope="col"> Titel</th>
+        <th scope="col"> Afbeelding</th>
+        <th scope="col">Beschrijving</th>
+        <th scope="col">Startprijs</th>
+        <th scope="col">Verkoper</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($veiling as $key) {
         ?>
-        </tbody>
-    </table>
+        <tr>
+            <th scope="col"><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
+            <td><img src="<?php echo 'http://iproject5.icasites.nl/thumbnails/' . $key['thumbnail']; ?>"></td>
+            <td><?php echo $key['beschrijving']; ?></td>
+            <td><?php echo $key['startprijs'] . ',00'; ?></td>
+            <td><?php echo $key['verkoper']; ?></td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
 <?php include "Footer.php"; ?>
 </body>
 </html>
