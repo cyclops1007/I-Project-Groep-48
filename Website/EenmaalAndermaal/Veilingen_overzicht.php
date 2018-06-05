@@ -7,8 +7,14 @@
  */
 
 include 'Template.php';
-$veiling = veilingen();
+print_r($_SESSION);
+if(isset($_SESSION['zoek'])){
+    $veiling = zoek($_SESSION['zoek']);
+}else{
+    $veiling = veilingen();
+}
 
+$valuta = valuta($veiling[0]['valuta']);
 
 ?>
 <!DOCTYPE html>
@@ -20,8 +26,8 @@ $veiling = veilingen();
 <table id="login-container" class="table">
     <thead>
     <tr>
-        <th scope="col"> Titel</th>
-        <th scope="col"> Afbeelding</th>
+        <th scope="col">Titel</th>
+        <th scope="col">Afbeelding</th>
         <th scope="col">Beschrijving</th>
         <th scope="col">Startprijs</th>
         <th scope="col">Verkoper</th>
@@ -31,9 +37,16 @@ $veiling = veilingen();
     <?php
     try {
 
+        if(isset($_SESSION['zoek'])){
+            $veiling = $_SESSION['zoek'];
+            $total = $dbh->query("
+        SELECT COUNT(*) FROM Voorwerp WHERE titel LIKE '%$veiling%'")->fetchColumn();
+        }
         // Het aantal voorwerpen in de tabel
-        $total = $dbh->query('
+        else{
+            $total = $dbh->query('
         SELECT COUNT(*) FROM Voorwerp')->fetchColumn();
+        }
 
         // Aantal veilingen per pagina
         $limit = 20;
@@ -66,12 +79,21 @@ $veiling = veilingen();
         echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
 
         // Prepare the paged query
-        $stmt = $dbh->prepare("SELECT * From Voorwerp ORDER BY titel 
+    if(isset($_SESSION['zoek'])) {
+        $veiling = $_SESSION['zoek'];
+        $stmt = $dbh->prepare("SELECT * From Voorwerp WHERE titel LIKE '%$veiling%' ORDER BY titel 
                                 OFFSET $offset ROWS
                                 FETCH NEXT $limit ROWS ONLY");
         $stmt->execute();
         $rows = $stmt->fetchAll(pdo::FETCH_ASSOC);
-
+    }
+    else{
+            $stmt = $dbh->prepare("SELECT * From Voorwerp ORDER BY titel 
+                                OFFSET $offset ROWS
+                                FETCH NEXT $limit ROWS ONLY");
+            $stmt->execute();
+            $rows = $stmt->fetchAll(pdo::FETCH_ASSOC);
+        }
 
         // Do we have any results?
         if ($rows > 0) {
@@ -83,7 +105,7 @@ $veiling = veilingen();
                     <th scope="col"><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
                     <td><img src="<?php echo 'http://iproject5.icasites.nl/thumbnails/' . $key['thumbnail']; ?>"></td>
                     <td><?php echo $key['beschrijving']; ?></td>
-                    <td><?php echo $key['startprijs'] . ',00'; ?></td>
+                    <td><?php echo $valuta . $key['startprijs'] . ',00'; ?></td>
                     <td><?php echo $key['verkoper']; ?></td>
                 </tr>
                 <?php
