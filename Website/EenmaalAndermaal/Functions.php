@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kay
@@ -19,6 +20,19 @@ function gebruiker() {
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
+
+}
+
+function zoek() {
+    $name = $_Post['search'];
+
+    global $dbh;
+
+    $sql = $dbh->query("SELECT * FROM rubriek WHERE rubrieknaam LIKE '%search%'  ");
+    $zoek = $sql->fetchALL();
+
+    return $zoek;
+
 }
 
 function ingelogd($id){
@@ -33,7 +47,7 @@ function ingelogd($id){
 function showResult() {
     global $dbh;
 
-    $sql = $dbh->query("select titel from voorwerp");
+    $sql = $dbh->query("SELECT titel FROM voorwerp");
     $showResult = $sql->fetchALL();
 
     return $showResult;
@@ -79,7 +93,7 @@ function artikelnummer($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select *  from Voorwerp where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $veilingId");
     $artikelnummer = $sql->fetchALL();
 
     return $artikelnummer;
@@ -89,7 +103,7 @@ function artikelfoto($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select afbeelding  from afbeeldingen where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen WHERE voorwerpnummer = $veilingId");
     $artikelfoto = $sql->fetchALL();
 
     return $artikelfoto;
@@ -140,12 +154,9 @@ function valuta($soortgeld){
         case "USD":
             $geld = "&dollar;";
             break;
-
         default:
             $geld = "&euro;";
-
     }
-
     return $geld;
 }
 
@@ -164,24 +175,21 @@ function getArtikelen($id){
 
 function updateAccount($array){
     global $dbh;
+
     $sessie = $_SESSION['ID'];
-    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam,
-                                                             achternaam,
-                                                             gebruikersnaam,
-                                                             adresregel1,
-                                                             adresregel2,
-                                                             postcode,
-                                                             mailbox
-                                                             VALUES (:voornaam, :achternaam, :gebruikersnaam, :adresregel1, :adresregel2, :postcode, :mailbox)
-                                                             WHERE gebruikersId = $sessie");
+    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = :voornaam, achternaam = :achternaam, 
+                              gebruikersnaam = :gebruikersnaam, adresregel1 = :adresregel1, adresregel2 = :adresregel2, 
+                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = $sessie");
     $sql = $dbh->prepare($sqlUpdate);
-    $parameters = array(':voornaam' => $array['voornaam'],
+    $parameters = array(
+        ':voornaam' => $array['voornaam'],
         ':achternaam' => $array['achternaam'],
         ':gebruikersnaam' => $array['gebruikersnaam'],
         ':adresregel1' => $array['adresregel1'],
         ':adresregel2' => $array['adresregel2'],
         ':postcode' => $array['postcode'],
-        ':mailbox' => $array['mailbox']);
+        ':mailbox' => $array['mailbox']
+    );
     $sql->execute($parameters);
 }
 
@@ -441,15 +449,14 @@ function selectWithinRange($array){
 function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = ("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
-    $sql = $dbh->prepare($delete);
+    $delete = $dbh->prepare("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
     $parameters = array(
         ':ID' => $id,
         ':vID' => $vID
     );
-
-    $sql->execute($parameters);
-
+    $delete->execute($parameters);
+    $count = $delete->rowCount();
+    header("Location: Mijn_artiekelen.php");
 }
 
 /**
@@ -483,6 +490,7 @@ function id($gebruikersnaam)
 }
 
 function login(){
+    global $dbh;
     $login_foutmelding = "";
 
     if (!empty($_POST))

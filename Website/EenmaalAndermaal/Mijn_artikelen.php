@@ -6,11 +6,11 @@
  * Time: 10:09
  */
 include 'Template.php';
-//isUser();
-$id = $_SESSION['ID'][0];
-$vID = 271518732479;// voorlopig id dit klopt nog niet!
+isUser();
+$id = $_SESSION['ID'];
 $artikelen = array(getArtikelen($id));
-if(!empty($_POST)){
+if(isset($_POST['voorwerpnummer'])){
+    $vID = $_POST['voorwerpnummer'];
     deleteArtikel($id, $vID);
 }
 ?>
@@ -37,6 +37,7 @@ if(!empty($_POST)){
             <td scope="row"><?php echo $key['startprijs']; ?></td>
             <td>
                 <form action="" method="post">
+                    <input type="hidden" name="voorwerpnummer" value="<?php echo $key['voorwerpnummer'];?>">
                     <input type="image" src="image/block.jpg" width="30" value="Delete">
                 </form>
             </td>

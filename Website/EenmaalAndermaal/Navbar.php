@@ -60,7 +60,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                     <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
                     <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
                     <a class="dropdown-item" href="#">Prestatie</a>
-                    <a class="dropdown-item" href="Batch_upload.php">Batch upload</a>
+                    <a class="dropdown-item" href="rubriek_aanpassen.php">Batch upload</a>
                 </div>
             </li>
         <?php } ?>
@@ -73,9 +73,9 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
         ?>
     </div>
     <nav aria-label="breadcrumb">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Iets zoeken" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Zoek</button>
+        <form action="veiling.php" method="post">
+            <input type="text" name="search" />
+            <input type="submit" value="Submit" />
         </form>
     </nav>
 </div>
