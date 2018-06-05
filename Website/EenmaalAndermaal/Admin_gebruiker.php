@@ -23,7 +23,7 @@ if (!empty($_POST) && isUblocked($_POST) == false){
     <link rel="stylesheet" type="text/css" href="css/Template.css">
 </head>
 <body>
-<table id="tabeloverzicht" class="table">
+<table id="login-container" class="table table-dark text-center">
     <thead>
     <tr>
         <th scope="col">Gebruikersnaam</th>

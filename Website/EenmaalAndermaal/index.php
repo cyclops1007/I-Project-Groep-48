@@ -5,8 +5,7 @@
  * Date: 24-4-2018
  * Time: 11:15
  */
-//include 'Template.php';
-include 'Functions.php';
+include 'Template.php';
 include 'Database_con.php';
 
 /**
@@ -55,11 +54,11 @@ function carousel() {
                 <?php }else{ ?>
                     <div class="carousel-item">
                 <?php } ?>
-
-
+		    <div class="carousel-tekst">
+			    <p>Klik op de afbeelding om naar de veiling te gaan</p>
+		    </div>
                         <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                     </div>
-
                 <?php
             }
             ?>

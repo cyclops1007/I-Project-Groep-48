@@ -29,10 +29,11 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <?php if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){ ?>
                     <a class="dropdown-item" href="Login.php">Login</a>
+                    <a class="dropdown-item" href="Registreer.php">Registreer</a>
                 <?php }else{  ?>
                     <a class="dropdown-item" href="Uitloggen.php">Uitloggen</a>
                     <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
-                    <a class="dropdown-item" href="#">Mijn biedingen</a>
+                    <a class="dropdown-item" href="Mijn_artikelen.php">Mijn biedingen</a>
                     <a class="dropdown-item" href="#">Meldingen</a>
                     <?php if($_SESSION['rol'] >= 2){?>
                         <a class="dropdown-item" href="Mijn_artikelen.php">Mijn veilingen</a>
@@ -59,7 +60,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                     <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
                     <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
                     <a class="dropdown-item" href="#">Prestatie</a>
-                    <a class="dropdown-item" href="Batch_upload.php">Batch upload</a>
+                    <a class="dropdown-item" href="rubriek_aanpassen.php">Batch upload</a>
                 </div>
             </li>
         <?php } ?>
@@ -67,14 +68,14 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
     <div style="margin-right: 1%;">
         <?php
             if($_SESSION['rol'] != 0 && isset($_SESSION['rol'])) {
-                echo "U bent ingelogd als: " . $ingelogd['gebruikersnaam'];
+                echo "U bent ingelogd als: " . $ingelogd[0]['gebruikersnaam'];
             }
         ?>
     </div>
     <nav aria-label="breadcrumb">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Iets zoeken" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Zoek</button>
+        <form action="veiling.php" method="post">
+            <input type="text" name="search" />
+            <input type="submit" value="Submit" />
         </form>
     </nav>
 </div>

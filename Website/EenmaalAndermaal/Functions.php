@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Kay
@@ -19,6 +20,19 @@ function gebruiker() {
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
+
+}
+
+function zoek() {
+    $name = $_Post['search'];
+
+    global $dbh;
+
+    $sql = $dbh->query("SELECT * FROM rubriek WHERE rubrieknaam LIKE '%search%'  ");
+    $zoek = $sql->fetchALL();
+
+    return $zoek;
+
 }
 
 function ingelogd($id){
@@ -33,7 +47,7 @@ function ingelogd($id){
 function showResult() {
     global $dbh;
 
-    $sql = $dbh->query("select titel from voorwerp");
+    $sql = $dbh->query("SELECT titel FROM voorwerp");
     $showResult = $sql->fetchALL();
 
     return $showResult;
@@ -79,7 +93,7 @@ function artikelnummer($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select *  from Voorwerp where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $veilingId");
     $artikelnummer = $sql->fetchALL();
 
     return $artikelnummer;
@@ -89,7 +103,7 @@ function artikelfoto($veilingId) {
     global $dbh;
 
 
-    $sql = $dbh->query("select afbeelding  from afbeeldingen where voorwerpnummer = $veilingId");
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen WHERE voorwerpnummer = $veilingId");
     $artikelfoto = $sql->fetchALL();
 
     return $artikelfoto;
@@ -140,12 +154,9 @@ function valuta($soortgeld){
         case "USD":
             $geld = "&dollar;";
             break;
-
         default:
             $geld = "&euro;";
-
     }
-
     return $geld;
 }
 
@@ -438,15 +449,14 @@ function selectWithinRange($array){
 function deleteArtikel($id, $vID){
     global $dbh;
 
-    $delete = ("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
-    $sql = $dbh->prepare($delete);
+    $delete = $dbh->prepare("DELETE FROM Voorwerp WHERE verkoper = :ID AND voorwerpnummer = :vID");
     $parameters = array(
         ':ID' => $id,
         ':vID' => $vID
     );
-
-    $sql->execute($parameters);
-
+    $delete->execute($parameters);
+    $count = $delete->rowCount();
+    header("Location: Mijn_artiekelen.php");
 }
 
 /**
@@ -477,6 +487,61 @@ function id($gebruikersnaam)
     $sql->execute($parameters);
     $account = $sql->fetch();
     return $account;
+}
+
+function login(){
+    global $dbh;
+    $login_foutmelding = "";
+
+    if (!empty($_POST))
+    {
+        $verifeer = $dbh->prepare("Select * FROM Gebruiker WHERE gebruikersnaam = :username AND verified = 1 ");
+        $verifeer->execute(
+            array(
+                ':username' => $_POST["username"]
+            )
+        );
+
+        $tel = $verifeer->rowCount();
+
+        if($tel == 0){
+            $geverifieerd = 0;
+        }
+        else{
+            $geverifieerd = 1;
+        }
+
+        if (empty($_POST["username"]) || empty($_POST["password"])) {
+            $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
+            echo $login_foutmelding;
+        } elseif($geverifieerd == 0){
+            $login_foutmelding = '<p class="login">U account is nog niet geverifieerd. Klik a.u.b. op de link in u mailbox om uw account the verifieeren</p>';
+            echo $login_foutmelding;
+        }
+
+        else {
+            $login_query = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username AND wachtwoord = :password");
+            $login_query->execute(
+                array(
+                    'username' => $_POST["username"],
+                    'password' => $_POST["password"]
+                )
+            );
+            $tellen = $login_query->rowCount();
+            if ($tellen == 0) {
+                $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
+                echo $login_foutmelding;
+            } else {
+                $username = $_POST["username"];
+                $x = id($username);
+                $_SESSION['ID'] = $x[0];
+                $_SESSION["rol"] = $x[1];
+                $_SESSION['username'] = $_POST['username'];
+                header("Location: Mijn_account.php");
+            }
+            print_r($_POST);
+        }
+    }
 }
 
 ?>
