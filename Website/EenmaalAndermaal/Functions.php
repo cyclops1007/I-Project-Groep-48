@@ -175,11 +175,18 @@ function valuta($soortgeld){
 function getArtikelen($id){
     global $dbh;
     $sql = $dbh->query("SELECT * FROM Voorwerp WHERE verkoper = $id");
-    $artikelen = $sql->fetch();
+    $artikelen = $sql->fetchAll();
 
     return $artikelen;
 }
 
+function getValuta(){
+    global $dbh;
+    $sql = $dbh->query("SELECT DISTINCTvaluta FROM Voorwerp");
+    $query = $sql->fetch();
+
+    return $query;
+}
 function updateAccount($array){
     global $dbh;
 
@@ -284,10 +291,10 @@ function verkoop($verkoopArray){
             ':Beschrijving' => $verkoopArray['Beschrijving'],
             ':Startprijs' => $verkoopArray['Startprijs'],
             ':Betalingswijze' => $verkoopArray['Betalingswijze'],
-            ':Postalcode' => $verkoopArray['postalcode'],
+            ':Postalcode' => $verkoopArray['Postalcode'],
             ':Thumbnail' => $verkoopArray['Pic'],
-            ':valuta' => "EUR",
-            ':Land' => "",
+            ':valuta' => $verkoopArray['Valuta'],
+            ':Land' => "Nederland",
             ':Looptijd' => 24,
             ':looptijdBeginDag' => $datum,
             ':Verkoper' => $_SESSION['ID'],

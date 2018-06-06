@@ -7,6 +7,8 @@
  */
 
 include 'Template.php';
+$valuta = getValuta();
+print_r($valuta);
 if (!empty($_POST)) {
 
 
@@ -44,19 +46,25 @@ if (!empty($_POST)) {
     <h1>Voorwerp verkopen</h1><br>
     <form action="" method="post">
         <div class="form-group">
-            <label for="titel">Titel:</label>
-            <input id="titel" class="form-control" type="text" name="Titel"><br>
-            <label for="catogorie">Catogorie:</label>
-            <input id="catogorie" class="form-control" type="text" name="Catogorie"><br>
-            <label for="beschrijving">Beschrijving:</label>
-            <input id="beschrijving" class="form-control" type="text" name="Beschrijving"><br>
-            <label for="startprijs">Startprijs:</label>
-            <input id="startprijs" class="form-control" type="text" name="Startprijs"><br>
-            <label for="betalingswijze">betalingswijze:</label>
-            <input id="betalingswijze" class="form-control" type="text" name="Betalingswijze"><br>
-            <label for="postcode">postcode:</label>
-            <input id="postcode" class="form-control" type="text" name="Postalcode"><br>
-            <label for="file">Upload foto's</label>
+            <label>Titel:</label>
+            <input class="form-control" type="text" name="Titel"><br>
+            <label>Catogorie:</label>
+            <input class="form-control" type="text" name="Catogorie"><br>
+            <label>Beschrijving:</label>
+            <input class="form-control" type="text" name="Beschrijving"><br>
+            <label>Startprijs:</label>
+            <input class="form-control" type="text" name="Startprijs"><br>
+            <label>betalingswijze:</label>
+            <input class="form-control" type="text" name="Betalingswijze"><br>
+            <label>Valuta:</label>
+            <select class="form-control" name="Valuta">
+                <?php foreach($valuta as $key){
+                    echo"<option>" . $key['valuta'] . "</option>";
+                } ?>
+            </select><br>
+            <label>postcode:</label>
+            <input class="form-control" type="text" name="Postalcode"><br>
+            <label>Upload foto's</label>
             <input type="file" name="Pic" accept="image/*">
         </div>
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Bevestigen</button>
