@@ -153,8 +153,8 @@ function valuta($soortgeld){
     $geld = "";
     switch ($soortgeld){
         case "EUR":
-           $geld = "&euro;";
-           break;
+            $geld = "&euro;";
+            break;
         case "GBP":
             $geld = "&pound;";
             break;
@@ -381,7 +381,7 @@ function isUBlocked($id){
 function isvBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM Artikel WHERE gebruikersId = $id");
+    $sql = $dbh->query("SELECT blocked FROM Voorwerp WHERE gebruikersId = $id");
     $artikel = $sql->fetchAll();
 
     return $artikel; // moet false of true returnen
@@ -396,7 +396,7 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
+    $update = $dbh->query("UPDATE Voorwerp SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -412,7 +412,7 @@ function uBlock($id){
 function vBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
+    $update = $dbh->query("UPDATE Voorwerp SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -444,7 +444,7 @@ function uUnblock($id){
 function vUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE gebruikersId = :ID");
+    $update = $dbh->query("UPDATE Voorwerp SET blocked = false WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -576,5 +576,24 @@ function login(){
     }
 }
 
+function sluitVeiling($id){
+    global $dbh;
+
+    $update = $dbh->query("UPDATE Voorwerp SET veilingGesloten = true WHERE voorwerpnummer = :ID");
+    $sql = $dbh->prepare($update);
+    $parameters = array(':ID' => $id);
+
+    $sql->execute($parameters);
+
+}
+
+function deleteVoorwerp($id){
+    global $dbh;
+
+    $sql = $dbh->prepare("DELETE v FROM Voorwerp v INNER JOIN Bod b ON v.voorwerpnummer = b.voorwerp 
+                                    WHERE voorwerpnummer = :ID ");
+    $sql->execute(array(':ID' => $id));
+
+}
 
 ?>

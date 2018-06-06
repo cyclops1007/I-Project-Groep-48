@@ -15,6 +15,13 @@ $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
 $endTimeArray = getEndDate($veilingId);
 $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
+sluitVeiling($veilingId);
+if($veiling[0]['veilingGesloten'] != 0){
+    //$mails = getMails($hoogsteBod[1], $veiling['verkoper']);
+    //stuurMail($mails);
+    deleteVoorwerp($veilingId);
+    header("Location: index.php");
+}
 
 if(isset($_POST['bod'])){
     updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
