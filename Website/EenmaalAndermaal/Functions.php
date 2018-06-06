@@ -45,7 +45,7 @@ function ingelogd($id){
 function getLanden(){
     global $dbh;
 
-    $sql = $dbh->query("SELECT landcode FROM Landen");
+    $sql = $dbh->query("SELECT landnaam FROM Landen");
     $land = $sql->fetchAll();
 
     return $land;
@@ -277,31 +277,31 @@ function verkoop($verkoopArray){
     $datum2 = date('Y-m-d',$d);
 //    pre_r($verkoopArray);
     try {
-        $sqlverkoop = "INSERT INTO voorwerp (titel, catogorie, beschrijving, startprijs, 
-                                             betalingswijze, postalcode, thumbnail, valuta,
-                                             land, looptijd, looptijdBeginDag, verkoper,
+        $sqlverkoop = "INSERT INTO Voorwerp (titel, categorie, beschrijving, startprijs, 
+                                             betalingswijzeNaam, postcode, thumbnail, valuta,
+                                             landnaam, looptijd, looptijdBeginDag, verkoper,
                                              looptijdEindeDag, blocked, veilingGesloten) 
                        
-                       VALUES(:Titel, :Catogorie, :Beschrijving, :Startprijs, 
-                              :Betalingswijze, :Postalcode, :Thumnnail, :Valuta,
+                       VALUES(:Titel, :Categorie, :Beschrijving, :Startprijs, 
+                              :Betalingswijze, :Postalcode, :Thumbnail, :Valuta,
                               :Land, :Looptijd, :looptijdBeginDag, :Verkoper,
                               :looptijdEindeDag, :Blocked, :VeilingGesloten)";
         $sql = $dbh->prepare($sqlverkoop);
         $parameters = array(':Titel' => $verkoopArray['Titel'],
-            ':Catogorie' => $verkoopArray['Catogorie'],
-            ':Beschrijving' => $verkoopArray['Beschrijving'],
-            ':Startprijs' => $verkoopArray['Startprijs'],
-            ':Betalingswijze' => $verkoopArray['Betalingswijze'],
-            ':Postalcode' => $verkoopArray['Postalcode'],
-            ':Thumbnail' => $verkoopArray['Pic'],
-            ':valuta' => $verkoopArray['Valuta'],
-            ':Land' => "Nederland",
-            ':Looptijd' => 24,
-            ':looptijdBeginDag' => $datum,
-            ':Verkoper' => $_SESSION['ID'],
-            ':looptijdEindeDag' => $datum2,
-            ':Blocked' => 0,
-            ':VeilingGesloten' => 0);
+            ':Categorie'            => $verkoopArray['Catogorie'],
+            ':Beschrijving'         => $verkoopArray['Beschrijving'],
+            ':Startprijs'           => $verkoopArray['Startprijs'],
+            ':Betalingswijze'       => $verkoopArray['Betalingswijze'],
+            ':Postalcode'           => $verkoopArray['Postalcode'],
+            ':Thumbnail'            => $verkoopArray['Pic'],
+            ':Valuta'               => $verkoopArray['Valuta'],
+            ':Land'                 => $verkoopArray['Land'],
+            ':Looptijd'             => 24,
+            ':looptijdBeginDag'     => $datum,
+            ':Verkoper'             => $_SESSION['ID'],
+            ':looptijdEindeDag'     => $datum2,
+            ':Blocked'              => 0,
+            ':VeilingGesloten'      => 0);
 
 
         $sql->execute($parameters);
