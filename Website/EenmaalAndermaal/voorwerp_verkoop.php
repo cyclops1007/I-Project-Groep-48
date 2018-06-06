@@ -8,7 +8,6 @@
 
 include 'Template.php';
 $valuta = getValuta();
-print_r($valuta);
 if (!empty($_POST)) {
 
 

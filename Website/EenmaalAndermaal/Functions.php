@@ -182,8 +182,8 @@ function getArtikelen($id){
 
 function getValuta(){
     global $dbh;
-    $sql = $dbh->query("SELECT DISTINCTvaluta FROM Voorwerp");
-    $query = $sql->fetch();
+    $sql = $dbh->query("SELECT DISTINCT valuta FROM Voorwerp");
+    $query = $sql->fetchAll();
 
     return $query;
 }
