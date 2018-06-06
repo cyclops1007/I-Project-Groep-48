@@ -236,6 +236,7 @@ function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
 function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
+
     try {
         $sqlregistreer = "INSERT INTO Gebruiker (voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst) VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion)";
         $sql = $dbh->prepare($sqlregistreer);
@@ -248,7 +249,7 @@ function registreer($registreerArray){
             ':country' => "DEU",
             ':datum' => $registreerArray['date'],
             ':mail' => $registreerArray['mail'],
-            ':password' => $registreerArray['password'],
+            ':password' => password_hash($registreerArray['password'], PASSWORD_DEFAULT),
             ':security_q' => 1,
             ':verkoper' => 1,
             ':verified' => NULL,
@@ -525,6 +526,7 @@ function login(){
             $geverifieerd = 1;
         }
 
+
         if (empty($_POST["username"]) || empty($_POST["password"])) {
             $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
             echo $login_foutmelding;
@@ -532,30 +534,40 @@ function login(){
             $login_foutmelding = '<p class="login">U account is nog niet geverifieerd. Klik a.u.b. op de link in u mailbox om uw account the verifieeren</p>';
             echo $login_foutmelding;
         }
-
+        //$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        //$isCorrect = password_verify($password_h, $hashed_password);
         else {
-            $login_query = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username AND wachtwoord = :password");
-            $login_query->execute(
-                array(
-                    'username' => $_POST["username"],
-                    'password' => $_POST["password"]
-                )
-            );
-            $tellen = $login_query->rowCount();
-            if ($tellen == 0) {
+            $pass = $dbh->prepare("SELECT wachtwoord FROM Gebruiker WHERE gebruikersnaam = :username");
+            $pass->execute(array(
+                'username' => $_POST["username"]
+            ));
+            $tel = $pass->rowCount();
+            if($tel == 0){
                 $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
                 echo $login_foutmelding;
-            } else {
-                $username = $_POST["username"];
-                $x = id($username);
-                $_SESSION['ID'] = $x[0];
-                $_SESSION["rol"] = $x[1];
-                $_SESSION['username'] = $_POST['username'];
-                header("Location: Mijn_account.php");
+            } else{
+                $hash = $pass->fetchColumn();
+                $passy = $_POST["password"];
+                $verify = password_verify($hash, $passy);
+
+                if($verify){
+                    $username = $_POST["username"];
+                    echo $username;
+                    $x = id($username);
+                    $_SESSION['ID'] = $x[0];
+                    $_SESSION["rol"] = $x[1];
+                    $_SESSION['username'] = $_POST['username'];
+                    header("Location: Mijn_account.php");
+
+                } else{
+                    $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
+                    echo $login_foutmelding;
+                }
+                print_r($_POST);
             }
-            print_r($_POST);
         }
     }
 }
+
 
 ?>
