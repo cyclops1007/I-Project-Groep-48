@@ -15,7 +15,9 @@ $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
 $endTimeArray = getEndDate($veilingId);
 $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
-sluitVeiling($veilingId);
+if(date("Y-m-d") <= $endTimeArray['looptijdEindeDag']) {
+    sluitVeiling($veilingId);
+}
 if($veiling[0]['veilingGesloten'] != 0){
     //$mails = getMails($hoogsteBod[1], $veiling['verkoper']);
     //stuurMail($mails);
