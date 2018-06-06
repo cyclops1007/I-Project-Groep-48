@@ -8,16 +8,17 @@
 
 include 'Template.php';
 
-//Soort geld moet nog opgehaald kunnen worden uit de database.
 $veilingId = $_SERVER['QUERY_STRING'];
-//$product = afbeeldingVeiling();
 $veiling = artikelnummer($veilingId);
 $valuta = valuta($veiling[0]['valuta']);
 $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
-//$endTimeArray = getEndDate($veilingId);
-//$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
+$endTimeArray = getEndDate($veilingId);
+$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
 
+if(isset($_POST['bod'])){
+    updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,9 +138,10 @@ $hoogsteBod = getHoogsteBod($veilingId);
                                 <button type="submit" class="btn btn-outline-light" onclick="updateHighestBidding()">bied</button>
                             </form>
                         <?php }
-                        if(isset($_POST['bod'])){
-                            updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
-                        }?>
+                            if($veiling[0]['veilingGesloten'] != 0){
+                                echo "<p>Deze veiling is gesloten!</p>";
+                            }
+                        ?>
                     </div>
                     <div id="text-container" class="container rounded col-sm-6">
                         <p><strong>Beschrijving: </strong><?php echo $veiling[0]['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>
