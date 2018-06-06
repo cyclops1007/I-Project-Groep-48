@@ -274,19 +274,20 @@ function verkoop($verkoopArray){
     global $dbh;
     //pre_r($verkoopArray);
     try {
-        $sqlverkoop = "INSERT INTO voorwerp (titel, catogorie, beschrijving, startprijs, betalingswijze, postalcode) VALUES(:Titel, :Catogorie, :Beschrijving, :Startprijs, :Betalingswijze, :Postalcode)";
+        $sqlverkoop = "INSERT INTO Voorwerp (titel, categorie, beschrijving, startprijs, betalingswijzeNaam, postcode) VALUES(:Titel, :Categorie, :Beschrijving, :Startprijs, :Betalingswijze, :Postcode)";
         $sql = $dbh->prepare($sqlverkoop);
         $parameters = array(':Titel' => $verkoopArray['Titel'],
-            ':Catogorie' => $verkoopArray['Catogorie'],
+            ':Categorie' => $verkoopArray['Categorie'],
             ':Beschrijving' => $verkoopArray['Beschrijving'],
             ':Startprijs' => $verkoopArray['Startprijs'],
             ':Betalingswijze' => $verkoopArray['Betalingswijze'],
-            ':Postalcode' => $verkoopArray['postalcode']);
+            ':Postcode' => $verkoopArray['Postcode']);
 
 
         $sql->execute($parameters);
 
         print_r($parameters);
+        echo "Uw artikel is toegevoegd";
     }catch(Exception $e){
         echo $e;
     }
