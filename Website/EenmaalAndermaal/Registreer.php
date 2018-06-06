@@ -126,7 +126,7 @@ if (!empty($_POST)){
                     <label>Land:</label>
             <select class="form-control" name="country">
                 <?php foreach ($options as $land) { ?>
-                    <option><?php echo $land ?></option>
+                    <option><?php echo $land['land'] ?></option>
                 <?php } ?>
             </select><br>
             <label for="geboortedatum">Geboortedatum:</label>
