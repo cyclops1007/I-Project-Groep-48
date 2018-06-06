@@ -10,7 +10,7 @@
 
 <footer class="footer">
     <div class="d-flex justify-content-center">
-        <span class="text-muted col-sm-7">© 2018 Copyright</span>
+        <span class="text-muted col-sm-7">© <?php echo date("Y");?> Copyright</span>
 
         <a href="Voorwaarden.php" class="col-sm-2">Voorwaarden</a>
 

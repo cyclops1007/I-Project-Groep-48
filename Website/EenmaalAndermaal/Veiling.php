@@ -8,44 +8,42 @@
 
 include 'Template.php';
 
-//Soort geld moet nog opgehaald kunnen worden uit de database.
 $veilingId = $_SERVER['QUERY_STRING'];
-//$product = afbeeldingVeiling();
 $veiling = artikelnummer($veilingId);
 $valuta = valuta($veiling[0]['valuta']);
 $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
-//$endTimeArray = getEndDate($veilingId);
-//$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
+$endTimeArray = getEndDate($veilingId);
+$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
 
+if(isset($_POST['bod'])){
+    updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <script>
         //Javascript for getting the current highest bidding
-        var xhttp;
+        function updateHighestBidding() {
+            var xmlhttp;
 
-        if (window.XMLHttpRequest) {
-            // code for modern browsers
-            xhttp = new XMLHttpRequest();
-        } else {
-            // code for old IE browsers
-            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
+            if (window.XMLHttpRequest) {
+                // code for modern browsers
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for old IE browsers
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
 
-        function loadDoc(url, Function) {
             xhttp.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    Function(this);
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("hoogsteBod").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("POST", url, true);
+            xhttp.open("GET", "Hoogste_bod.php", true);
             xhttp.send();
-        }
 
-        function updateBidding() {
-            document.getElementById("hoogsteBod").innerHTML = this.responseText;
         }
 
         //javascript for countdown timer
@@ -137,12 +135,13 @@ $hoogsteBod = getHoogsteBod($veilingId);
                                     <label>Mijn bod:</label>
                                     <input class="form-control" type="number" step=".01" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
                                 </div>
-                                <button type="submit" class="btn btn-outline-light" onclick="loadDoc('Hoogste_bod.php', updateBidding())">bied</button>
+                                <button type="submit" class="btn btn-outline-light" onclick="updateHighestBidding()">bied</button>
                             </form>
                         <?php }
-                        if(isset($_POST['bod'])){
-                            updateHoogsteBod($veilingId, $_POST['bod'], $_SESSION['ID']);
-                        }?>
+                            if($veiling[0]['veilingGesloten'] != 0){
+                                echo "<p>Deze veiling is gesloten!</p>";
+                            }
+                        ?>
                     </div>
                     <div id="text-container" class="container rounded col-sm-6">
                         <p><strong>Beschrijving: </strong><?php echo $veiling[0]['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>

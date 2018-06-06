@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Created by PhpStorm.
  * User: Kay
@@ -43,11 +43,10 @@ if (!empty($_POST)){
             registreer($_POST);
             $subject = "Signup | verification"; //title
             $email = "Thanks for signing up! <br>
-            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below. <br>
+            Your account has been created, you can login with the following credential after you have activated your account by pressing the url below. <br>
             
             ------------------------ <br>
             Username: '' $username <br> 
-            Password: '' $password <br>
             ------------------------ <br>
          
             <a href='http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
@@ -62,7 +61,7 @@ if (!empty($_POST)){
             mail($to, $subject, $email, implode("\r\n", $headers), "-f" . $from);
 
 
-                echo "Je account is gemaakt! <br/> Klik op de activatie link op uw mail om uw account the verifiëren";
+            echo "Je account is gemaakt! <br/> Klik op de activatie link op uw mail om uw account the verifiëren";
 
 
 
@@ -107,40 +106,31 @@ if (!empty($_POST)){
         <div class="form-group">
             <label for="voornaam">Voornaam:</label>
             <input id="voornaam" class="form-control" type="text" name="firstname"><br>
-            <p id="voornaamfout" onkeyup="loadDoc(url, 'voornaamfout')"></p><br>
             <label for="achternaam">Achternaam:</label>
             <input id="achternaam" class="form-control" type="text" name="lastname"><br>
-            <p id="achternaamfout"></p><br>
             <label for="gebruikersnaam">Gebruikersnaam:</label>
             <input id="gebruikersnaam" class="form-control" type="text" name="username"><br>
-            <p id="gebruikersnaamfout"></p><br>
             <label for="adres">Adres:</label>
             <input id="adres" class="form-control" type="text" name="address1"><br>
-            <p id="adresfout"></p><br>
             <label for="adres-2">Adres-2:</label>
             <input id="adres-2" class="form-control" type="text" name="address2"><br>
-            <p id="adres-2fout"></p><br>
             <label for="postcode">Postcode:</label>
             <input id="postcode" class="form-control" type="text" name="postalcode"><br>
-            <p id="postcodefout"></p><br>
-                    <label>Land:</label>
+            <!--        <label>Land:</label>
             <select class="form-control" name="country">
-                <?php foreach ($options as $land) { ?>
-                    <option><?php echo $land ?></option>
-                <?php } ?>
-            </select><br>
+                <?php //foreach ($options as $land) { ?>
+                    <option><?php //echo $land['land'] ?></option>
+                <?php //} ?>
+            </select><br> -->
             <label for="geboortedatum">Geboortedatum:</label>
             <input id="geboortedatum" class="form-control" type="text" name="date"><br>
-            <p id="geboortedatumfout"></p><br>
             <label for="mail">Mail:</label>
             <input id="mail" class="form-control" type="text" name="mail"><br>
-            <p id="mailfout"></p><br>
             <label for="wachtwoord">Wachtwoord:</label>
             <input id="wachtwoord" class="form-control" type="password" name="password"><br>
-            <p id="wachtwoordfout"></p><br>
             <label for="wachtwoord-herhalen">Wachtwoord-herhalen:</label>
             <input id="wachtwoord-herhalen" class="form-control" type="password" name="password_h"><br>
-            <p id="wachtwoord-herhalenfout"></p><br>
+
             <!--         <label>Beveiligingsvraag:</label>
            <select class="form-control" name="security_q">
                 <?php //foreach ($array as $key) { ?>
