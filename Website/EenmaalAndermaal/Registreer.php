@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Created by PhpStorm.
  * User: Kay
@@ -9,6 +9,7 @@
 include 'Template.php';
 if(isset($_SESSION['rol'])){header("index.php");}
 $options = getLanden();
+print_r($options);
 if (!empty($_POST)){
 
     $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'date', 'mail', 'password', 'password_h');

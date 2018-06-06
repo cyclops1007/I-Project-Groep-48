@@ -24,11 +24,13 @@ if (!empty($_POST)) {
     } else {
         $titel          = $_POST['Titel'];
         $catogorie      = $_POST['Catogorie'];
-        $beschrijving  = $_POST['Beschrijving'];
+        $beschrijving   = $_POST['Beschrijving'];
         $startprijs     = $_POST['Startprijs'];
         $betalingswijze = $_POST['Betalingswijze'];
         $postcode       = $_POST['Postalcode'];
         $foto           = $_POST['Pic'];
+
+        verkoop($_POST);
     }
 }
 ?>
@@ -55,7 +57,7 @@ if (!empty($_POST)) {
             <label for="postcode">postcode:</label>
             <input id="postcode" class="form-control" type="text" name="Postalcode"><br>
             <label for="file">Upload foto's</label>
-            <input type="file" name="Pic">
+            <input type="file" name="Pic" accept="image/*">
         </div>
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Bevestigen</button>
     </form>

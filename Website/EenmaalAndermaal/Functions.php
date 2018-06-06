@@ -264,16 +264,36 @@ function registreer($registreerArray){
 }
 function verkoop($verkoopArray){
     global $dbh;
-    //pre_r($verkoopArray);
+    $datum = date("Y-m-d");
+    $d = strtotime("tomorrow");
+    $datum2 = date('Y-m-d',$d);
+//    pre_r($verkoopArray);
     try {
-        $sqlverkoop = "INSERT INTO voorwerp (titel, catogorie, beschrijving, startprijs, betalingswijze, postalcode) VALUES(:Titel, :Catogorie, :Beschrijving, :Startprijs, :Betalingswijze, :Postalcode)";
+        $sqlverkoop = "INSERT INTO voorwerp (titel, catogorie, beschrijving, startprijs, 
+                                             betalingswijze, postalcode, thumbnail, valuta,
+                                             land, looptijd, looptijdBeginDag, verkoper,
+                                             looptijdEindeDag, blocked, veilingGesloten) 
+                       
+                       VALUES(:Titel, :Catogorie, :Beschrijving, :Startprijs, 
+                              :Betalingswijze, :Postalcode, :Thumnnail, :Valuta,
+                              :Land, :Looptijd, :looptijdBeginDag, :Verkoper,
+                              :looptijdEindeDag, :Blocked, :VeilingGesloten)";
         $sql = $dbh->prepare($sqlverkoop);
         $parameters = array(':Titel' => $verkoopArray['Titel'],
             ':Catogorie' => $verkoopArray['Catogorie'],
             ':Beschrijving' => $verkoopArray['Beschrijving'],
             ':Startprijs' => $verkoopArray['Startprijs'],
             ':Betalingswijze' => $verkoopArray['Betalingswijze'],
-            ':Postalcode' => $verkoopArray['postalcode']);
+            ':Postalcode' => $verkoopArray['postalcode'],
+            ':Thumbnail' => $verkoopArray['Pic'],
+            ':valuta' => "EUR",
+            ':Land' => "",
+            ':Looptijd' => 24,
+            ':looptijdBeginDag' => $datum,
+            ':Verkoper' => $_SESSION['ID'],
+            ':looptijdEindeDag' => $datum2,
+            ':Blocked' => 0,
+            ':VeilingGesloten' => 0);
 
 
         $sql->execute($parameters);
