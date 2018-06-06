@@ -58,7 +58,7 @@ $foto = afbeeldingIndex();
         </div>
         <div id="text-container" class="container w-50 h-50 rounded">
             <h1>Over ons</h1>
-            <img width="290" height="220" src="image/Geekcrew.jpg" class="float-right">
+            <img width="290" height="220" src="image/Geekcrew.jpg" class="responsive">
             <p>EenmaalAndermaal is een initiatief geïntroduceerd door iConcepts.
                 iConcepts is een bedrijf dat veel waarde hecht aan betrouwbaarheid en duurzaamheid.
                 Vandaar dat zij met een groep gemotiveerde studenten aan tafel zijn gaan zitten om deze site te realiseren.

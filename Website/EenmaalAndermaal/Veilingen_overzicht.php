@@ -69,7 +69,7 @@ $valuta = valuta($veiling[0]['valuta']);
         $start = $offset + 1;
         $end = min(($offset + $limit), $total);
 
-        // The "back" link
+      // The "back" link
         $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
 
         // The "forward" link
