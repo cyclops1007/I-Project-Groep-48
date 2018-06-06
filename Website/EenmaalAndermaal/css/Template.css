@@ -118,3 +118,8 @@ textarea {
     max-width: 100%;
     height: auto;
 }
+
+.responsive-contact{
+    float: right;
+    max-width: 100%;
+}
