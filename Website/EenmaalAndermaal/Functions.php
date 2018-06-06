@@ -175,11 +175,18 @@ function valuta($soortgeld){
 function getArtikelen($id){
     global $dbh;
     $sql = $dbh->query("SELECT * FROM Voorwerp WHERE verkoper = $id");
-    $artikelen = $sql->fetch();
+    $artikelen = $sql->fetchAll();
 
     return $artikelen;
 }
 
+function getValuta(){
+    global $dbh;
+    $sql = $dbh->query("SELECT DISTINCT valuta FROM Voorwerp");
+    $query = $sql->fetchAll();
+
+    return $query;
+}
 function updateAccount($array){
     global $dbh;
 
@@ -212,27 +219,19 @@ function updateAccount($array){
 function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
     global $dbh;
 
-    $datum = "'" . date("Y/m/d") . "'";
-    $tijdstip = "'" . date("h:i:s") . "'";
+    $datum = date("Y/m/d");
+    $tijdstip = date("h:i:s");
 
-    $sqlUpdate = "INSERT INTO Bod VALUES (:veilingId, :bodBedrag, :gebruiker, :bodDatum, :bodTijdstip)";
-    $sql = $dbh->prepare($sqlUpdate);
-    $parameters = [
-        ':veilingId'         => $veilingId,
-        ':bodBedrag'         => $nieuwBod,
-        ':gebruiker'         => $gebruiker,
-        ':bodDatum'          => $datum,
-        ':bodTijdstip'       => $tijdstip
-    ];
-    echo $sqlUpdate;
-    foreach($parameters as $parameter){
-        echo $parameter . '<br>';
-    }
-    try {
-        $sql->execute($parameters);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+    $sqlUpdate = $dbh->prepare("INSERT INTO Bod VALUES (:veilingId, :bodBedrag, :gebruiker, :bodDatum, :bodTijdstip)");
+    $sqlUpdate->execute(
+        array(
+            ':veilingId'         => $veilingId,
+            ':bodBedrag'         => $nieuwBod,
+            ':gebruiker'         => $gebruiker,
+            ':bodDatum'          => $datum,
+            ':bodTijdstip'       => $tijdstip
+        )
+    );
 }
 
 /**
@@ -244,6 +243,7 @@ function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
 function registreer($registreerArray){
     global $dbh;
     //pre_r($registreerArray);
+
     try {
         $sqlregistreer = "INSERT INTO Gebruiker (voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst) VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion)";
         $sql = $dbh->prepare($sqlregistreer);
@@ -256,7 +256,7 @@ function registreer($registreerArray){
             ':country' => "DEU",
             ':datum' => $registreerArray['date'],
             ':mail' => $registreerArray['mail'],
-            ':password' => $registreerArray['password'],
+            ':password' => password_hash($registreerArray['password'], PASSWORD_DEFAULT),
             ':security_q' => 1,
             ':verkoper' => 1,
             ':verified' => NULL,
@@ -272,22 +272,41 @@ function registreer($registreerArray){
 }
 function verkoop($verkoopArray){
     global $dbh;
-    //pre_r($verkoopArray);
+    $datum = date("Y-m-d");
+    $d = strtotime("tomorrow");
+    $datum2 = date('Y-m-d',$d);
+//    pre_r($verkoopArray);
     try {
-        $sqlverkoop = "INSERT INTO Voorwerp (titel, categorie, beschrijving, startprijs, betalingswijzeNaam, postcode) VALUES(:Titel, :Categorie, :Beschrijving, :Startprijs, :Betalingswijze, :Postcode)";
+        $sqlverkoop = "INSERT INTO voorwerp (titel, catogorie, beschrijving, startprijs, 
+                                             betalingswijze, postalcode, thumbnail, valuta,
+                                             land, looptijd, looptijdBeginDag, verkoper,
+                                             looptijdEindeDag, blocked, veilingGesloten) 
+                       
+                       VALUES(:Titel, :Catogorie, :Beschrijving, :Startprijs, 
+                              :Betalingswijze, :Postalcode, :Thumnnail, :Valuta,
+                              :Land, :Looptijd, :looptijdBeginDag, :Verkoper,
+                              :looptijdEindeDag, :Blocked, :VeilingGesloten)";
         $sql = $dbh->prepare($sqlverkoop);
         $parameters = array(':Titel' => $verkoopArray['Titel'],
-            ':Categorie' => $verkoopArray['Categorie'],
+            ':Catogorie' => $verkoopArray['Catogorie'],
             ':Beschrijving' => $verkoopArray['Beschrijving'],
             ':Startprijs' => $verkoopArray['Startprijs'],
             ':Betalingswijze' => $verkoopArray['Betalingswijze'],
-            ':Postcode' => $verkoopArray['Postcode']);
+            ':Postalcode' => $verkoopArray['Postalcode'],
+            ':Thumbnail' => $verkoopArray['Pic'],
+            ':valuta' => $verkoopArray['Valuta'],
+            ':Land' => "Nederland",
+            ':Looptijd' => 24,
+            ':looptijdBeginDag' => $datum,
+            ':Verkoper' => $_SESSION['ID'],
+            ':looptijdEindeDag' => $datum2,
+            ':Blocked' => 0,
+            ':VeilingGesloten' => 0);
 
 
         $sql->execute($parameters);
 
         print_r($parameters);
-        echo "Uw artikel is toegevoegd";
     }catch(Exception $e){
         echo $e;
     }
@@ -514,6 +533,7 @@ function login(){
             $geverifieerd = 1;
         }
 
+
         if (empty($_POST["username"]) || empty($_POST["password"])) {
             $login_foutmelding = '<p class="login">Niet alle velden zijn ingevuld!</p>';
             echo $login_foutmelding;
@@ -521,30 +541,40 @@ function login(){
             $login_foutmelding = '<p class="login">U account is nog niet geverifieerd. Klik a.u.b. op de link in u mailbox om uw account the verifieeren</p>';
             echo $login_foutmelding;
         }
-
+        //$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        //$isCorrect = password_verify($password_h, $hashed_password);
         else {
-            $login_query = $dbh->prepare("SELECT * FROM Gebruiker WHERE gebruikersnaam = :username AND wachtwoord = :password");
-            $login_query->execute(
-                array(
-                    'username' => $_POST["username"],
-                    'password' => $_POST["password"]
-                )
-            );
-            $tellen = $login_query->rowCount();
-            if ($tellen == 0) {
+            $pass = $dbh->prepare("SELECT wachtwoord FROM Gebruiker WHERE gebruikersnaam = :username");
+            $pass->execute(array(
+                'username' => $_POST["username"]
+            ));
+            $tel = $pass->rowCount();
+            if($tel == 0){
                 $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
                 echo $login_foutmelding;
-            } else {
-                $username = $_POST["username"];
-                $x = id($username);
-                $_SESSION['ID'] = $x[0];
-                $_SESSION["rol"] = $x[1];
-                $_SESSION['username'] = $_POST['username'];
-                header("Location: Mijn_account.php");
+            } else{
+                $hash = $pass->fetchColumn();
+                $passy = $_POST["password"];
+                $verify = password_verify($hash, $passy);
+
+                if($verify){
+                    $username = $_POST["username"];
+                    echo $username;
+                    $x = id($username);
+                    $_SESSION['ID'] = $x[0];
+                    $_SESSION["rol"] = $x[1];
+                    $_SESSION['username'] = $_POST['username'];
+                    header("Location: Mijn_account.php");
+
+                } else{
+                    $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
+                    echo $login_foutmelding;
+                }
+                print_r($_POST);
             }
-            print_r($_POST);
         }
     }
 }
+
 
 ?>

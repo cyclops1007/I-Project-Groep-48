@@ -7,10 +7,11 @@
  */
 
 include 'Template.php';
+$valuta = getValuta();
 if (!empty($_POST)) {
 
 
-    $required = array('Titel', 'Categorie', 'Beschrijving', 'Startprijs', 'Betalingswijze', 'Postcode', 'Pic');
+    $required = array('Titel', 'Catogorie', 'Beschrijving', 'Startprijs', 'Betalingswijze', 'Postalcode', 'Pic');
 
     $error = false;
     foreach ($required as $field) {
@@ -23,12 +24,13 @@ if (!empty($_POST)) {
         echo "All fields are required.";
     } else {
         $titel          = $_POST['Titel'];
-        $categorie      = $_POST['Categorie'];
-        $beschrijving  = $_POST['Beschrijving'];
+        $catogorie      = $_POST['Catogorie'];
+        $beschrijving   = $_POST['Beschrijving'];
         $startprijs     = $_POST['Startprijs'];
         $betalingswijze = $_POST['Betalingswijze'];
-        $postcode       = $_POST['Postcode'];
+        $postcode       = $_POST['Postalcode'];
         $foto           = $_POST['Pic'];
+
         verkoop($_POST);
     }
 }
@@ -43,20 +45,26 @@ if (!empty($_POST)) {
     <h1>Voorwerp verkopen</h1><br>
     <form action="" method="post">
         <div class="form-group">
-            <label for="titel">Titel:</label>
-            <input id="titel" class="form-control" type="text" name="Titel"><br>
-            <label for="categorie">Categorie:</label>
-            <input id="categorie" class="form-control" type="text" name="Categorie"><br>
-            <label for="beschrijving">Beschrijving:</label>
-            <input id="beschrijving" class="form-control" type="text" name="Beschrijving"><br>
-            <label for="startprijs">Startprijs:</label>
-            <input id="startprijs" class="form-control" type="text" name="Startprijs"><br>
-            <label for="betalingswijze">betalingswijze:</label>
-            <input id="betalingswijze" class="form-control" type="text" name="Betalingswijze"><br>
-            <label for="Postcode">Postcode:</label>
-            <input id="Postcode" class="form-control" type="text" name="Postcode"><br>
-            <label for="file">Upload foto's</label>
-            <input type="file" name="Pic">
+            <label>Titel:</label>
+            <input class="form-control" type="text" name="Titel"><br>
+            <label>Catogorie:</label>
+            <input class="form-control" type="text" name="Catogorie"><br>
+            <label>Beschrijving:</label>
+            <input class="form-control" type="text" name="Beschrijving"><br>
+            <label>Startprijs:</label>
+            <input class="form-control" type="text" name="Startprijs"><br>
+            <label>betalingswijze:</label>
+            <input class="form-control" type="text" name="Betalingswijze"><br>
+            <label>Valuta:</label>
+            <select class="form-control" name="Valuta">
+                <?php foreach($valuta as $key){
+                    echo"<option>" . $key['valuta'] . "</option>";
+                } ?>
+            </select><br>
+            <label>postcode:</label>
+            <input class="form-control" type="text" name="Postalcode"><br>
+            <label>Upload foto's</label>
+            <input type="file" name="Pic" accept="image/*">
         </div>
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Bevestigen</button>
     </form>
