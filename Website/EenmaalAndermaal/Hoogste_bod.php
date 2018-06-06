@@ -6,11 +6,13 @@
  * Time: 16:55
  */
 
-$q = $_REQUEST['q'];
-$valuta = $q[0];
-$veilingId = $q[1];
-$hoogsteNieuweBod = getHoogsteBod($veilingId);
+//$valuta = valuta($veiling[0]['valuta']);
+//$veilingId = $_SERVER['QUERY_STRING'];
+//$hoogsteBod = getHoogsteBod($veilingId);
+//$nieuwHoogsteBod = 'Huidige prijs: ' . "$valuta" . $hoogsteBod[0] . ',00';
 
-echo 'Huidige prijs: ' . '"' . $valuta . '"' . $hoogsteNieuweBod;
+//echo $nieuwHoogsteBod;
+
+echo "This response is updated";
 
 ?>

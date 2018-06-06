@@ -24,8 +24,25 @@ $hoogsteBod = getHoogsteBod($veilingId);
 <head>
     <script>
         //Javascript for getting the current highest bidding
-        function loadDoc() {
-            document.getElementById("hoogsteBod").innerHTML = 'Huidige prijs: ';
+        function updateHighestBidding() {
+            var xmlhttp;
+
+            if (window.XMLHttpRequest) {
+                // code for modern browsers
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for old IE browsers
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("hoogsteBod").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "Hoogste_bod.php", true);
+            xhttp.send();
+
         }
 
         //javascript for countdown timer
@@ -117,7 +134,7 @@ $hoogsteBod = getHoogsteBod($veilingId);
                                     <label>Mijn bod:</label>
                                     <input class="form-control" type="number" step=".01" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
                                 </div>
-                                <button type="submit" class="btn btn-outline-light" onclick="loadDoc()">bied</button>
+                                <button type="submit" class="btn btn-outline-light" onclick="updateHighestBidding()">bied</button>
                             </form>
                         <?php }
                         if(isset($_POST['bod'])){
