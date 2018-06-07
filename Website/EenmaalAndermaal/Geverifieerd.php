@@ -12,7 +12,8 @@ if($_GET['email']){
 
     //verify data
     $mailaddress     = $_GET['email'];
-    $sql = "SELECT count(*) From Gebruiker WHERE verified IS NULL AND mailbox='$mailaddress'";
+    $hash            = $_GET['hash'];
+    $sql = "SELECT count(*) From Gebruiker WHERE verified IS NULL AND mailbox='$mailaddress' AND Hash='$hash'";
     $search = $dbh->prepare($sql);
     $search->execute();
     $match = $search->fetchColumn();

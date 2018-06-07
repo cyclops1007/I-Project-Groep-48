@@ -58,7 +58,8 @@ if (!empty($_POST)){
         if(empty($password_h)){$passherr = "wachtwoord is niet ingevuld";}
 
         if($isCorrect == true && $error == false){
-            registreer($_POST);
+
+            $hash = registreer($_POST);
             $subject = "Signup | verification"; //title
             $email = "Thanks for signing up! <br>
             Your account has been created, you can login with the following credential after you have activated your account by pressing the url below. <br>
@@ -67,7 +68,7 @@ if (!empty($_POST)){
             Username: '' $username <br> 
             ------------------------ <br>
          
-            <a href='http://iproject48.icasites.nl/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
+            <a href='http://iproject48.icasites.nl/Geverifieerd.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
             $to = $mailaddress;
             $from = 'eenmaalandermaal2018@gmail.com'; //send from
             $headers = array();
@@ -80,7 +81,6 @@ if (!empty($_POST)){
 
 
             echo "Je account is gemaakt! <br/> Klik op de activatie link op uw mail om uw account the verifiëren";
-
 
 
         }elseif($isCorrect){
