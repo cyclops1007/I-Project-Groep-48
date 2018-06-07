@@ -9,6 +9,17 @@
 include 'Template.php';
 if(isset($_SESSION['rol'])){header("index.php");}
 $options = getLanden();
+
+$fnameerr = "";
+$lnameerr = "";
+$userr = "";
+$adderr = "";
+$posterr = "";
+$dateerr = "";
+$mailerr = "";
+$passerr = "";
+$passherr = "";
+
 if (!empty($_POST)){
 
     $required = array('firstname', 'lastname', 'username', 'address1', 'postalcode', 'date', 'mail', 'password', 'password_h');
@@ -20,9 +31,6 @@ if (!empty($_POST)){
             $error = true;
         }
     }
-    if ($error) {
-        echo "All fields are required.";
-    } else {
         $firstname      = $_POST['firstname'];
         $lastname       = $_POST['lastname'];
         $username       = $_POST['username'];
@@ -39,7 +47,17 @@ if (!empty($_POST)){
         $password_h = $_POST['password_h'];
         $isCorrect = password_verify($password_h, $hashed_password);
 
-        if($isCorrect){
+        if(empty($firstname)){$fnameerr = "Voornaam is niet ingevuld";}
+        if(empty($lastname)){$lnameerr = "Achternaam is niet ingevuld";}
+        if(empty($username)){$userr = "Gebruikersnaam is niet ingevuld";}
+        if(empty($adress1)){$adderr = "Adres is niet ingevuld";}
+        if(empty($postalcode)){$posterr = "Postcode is niet ingevuld";}
+        if(empty($date)){$dateerr = "Geboortedatum is niet ingevuld";}
+        if(empty($mailaddress)){$mailerr = "Email is niet ingevuld";}
+        if(empty($password)){$passerr = "wachtwoord is niet ingevuld";}
+        if(empty($password_h)){$passherr = "wachtwoord is niet ingevuld";}
+
+        if($isCorrect == true && $error == false){
             registreer($_POST);
             $subject = "Signup | verification"; //title
             $email = "Thanks for signing up! <br>
@@ -49,7 +67,7 @@ if (!empty($_POST)){
             Username: '' $username <br> 
             ------------------------ <br>
          
-            <a href='http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
+            <a href='http://iproject48.icasites.nl/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
             $to = $mailaddress;
             $from = 'eenmaalandermaal2018@gmail.com'; //send from
             $headers = array();
@@ -65,10 +83,11 @@ if (!empty($_POST)){
 
 
 
-        }else{
+        }elseif($isCorrect){
             echo "Wachtwoord komt niet overeen";
+        }else{
+            echo "Niet alle velden zijn ingevuld! Scroll naar onder om te kijken waar.s";
         };
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -104,33 +123,42 @@ if (!empty($_POST)){
     <h1>Registreren</h1><br>
     <form action="" method="post">
         <div class="form-group">
+            <?php echo $fnameerr ?> <br>
             <label for="voornaam">Voornaam:</label>
             <input id="voornaam" class="form-control" type="text" name="firstname"><br>
+            <?php echo $lnameerr ?><br>
             <label for="achternaam">Achternaam:</label>
             <input id="achternaam" class="form-control" type="text" name="lastname"><br>
+            <?php echo $userr?><br>
             <label for="gebruikersnaam">Gebruikersnaam:</label>
             <input id="gebruikersnaam" class="form-control" type="text" name="username"><br>
+            <?php echo $adderr ?><br>
             <label for="adres">Adres:</label>
             <input id="adres" class="form-control" type="text" name="address1"><br>
+            <?php echo $posterr ?><br>
             <label for="adres-2">Adres-2:</label>
             <input id="adres-2" class="form-control" type="text" name="address2"><br>
             <label for="postcode">Postcode:</label>
             <input id="postcode" class="form-control" type="text" name="postalcode"><br>
+
             <!--        <label>Land:</label>
             <select class="form-control" name="country">
                 <?php //foreach ($options as $land) { ?>
                     <option><?php //echo $land['land'] ?></option>
                 <?php //} ?>
             </select><br> -->
+            <?php echo $dateerr ?><br>
             <label for="geboortedatum">Geboortedatum:</label>
             <input id="geboortedatum" class="form-control" type="text" name="date"><br>
+            <?php echo $mailerr ?><br>
             <label for="mail">Mail:</label>
             <input id="mail" class="form-control" type="text" name="mail"><br>
+            <?php echo $passerr ?><br>
             <label for="wachtwoord">Wachtwoord:</label>
             <input id="wachtwoord" class="form-control" type="password" name="password"><br>
+            <?php echo $passherr ?><br>
             <label for="wachtwoord-herhalen">Wachtwoord-herhalen:</label>
             <input id="wachtwoord-herhalen" class="form-control" type="password" name="password_h"><br>
-
             <!--         <label>Beveiligingsvraag:</label>
            <select class="form-control" name="security_q">
                 <?php //foreach ($array as $key) { ?>
