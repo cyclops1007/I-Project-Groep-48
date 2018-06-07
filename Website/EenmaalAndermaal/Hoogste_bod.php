@@ -6,13 +6,16 @@
  * Time: 16:55
  */
 
-//$valuta = valuta($veiling[0]['valuta']);
-//$veilingId = $_SERVER['QUERY_STRING'];
-//$hoogsteBod = getHoogsteBod($veilingId);
-//$nieuwHoogsteBod = 'Huidige prijs: ' . "$valuta" . $hoogsteBod[0] . ',00';
+include 'Functions.php';
 
-//echo $nieuwHoogsteBod;
+$veilingId = $_REQUEST["q"];
+$veiling = artikelnummer($veilingId);
+$valuta = valuta($veiling[0]['valuta']);
+$hoogsteBod = getHoogsteBod($veilingId);
+$nieuwHoogsteBod = 'Huidige prijs: ' . "$valuta" . $hoogsteBod[0] . ',00';
 
-echo "This response is updated";
+echo $nieuwHoogsteBod;
+
+//echo "This response is updated";
 
 ?>

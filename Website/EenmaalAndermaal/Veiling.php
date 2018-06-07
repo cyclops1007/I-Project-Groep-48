@@ -34,7 +34,8 @@ if(isset($_POST['bod'])){
 <head>
     <script>
         //Javascript for getting the current highest bidding
-        function updateHighestBidding() {
+        //Javascript for getting the current highest bidding
+        function updateHighestBidding($veilingId) {
             var xmlhttp;
 
             if (window.XMLHttpRequest) {
@@ -45,15 +46,16 @@ if(isset($_POST['bod'])){
                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
 
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    //cFunction(this);
                     document.getElementById("hoogsteBod").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "Hoogste_bod.php", true);
-            xhttp.send();
-
+            xmlhttp.open("GET", 'Hoogste_bod.php?q=' + $veilingId, true);
+            xmlhttp.send();
         }
+
 
         //javascript for countdown timer
         var countDownDate = new Date("<?= $endTime ?>").getTime();
@@ -85,7 +87,7 @@ if(isset($_POST['bod'])){
         }, 1000);
     </script>
 </head>
-<body>
+<body onload="updateHighestBidding(<?=$veilingId?>)">
 <div class="container">
     <div class ="row">
         <div class = "col-lg-4">
@@ -135,16 +137,15 @@ if(isset($_POST['bod'])){
                         <h1>Titel</h1>
                         <p>Orginele prijs: <?php echo "$valuta" . $veiling[0]['startprijs'] . ',00';?></p>
                         <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0] . ',00';?></p>
-                        <p><?= $_POST['bod']; ?></p>
                         <p id="resterendeVeilingDuur"></p>
                         <br>
                         <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label>Mijn bod:</label>
-                                    <input class="form-control" type="number" step=".01" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo $hoogsteBod[0] + 1;?>"><br>
+                                    <input class="form-control" type="number" step=".01" name="bod" min="<?php echo $hoogsteBod[0] + 1;?>" placeholder="<?php echo 'Bied ten minste ' . "$valuta" . "1.00 meer dan huidig";?>"><br>
                                 </div>
-                                <button type="submit" class="btn btn-outline-light" onclick="updateHighestBidding()">bied</button>
+                                <button type="submit" class="btn btn-outline-light">bied</button>
                             </form>
                         <?php }
                             if($veiling[0]['veilingGesloten'] != 0){
