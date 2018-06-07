@@ -45,7 +45,7 @@ function ingelogd($id){
 function getLanden(){
     global $dbh;
 
-    $sql = $dbh->query("SELECT landcode FROM Landen");
+    $sql = $dbh->query("SELECT landnaam FROM Landen");
     $land = $sql->fetchAll();
 
     return $land;
@@ -153,8 +153,8 @@ function valuta($soortgeld){
     $geld = "";
     switch ($soortgeld){
         case "EUR":
-           $geld = "&euro;";
-           break;
+            $geld = "&euro;";
+            break;
         case "GBP":
             $geld = "&pound;";
             break;
@@ -277,31 +277,31 @@ function verkoop($verkoopArray){
     $datum2 = date('Y-m-d',$d);
 //    pre_r($verkoopArray);
     try {
-        $sqlverkoop = "INSERT INTO voorwerp (titel, catogorie, beschrijving, startprijs, 
-                                             betalingswijze, postalcode, thumbnail, valuta,
-                                             land, looptijd, looptijdBeginDag, verkoper,
+        $sqlverkoop = "INSERT INTO Voorwerp (titel, categorie, beschrijving, startprijs, 
+                                             betalingswijzeNaam, postcode, thumbnail, valuta,
+                                             landnaam, looptijd, looptijdBeginDag, verkoper,
                                              looptijdEindeDag, blocked, veilingGesloten) 
                        
-                       VALUES(:Titel, :Catogorie, :Beschrijving, :Startprijs, 
-                              :Betalingswijze, :Postalcode, :Thumnnail, :Valuta,
+                       VALUES(:Titel, :Categorie, :Beschrijving, :Startprijs, 
+                              :Betalingswijze, :Postalcode, :Thumbnail, :Valuta,
                               :Land, :Looptijd, :looptijdBeginDag, :Verkoper,
                               :looptijdEindeDag, :Blocked, :VeilingGesloten)";
         $sql = $dbh->prepare($sqlverkoop);
         $parameters = array(':Titel' => $verkoopArray['Titel'],
-            ':Catogorie' => $verkoopArray['Catogorie'],
-            ':Beschrijving' => $verkoopArray['Beschrijving'],
-            ':Startprijs' => $verkoopArray['Startprijs'],
-            ':Betalingswijze' => $verkoopArray['Betalingswijze'],
-            ':Postalcode' => $verkoopArray['Postalcode'],
-            ':Thumbnail' => $verkoopArray['Pic'],
-            ':valuta' => $verkoopArray['Valuta'],
-            ':Land' => "Nederland",
-            ':Looptijd' => 24,
-            ':looptijdBeginDag' => $datum,
-            ':Verkoper' => $_SESSION['ID'],
-            ':looptijdEindeDag' => $datum2,
-            ':Blocked' => 0,
-            ':VeilingGesloten' => 0);
+            ':Categorie'            => $verkoopArray['Catogorie'],
+            ':Beschrijving'         => $verkoopArray['Beschrijving'],
+            ':Startprijs'           => $verkoopArray['Startprijs'],
+            ':Betalingswijze'       => $verkoopArray['Betalingswijze'],
+            ':Postalcode'           => $verkoopArray['Postalcode'],
+            ':Thumbnail'            => $verkoopArray['Pic'],
+            ':Valuta'               => $verkoopArray['Valuta'],
+            ':Land'                 => $verkoopArray['Land'],
+            ':Looptijd'             => 24,
+            ':looptijdBeginDag'     => $datum,
+            ':Verkoper'             => $_SESSION['ID'],
+            ':looptijdEindeDag'     => $datum2,
+            ':Blocked'              => 0,
+            ':VeilingGesloten'      => 0);
 
 
         $sql->execute($parameters);
@@ -381,7 +381,7 @@ function isUBlocked($id){
 function isvBlocked($id){
     global $dbh; //deze is fucked
 
-    $sql = $dbh->query("SELECT blocked FROM Artikel WHERE gebruikersId = $id");
+    $sql = $dbh->query("SELECT blocked FROM Voorwerp WHERE gebruikersId = $id");
     $artikel = $sql->fetchAll();
 
     return $artikel; // moet false of true returnen
@@ -396,7 +396,7 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
+    $update = $dbh->query("UPDATE Voorwerp SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -412,7 +412,7 @@ function uBlock($id){
 function vBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = true WHERE gebruikersId = :ID");
+    $update = $dbh->query("UPDATE Voorwerp SET blocked = true WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -444,7 +444,7 @@ function uUnblock($id){
 function vUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Artikel SET blocked = false WHERE gebruikersId = :ID");
+    $update = $dbh->query("UPDATE Voorwerp SET blocked = false WHERE gebruikersId = :ID");
     $sql = $dbh->prepare($update);
     $parameters = array(':ID' => $id);
 
@@ -576,5 +576,24 @@ function login(){
     }
 }
 
+function sluitVeiling($id){
+    global $dbh;
+
+    $update = $dbh->query("UPDATE Voorwerp SET veilingGesloten = true WHERE voorwerpnummer = :ID");
+    $sql = $dbh->prepare($update);
+    $parameters = array(':ID' => $id);
+
+    $sql->execute($parameters);
+
+}
+
+function deleteVoorwerp($id){
+    global $dbh;
+
+    $sql = $dbh->prepare("DELETE v FROM Voorwerp v INNER JOIN Bod b ON v.voorwerpnummer = b.voorwerp 
+                                    WHERE voorwerpnummer = :ID ");
+    $sql->execute(array(':ID' => $id));
+
+}
 
 ?>

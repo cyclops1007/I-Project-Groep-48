@@ -11,17 +11,11 @@ include 'Template.php';
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <style>
-            img {
-                float: right;
-                border-radius: 5px;
-            }
-        </style>
     </head>
     <body>
         <div id="text-container" class="container rounded col-sm-6">
             <h1>Contact</h1>
-            <img width="320" height="200" src="image/ROCTechnovium.jpg" alt="Fancy building" class="float-right">
+            <img width="320" height="200" src="image/ROCTechnovium.jpg" alt="Fancy building" class="responsive-contact">
             <p>Heeft u als klant, verkoper of gast vragen?<br> Dan kunt u met ons contact opnemen via de volgende gegevens:</p>
 
             <h2>Adresgegevens</h2>

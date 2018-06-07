@@ -8,6 +8,8 @@
 
 include 'Template.php';
 $valuta = getValuta();
+$landnaam = getLanden();
+isUser();
 if (!empty($_POST)) {
 
 
@@ -59,6 +61,12 @@ if (!empty($_POST)) {
             <select class="form-control" name="Valuta">
                 <?php foreach($valuta as $key){
                     echo"<option>" . $key['valuta'] . "</option>";
+                } ?>
+            </select><br>
+            <label>Land:</label>
+            <select class="form-control" name="Land">
+                <?php foreach($landnaam as $land){
+                    echo"<option>" . $land['landnaam'] . "</option>";
                 } ?>
             </select><br>
             <label>postcode:</label>
