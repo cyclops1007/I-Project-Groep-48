@@ -554,8 +554,14 @@ function login(){
                 echo $login_foutmelding;
             } else{
                 $hash = $pass->fetchColumn();
-                $passy = $_POST["password"];
-                $verify = password_verify($hash, $passy);
+
+                $passy = $_POST['password'];
+                $verify = password_verify($passy, $hash);
+
+                echo password_hash($passy, PASSWORD_DEFAULT);
+                echo "<br />";
+                echo $hash;
+                echo $passy;
 
                 if($verify){
                     $username = $_POST["username"];
@@ -575,6 +581,7 @@ function login(){
         }
     }
 }
+
 
 function sluitVeiling($id){
     global $dbh;
