@@ -32,7 +32,7 @@ if($_GET['mail']) {
             $isCorrect = password_verify($password_h, $hashed_password);
 
             if ($isCorrect) {
-                $sql = $dbh->prepare("UPDATE gebruiker SET wachtwoord ='$password' WHERE mailbox ='$mailaddress'");
+                $sql = $dbh->prepare("UPDATE gebruiker SET wachtwoord ='$hashed_password' WHERE mailbox ='$mailaddress'");
                 $sql->execute();
                 echo "Je wachtwoord is gewijzigd!";
             } else {
