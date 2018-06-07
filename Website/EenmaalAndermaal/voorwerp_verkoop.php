@@ -10,6 +10,7 @@ include 'Template.php';
 $valuta = getValuta();
 $landnaam = getLanden();
 isUser();
+if(isUBlocked($_SESSION['ID'])){ redirect('index.php');}
 if (!empty($_POST)) {
 
 

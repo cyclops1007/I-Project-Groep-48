@@ -104,15 +104,12 @@ if(isset($_POST['bod'])){
                             foreach ($foto as $voorwerp){
                             if ($voorwerp === reset($foto)) { ?>
                             <div class="carousel-item active">
-                                <?php }else{ ?>
+                            <?php }else{ ?>
                                 <div class="carousel-item">
                                     <?php } ?>
                                     <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                                 </div>
-
-                                <?php
-                                }
-                                ?>
+                            <?php } ?>
                             </div>
                             <!-- Left and right controls -->
                             <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -138,7 +135,7 @@ if(isset($_POST['bod'])){
                         <p><?= $_POST['bod']; ?></p>
                         <p id="resterendeVeilingDuur"></p>
                         <br>
-                        <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0){ ?>
+                        <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0 || $_SESSION['blocked'] != true){ ?>
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label>Mijn bod:</label>

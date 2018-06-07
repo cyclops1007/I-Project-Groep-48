@@ -16,7 +16,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT TOP 50 * FROM  Gebruiker");
+    $sql = $dbh->query("SELECT * FROM  Gebruiker");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
@@ -26,7 +26,7 @@ function gebruiker() {
 function zoek($title) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE titel LIKE '%$title%'  ");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE titel LIKE '%$title%' AND blocked = '0'");
     $zoek = $sql->fetchALL();
 
     return $zoek;
@@ -83,7 +83,7 @@ function mijnAccount($id) {
 function veilingen() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT TOP 50 *  FROM voorwerp");
+    $sql = $dbh->query("SELECT *  FROM voorwerp WHERE blocked = '0'");
     $veilingen = $sql->fetchAll();
 
     return $veilingen;
@@ -364,7 +364,7 @@ function isGuest(){
  * @return boolean
  */
 function isUBlocked($id){
-    global $dbh; //deze is fucked
+    global $dbh;
 
     $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE gebruikersId = $id");
     $gebruiker = $sql->fetchAll();

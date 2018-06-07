@@ -7,7 +7,7 @@
  */
 
 include 'Template.php';
-print_r($_SESSION);
+
 if(isset($_SESSION['zoek'])){
     $veiling = zoek($_SESSION['zoek']);
 }else{
