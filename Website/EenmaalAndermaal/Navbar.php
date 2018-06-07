@@ -39,7 +39,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                     <a class="dropdown-item" href="Uitloggen.php">Uitloggen</a>
                     <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
                     <a class="dropdown-item" href="Mijn_artikelen.php">Mijn biedingen</a>
-                    <a class="dropdown-item" href="#">Meldingen</a>
+                    <a class="dropdown-item" href="Account_upgrade.php">Account upgraden</a>
                     <?php if($_SESSION['rol'] >= 2){?>
                         <a class="dropdown-item" href="Mijn_artikelen.php">Mijn veilingen</a>
                     <?php }} ?>
@@ -52,7 +52,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Veilingen_overzicht.php">Overzicht</a>
                 <?php if($_SESSION['rol'] >= 2 ){ ?>
-                    <a class="dropdown-item" href="Verkoop.php">Nieuwe veiling</a>
+                    <a class="dropdown-item" href="voorwerp_verkoop.php">Nieuwe veiling</a>
                 <?php } ?>
             </div>
         </li>
