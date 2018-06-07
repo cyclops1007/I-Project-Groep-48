@@ -67,7 +67,7 @@ if (!empty($_POST)){
             Username: '' $username <br> 
             ------------------------ <br>
          
-            <a href='http://localhost/php/website/Website/EenmaalAndermaal/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
+            <a href='http://iproject48.icasites.nl/Geverifieerd.php?email=$mailaddress'>please click this link to activate your account</a>";
             $to = $mailaddress;
             $from = 'eenmaalandermaal2018@gmail.com'; //send from
             $headers = array();
