@@ -586,11 +586,8 @@ function login(){
 function sluitVeiling($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Voorwerp SET veilingGesloten = true WHERE voorwerpnummer = :ID");
-    $sql = $dbh->prepare($update);
-    $parameters = array(':ID' => $id);
-
-    $sql->execute($parameters);
+    $sql = $dbh->prepare("UPDATE Voorwerp SET veilingGesloten = true WHERE voorwerpnummer = ':ID'");
+    $sql->execute(array(':ID' => $id));
 
 }
 
