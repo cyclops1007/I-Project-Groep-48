@@ -229,14 +229,13 @@ function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
  * Registers a new user.
  *
  * @param array $registreerArray Array filled with all the data needed to register a new user into the 'Gebruiker' table
- * @return void
  */
 function registreer($registreerArray){
     global $dbh;
-    //pre_r($registreerArray);
-
+    //pre_r($registreerArray)
+    $hash = md5(rand(0,1000));
     try {
-        $sqlregistreer = "INSERT INTO Gebruiker (voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst) VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion)";
+        $sqlregistreer = "INSERT INTO Gebruiker (voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst, Hash) VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion, :hash)";
         $sql = $dbh->prepare($sqlregistreer);
         $parameters = array(':firstname' => $registreerArray['firstname'],
             ':lastname' => $registreerArray['lastname'],
@@ -252,14 +251,14 @@ function registreer($registreerArray){
             ':verkoper' => 1,
             ':verified' => NULL,
             ':blocked' => 0,
-            ':aquestion' => "Test!");
+            ':aquestion' => "Test!",
+            ':hash'     => $hash);
 
         $sql->execute($parameters);
-
-        print_r($parameters);
     }catch(Exception $e){
         echo $e;
     }
+    return $hash;
 }
 function verkoop($verkoopArray){
     global $dbh;
@@ -601,7 +600,7 @@ function checkmail($checkmail){
 
     $sql = $dbh->prepare("SELECT COUNT(*) FROM Gebruiker WHERE mailbox = '$checkmail'");
     $sql->execute();
-    $tel = $sql->fetch();
+    $tel = $sql->fetchColumn();
 
     if($tel > 0){
         return "email wordt al gebruikt";

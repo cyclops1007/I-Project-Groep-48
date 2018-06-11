@@ -10,7 +10,7 @@ include 'Template.php';
 
 if(isset($_SESSION['zoek'])){
     $veiling = zoek($_SESSION['zoek']);
-    $_SESSION['zoek'] = "";
+
 }else{
     $veiling = veilingen();
 }

@@ -52,7 +52,7 @@ if (!empty($_POST)){
         if(empty($firstname)){$fnameerr = "Voornaam is niet ingevuld";}
         if(empty($lastname)){$lnameerr = "Achternaam is niet ingevuld";}
         if(empty($username)){$userr = "Gebruikersnaam is niet ingevuld";}
-        if(empty($adress1)){$adderr = "Adres is niet ingevuld";}
+        if(empty($address1)){$adderr = "Adres is niet ingevuld";}
         if(empty($postalcode)){$posterr = "Postcode is niet ingevuld";}
         if(empty($date)){$dateerr = "Geboortedatum is niet ingevuld";}
         if(empty($mailaddress)){$mailerr = "Email is niet ingevuld";}
