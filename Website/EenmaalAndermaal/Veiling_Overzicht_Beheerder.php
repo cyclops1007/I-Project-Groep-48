@@ -8,9 +8,9 @@
 include 'Template.php';
 $veiling = veilingen();
 isAdmin();
-if (!empty($_POST) && isvBlocked() == false){
+if (!empty($_POST) && isvBlocked($_SESSION['ID']) == false){
     vBlock($_POST);
-}else if(!empty($_POST) && isVBlocked() == true){
+}else if(!empty($_POST) && isvBlocked($_SESSION['ID']) == true){
     vUnblock($_POST);
 }
 ?>

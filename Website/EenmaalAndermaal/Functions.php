@@ -16,7 +16,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM  Gebruiker");
+    $sql = $dbh->query("SELECT * FROM Gebruiker ORDER BY gebruikersnaam DESC");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;

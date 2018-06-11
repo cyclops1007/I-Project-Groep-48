@@ -11,9 +11,9 @@ isAdmin();
 $data = gebruiker();
 $isblocked;
 //print_r($data);
-if (!empty($_POST) && isUblocked($_POST) == false){
+if (!empty($_POST) && isUblocked($_SESSION['ID']) == false){
     uBlock($_POST);
-}else if(!empty($_POST) && isUblocked($_POST) == true){
+}else if(!empty($_POST) && isUblocked($_SESSION['ID']) == true){
     uUnblock($_POST);
 }
 ?>

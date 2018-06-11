@@ -10,8 +10,6 @@ ob_start();
 include 'Template.php';
 isGuest();
 Login();
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
