@@ -9,13 +9,25 @@
 include 'Template.php';
 isAdmin();
 $data = gebruiker();
-$isblocked;
 //print_r($data);
-if (!empty($_POST) && isUblocked($_SESSION['ID']) == false){
-    uBlock($_POST);
-}else if(!empty($_POST) && isUblocked($_SESSION['ID']) == true){
-    uUnblock($_POST);
-}
+//if (isset($_POST)) {
+    print_r($_POST);
+//    if (isUBlocked($_POST[0]) == 0) {
+//        echo "User is now blocked";
+//        uBlock($_POST[0]);
+//    } else {
+//        echo "User is now unblocked";
+//        uUnblock($_POST[0]);
+//    }
+//}
+//} && (isUblocked($_POST[0]) == 0)){
+//    print_r($_SESSION['ID']);
+//    echo "User is now blocked";
+//    uBlock($_POST[0]);
+//}else if(!empty($_POST) && (isUblocked($_POST[0]) == 1)){
+//    echo "User is now unblocked";
+//    uUnblock($_POST[0]);
+
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -34,7 +46,6 @@ if (!empty($_POST) && isUblocked($_SESSION['ID']) == false){
         <th scope="col">Gebruiker Blokkeren</th>
     </tr>
     </thead>
-    </div>
     <tbody>
     <?php
     foreach ($data as $key) {

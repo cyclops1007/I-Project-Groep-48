@@ -367,9 +367,10 @@ function isUBlocked($id){
     global $dbh;
 
     $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE gebruikersId = $id");
-    $gebruiker = $sql->fetchAll();
+    $gebruiker = $sql->fetch();
+    print_r($gebruiker);
 
-    return $gebruiker; // moet false of true returnen
+    return $gebruiker[0]; // moet false of true returnen
 }
 
 /**
@@ -396,11 +397,9 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Voorwerp SET blocked = true WHERE gebruikersId = :ID");
-    $sql = $dbh->prepare($update);
-    $parameters = array(':ID' => $id);
+    $sql = $dbh->prepare("UPDATE Gebruiker SET blocked = 1 WHERE gebruikersId = ':ID'");
 
-    $sql->execute($parameters);
+    $sql->execute(array(':ID' => $id));
 }
 
 /**
