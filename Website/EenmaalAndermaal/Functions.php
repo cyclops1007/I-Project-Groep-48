@@ -16,7 +16,7 @@ require_once("Database_con.php");
 function gebruiker() {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM  Gebruiker");
+    $sql = $dbh->query("SELECT * FROM Gebruiker ORDER BY gebruikersnaam DESC");
     $gebruiker = $sql->fetchAll();
 
     return $gebruiker;
@@ -622,6 +622,13 @@ function checkmail($checkmail){
     if($tel > 0){
         return "email wordt al gebruikt";
     }
+}
+
+function upgradeAccount($id){
+    global $dbh;
+
+    $sql = $dbh->prepare("UPDATE Gebruiker SET rol = '2' WHERE gebruikersId = :ID");
+    $sql->execute(array(':ID' => $id));
 }
 
 ?>

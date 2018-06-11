@@ -9,13 +9,14 @@
 include 'Template.php';
 
 $veilingId = $_SERVER['QUERY_STRING'];
+print_r($veilingId);
 $veiling = artikelnummer($veilingId);
 $valuta = valuta($veiling[0]['valuta']);
 $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
 $endTimeArray = getEndDate($veilingId);
 $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
-if(date("Y-m-d") <= $endTimeArray['looptijdEindeDag']) {
+if(date("Y-m-d") < $endTimeArray['looptijdEindeDag']) {
     sluitVeiling($veilingId);
 }
 if($veiling[0]['veilingGesloten'] != 0){
@@ -104,6 +105,7 @@ if(isset($_POST['bod'])){
                             <!-- The slideshow -->
                             <?php
                             foreach ($foto as $voorwerp){
+                                print_r($voorwerp);
                             if ($voorwerp === reset($foto)) { ?>
                             <div class="carousel-item active">
                             <?php }else{ ?>
