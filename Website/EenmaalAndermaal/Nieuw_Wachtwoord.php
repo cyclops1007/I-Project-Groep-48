@@ -8,7 +8,7 @@
 
 include "Template.php";
 
-if($_GET['mail']) {
+if($_GET['mail'] && $_GET['hash']) {
 
     $mailaddress = $_GET['mail'];
 

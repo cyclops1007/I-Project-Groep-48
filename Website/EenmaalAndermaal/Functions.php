@@ -600,4 +600,28 @@ function deleteVoorwerp($id){
 
 }
 
+function checkusername($checkname){
+    global $dbh;
+
+    $sql = $dbh->prepare("SELECT COUNT(*) FROM Gebruiker WHERE gebruikersnaam = '$checkname'");
+    $sql->execute();
+    $tel = $sql->fetch();
+
+    if($tel > 0){
+        return "Gebruikersnaam wordt al gebruikt";
+    }
+}
+
+function checkmail($checkmail){
+    global $dbh;
+
+    $sql = $dbh->prepare("SELECT COUNT(*) FROM Gebruiker WHERE mailbox = '$checkmail'");
+    $sql->execute();
+    $tel = $sql->fetch();
+
+    if($tel > 0){
+        return "email wordt al gebruikt";
+    }
+}
+
 ?>

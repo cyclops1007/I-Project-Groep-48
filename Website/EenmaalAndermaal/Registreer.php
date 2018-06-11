@@ -9,7 +9,6 @@
 include 'Template.php';
 if(isset($_SESSION['rol'])){header("index.php");}
 $options = getLanden();
-
 $fnameerr = "";
 $lnameerr = "";
 $userr = "";
@@ -19,6 +18,8 @@ $dateerr = "";
 $mailerr = "";
 $passerr = "";
 $passherr = "";
+$user = "";
+$mailer = "";
 
 if (!empty($_POST)){
 
@@ -47,6 +48,8 @@ if (!empty($_POST)){
         $password_h = $_POST['password_h'];
         $isCorrect = password_verify($password_h, $hashed_password);
 
+        $user = checkusername($username);
+        $mailer = checkmail($mailaddress);
         if(empty($firstname)){$fnameerr = "Voornaam is niet ingevuld";}
         if(empty($lastname)){$lnameerr = "Achternaam is niet ingevuld";}
         if(empty($username)){$userr = "Gebruikersnaam is niet ingevuld";}
@@ -129,7 +132,8 @@ if (!empty($_POST)){
             <?php echo $lnameerr ?><br>
             <label for="achternaam">Achternaam:</label>
             <input id="achternaam" class="form-control" type="text" name="lastname"><br>
-            <?php echo $userr?><br>
+            <?php echo $userr;
+            echo $user?><br>
             <label for="gebruikersnaam">Gebruikersnaam:</label>
             <input id="gebruikersnaam" class="form-control" type="text" name="username"><br>
             <?php echo $adderr ?><br>
@@ -150,7 +154,8 @@ if (!empty($_POST)){
             <?php echo $dateerr ?><br>
             <label for="geboortedatum">Geboortedatum:</label>
             <input id="geboortedatum" class="form-control" type="text" name="date"><br>
-            <?php echo $mailerr ?><br>
+            <?php echo $mailerr;
+            echo $mailer?><br>
             <label for="mail">Mail:</label>
             <input id="mail" class="form-control" type="text" name="mail"><br>
             <?php echo $passerr ?><br>
