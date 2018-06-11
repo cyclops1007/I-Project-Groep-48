@@ -589,7 +589,7 @@ function checkusername($checkname){
 
     $sql = $dbh->prepare("SELECT COUNT(*) FROM Gebruiker WHERE gebruikersnaam = '$checkname'");
     $sql->execute();
-    $tel = $sql->fetch();
+    $tel = $sql->fetchColumn();
 
     if($tel > 0){
         return "Gebruikersnaam wordt al gebruikt";
