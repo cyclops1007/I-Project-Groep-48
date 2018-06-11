@@ -549,14 +549,8 @@ function login(){
                 $passy = $_POST['password'];
                 $verify = password_verify($passy, $hash);
 
-                echo password_hash($passy, PASSWORD_DEFAULT);
-                echo "<br />";
-                echo $hash;
-                echo $passy;
-
                 if($verify){
                     $username = $_POST["username"];
-                    echo $username;
                     $x = id($username);
                     $_SESSION['ID'] = $x[0];
                     $_SESSION["rol"] = $x[1];
@@ -567,7 +561,6 @@ function login(){
                     $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
                     echo $login_foutmelding;
                 }
-                print_r($_POST);
             }
         }
     }
