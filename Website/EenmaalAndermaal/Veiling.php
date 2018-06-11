@@ -138,7 +138,7 @@ if(isset($_POST['bod'])){
                         <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0] . ',00';?></p>
                         <p id="resterendeVeilingDuur"></p>
                         <br>
-                        <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0 || $_SESSION['blocked'] != true){ ?>
+                        <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0 && $_SESSION['blocked'] != true){ ?>
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label>Mijn bod:</label>
