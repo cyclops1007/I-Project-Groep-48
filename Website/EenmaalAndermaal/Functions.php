@@ -358,7 +358,7 @@ function isUBlocked($id){
     global $dbh;
 
     $sql = $dbh->query("SELECT blocked FROM Gebruiker WHERE gebruikersId = $id");
-    $gebruiker = $sql->fetchAll();
+    $gebruiker = $sql->fetchColumn();
 
     return $gebruiker; // moet false of true returnen
 }
@@ -387,11 +387,24 @@ function isvBlocked($id){
 function uBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Voorwerp SET blocked = true WHERE gebruikersId = :ID");
-    $sql = $dbh->prepare($update);
-    $parameters = array(':ID' => $id);
+    $update = $dbh->prepare("UPDATE Gebruiker SET blocked = 1 WHERE gebruikersId = :ID");
+    $update->execute(array(':ID' => $id));
+    header("Location: admin_gebruiker.php");
+}
 
-    $sql->execute($parameters);
+/**
+ * Unblocks a user.
+ *
+ * @param int $id The id number of the user you want to unblock
+ * @return void
+ */
+function uUnblock($id){
+    global $dbh;
+
+    $update = $dbh->prepare("UPDATE Gebruiker SET blocked = 0 WHERE gebruikersId = :ID");
+
+    $update->execute(array(':ID' => $id));
+    header("Location: admin_gebruiker.php");
 }
 
 /**
@@ -410,21 +423,7 @@ function vBlock($id){
     $sql->execute($parameters);
 }
 
-/**
- * Unlocks a user.
- *
- * @param int $id The id number of the user you want to unblock
- * @return void
- */
-function uUnblock($id){
-    global $dbh;
 
-    $update = $dbh->query("UPDATE Gebruiker SET blocked = false WHERE gebruikersId = :ID");
-    $sql = $dbh->prepare($update);
-    $parameters = array(':ID' => $id);
-
-    $sql->execute($parameters);
-}
 
 /**
  * Unlocks an article.

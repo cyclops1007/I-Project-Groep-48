@@ -7,7 +7,7 @@
  */
 $profiel = "";
 $profielN = "";
-if(isset($_POST['search'])){
+if(isset($_POST['search']) && !empty($_POST['search'])){
     $_SESSION['zoek'] = $_POST['search'];
     header("Location: Veilingen_overzicht.php");
 }
