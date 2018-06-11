@@ -10,11 +10,10 @@ include 'Template.php';
 isAdmin();
 $data = gebruiker();
 $isblocked;
-//print_r($data);
-if (!empty($_POST) && isUblocked($_SESSION['ID']) == false){
-    uBlock($_POST);
-}else if(!empty($_POST) && isUblocked($_SESSION['ID']) == true){
-    uUnblock($_POST);
+if (isset($_POST['ID'])&& isUblocked($_POST['ID']) == 0){
+    uBlock($_POST['ID']);
+}else if(isset($_POST['ID']) && isUblocked($_POST['ID']) == 1){
+    uUnblock($_POST['ID']);
 }
 ?>
 <!DOCTYPE html>
@@ -47,6 +46,7 @@ if (!empty($_POST) && isUblocked($_SESSION['ID']) == false){
             <td><?php echo $key['adresregel1']; ?></td>
             <td>
                 <form action="" method="post">
+                    <input type="hidden" name="ID" value="<?php echo $key['gebruikersId'];?>">
                     <input type="image" src="
                     <?php
                         if($key['blocked'] == 0){

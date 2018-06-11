@@ -7,7 +7,7 @@
  */
 $profiel = "";
 $profielN = "";
-if(isset($_POST['search'])){
+if(isset($_POST['search']) && !empty($_POST['search'])){
     $_SESSION['zoek'] = $_POST['search'];
     header("Location: Veilingen_overzicht.php");
 }
@@ -64,7 +64,6 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
                     <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
-                    <a class="dropdown-item" href="rubriek_aanpassen.php">Batch upload</a>
                 </div>
             </li>
         <?php } ?>

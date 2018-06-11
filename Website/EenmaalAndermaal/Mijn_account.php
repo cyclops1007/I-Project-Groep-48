@@ -9,9 +9,9 @@
 include 'Template.php';
 isUser();
 $accountInfo = mijnAccount($_SESSION['ID']);
-$_SESSION['change'] = "";
+$_SESSION['change'] = NULL;
 $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
-if (!isset($_SESSION['change'])) {
+if (!isset($_SESSION['change']) && !empty($_POST)) {
     $_SESSION['change'] = $_POST["Change"];
 } else {
     if(isset($_POST['firstname']) && !empty($_POST)){
@@ -43,7 +43,7 @@ if (!isset($_SESSION['change'])) {
             ?>
             <br>
             <form action="Mijn_account.php" method="post">
-                <input type="hidden" name="Change" value="1">
+                <input type="hidden" id="Change" name="Change" value="1">
                 <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Verander"
                        value="Verander account informatie">
             </form>
