@@ -624,4 +624,11 @@ function checkmail($checkmail){
     }
 }
 
+function upgradeAccount($id){
+    global $dbh;
+
+    $sql = $dbh->prepare("UPDATE Gebruiker SET rol = '2' WHERE gebruikersId = :ID");
+    $sql->execute(array(':ID' => $id));
+}
+
 ?>

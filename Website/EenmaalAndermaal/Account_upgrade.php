@@ -8,6 +8,9 @@
 
 include 'Template.php';
 isUser();
+if(isset($_POST)){
+    upgradeAccount($_SESSION['ID']);
+}
 
 function showUpgrade(){
     echo "<p>Heeft u interesse om het volle potentieel uit EenmaalAndermaal te halen?
