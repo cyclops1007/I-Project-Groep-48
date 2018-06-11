@@ -19,7 +19,7 @@ $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEind
 if(date("Y-m-d") < $endTimeArray['looptijdEindeDag']) {
     sluitVeiling($veilingId);
 }
-if($veiling[0]['veilingGesloten'] != 0){
+if($veiling[0]['veilingGesloten'] == 1){
     //$mails = getMails($hoogsteBod[1], $veiling['verkoper']);
     //stuurMail($mails);
     deleteVoorwerp($veilingId);
@@ -126,7 +126,9 @@ if(isset($_POST['bod'])){
                     </div>
                     <hr/>
                     <div id="text-container" class = "container rounded col-lg-12">
-                        Voorwaarden:
+                        Voorwaarden: Klik
+                        <a href="voorwaarden.php">  HIER </a>
+                        om de algemene voorwaarden te lezen.
                     </div>
                 </div>
             </div>
@@ -138,7 +140,7 @@ if(isset($_POST['bod'])){
                         <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0] . ',00';?></p>
                         <p id="resterendeVeilingDuur"></p>
                         <br>
-                        <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0 || $_SESSION['blocked'] != true){ ?>
+                        <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0 && $_SESSION['blocked'] != true){ ?>
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label>Mijn bod:</label>

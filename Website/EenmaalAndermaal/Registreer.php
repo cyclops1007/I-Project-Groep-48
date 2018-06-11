@@ -28,7 +28,6 @@ if (!empty($_POST)){
     $error = false;
     foreach ($required as $field) {
         if (empty($_POST[$field])) {
-            print_r($_POST);
             $error = true;
         }
     }
@@ -86,10 +85,10 @@ if (!empty($_POST)){
             echo "Je account is gemaakt! <br/> Klik op de activatie link op uw mail om uw account the verifiëren";
 
 
-        }elseif($isCorrect){
+        }elseif($isCorrect == false){
             echo "Wachtwoord komt niet overeen";
         }else{
-            echo "Niet alle velden zijn ingevuld! Scroll naar onder om te kijken waar.s";
+            echo "Niet alle velden zijn ingevuld! Scroll naar onder om te kijken waar.";
         };
 }
 ?>

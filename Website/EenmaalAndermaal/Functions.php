@@ -51,15 +51,6 @@ function getLanden(){
     return $land;
 }
 
-function showResult() {
-    global $dbh;
-
-    $sql = $dbh->query("SELECT titel FROM ");
-    $showResult = $sql->fetchALL();
-
-    return $showResult;
-}
-
 /**
  * Returns the data from the user that matches the given id.
  *
@@ -557,14 +548,8 @@ function login(){
                 $passy = $_POST['password'];
                 $verify = password_verify($passy, $hash);
 
-                echo password_hash($passy, PASSWORD_DEFAULT);
-                echo "<br />";
-                echo $hash;
-                echo $passy;
-
                 if($verify){
                     $username = $_POST["username"];
-                    echo $username;
                     $x = id($username);
                     $_SESSION['ID'] = $x[0];
                     $_SESSION["rol"] = $x[1];
@@ -575,7 +560,6 @@ function login(){
                     $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
                     echo $login_foutmelding;
                 }
-                print_r($_POST);
             }
         }
     }
@@ -604,7 +588,7 @@ function checkusername($checkname){
 
     $sql = $dbh->prepare("SELECT COUNT(*) FROM Gebruiker WHERE gebruikersnaam = '$checkname'");
     $sql->execute();
-    $tel = $sql->fetch();
+    $tel = $sql->fetchColumn();
 
     if($tel > 0){
         return "Gebruikersnaam wordt al gebruikt";
