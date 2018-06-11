@@ -51,15 +51,6 @@ function getLanden(){
     return $land;
 }
 
-function showResult() {
-    global $dbh;
-
-    $sql = $dbh->query("SELECT titel FROM ");
-    $showResult = $sql->fetchALL();
-
-    return $showResult;
-}
-
 /**
  * Returns the data from the user that matches the given id.
  *
