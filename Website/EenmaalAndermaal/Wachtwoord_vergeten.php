@@ -6,13 +6,13 @@
  * Time: 11:25
  */
 
-include "Template.php";
+include "template.php";
 if (!empty($_POST)) {
     $mailaddress = $_POST['mail'];
     $subject = "Wachtwoord vergeten"; //title
     $email = "Hello it seems you forgot your password <br>
               Please click the link below to get a new password. <br>
-               <a href='http://iproject48.icasites.nl/Nieuw_Wachtwoord.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
+               <a href='http://iproject48.icasites.nl/nieuw_wachtwoord.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
     $to = $mailaddress;
     $from = 'eenmaalandermaal2018@gmail.com'; //send from
     $headers = array();
@@ -43,6 +43,6 @@ if (!empty($_POST)) {
     </form>
     <br>
 </div>
-<?php include 'Footer.php';?>
+<?php include 'footer.php';?>
 </body>
 </html>

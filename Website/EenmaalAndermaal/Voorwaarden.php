@@ -5,7 +5,7 @@
  * Date: 7-5-2018
  * Time: 10:10
  */
-include 'Template.php';
+include 'template.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,6 +130,6 @@ include 'Template.php';
 </br>
 </div>
 </br>
-<?php include 'Footer.php';?>
+<?php include 'footer.php';?>
 </body>
 </html>

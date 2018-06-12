@@ -6,7 +6,7 @@
  * Time: 10:37
  */
 
-include 'Template.php';
+include 'template.php';
 isUser();
 $accountInfo = mijnAccount($_SESSION['ID']);
 $_SESSION['change'] = NULL;
@@ -42,7 +42,7 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
             }
             ?>
             <br>
-            <form action="Mijn_account.php" method="post">
+            <form action="mijn_account.php" method="post">
                 <input type="hidden" id="Change" name="Change" value="1">
                 <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Verander"
                        value="Verander account informatie">

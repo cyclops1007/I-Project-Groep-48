@@ -6,7 +6,7 @@
  * Time: 9:14
  */
 
-include 'Template.php';
+include 'template.php';
 if(isset($_SESSION['rol'])){header("index.php");}
 $options = getLanden();
 $fnameerr = "";
@@ -72,7 +72,7 @@ if (!empty($_POST)){
             Username: '' $username <br> 
             ------------------------ <br>
          
-            <a href='http://iproject48.icasites.nl/Geverifieerd.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
+            <a href='http://iproject48.icasites.nl/geverifieerd.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
             $to = $mailaddress;
             $from = 'eenmaalandermaal2018@gmail.com'; //send from
             $headers = array();
@@ -177,6 +177,6 @@ if (!empty($_POST)){
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Registreer</button>
     </form>
 </div>
-<?php include "Footer.php"; ?>
+<?php include "footer.php"; ?>
 </body>
 </html>

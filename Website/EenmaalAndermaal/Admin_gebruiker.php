@@ -6,7 +6,7 @@
  * Time: 14:50
  */
 
-include 'Template.php';
+include 'template.php';
 isAdmin();
 $data = gebruiker();
 if (isset($_POST['ID'])&& isUblocked($_POST['ID']) == 0){
@@ -62,6 +62,6 @@ if (isset($_POST['ID'])&& isUblocked($_POST['ID']) == 0){
     ?>
     </tbody>
 </table>
-<?php include "Footer.php"; ?>
+<?php include "footer.php"; ?>
 </body>
 </html>

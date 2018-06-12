@@ -7,7 +7,7 @@
  */
 //if(isset($_SESSION['rol']) && $_SESSION['rol'] == "gast") {
 ob_start();
-include 'Template.php';
+include 'template.php';
 isGuest();
 Login();
 ?>
@@ -28,8 +28,8 @@ Login();
         <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Login</button>
     </form>
     <br>
-    <p>Nog geen account? Klik <a href="Registreer.php">HIER</a> om te registreren!</p>
+    <p>Nog geen account? Klik <a href="registreer.php">HIER</a> om te registreren!</p>
 </div>
-<?php include 'Footer.php';?>
+<?php include 'footer.php';?>
 </body>
 </html>

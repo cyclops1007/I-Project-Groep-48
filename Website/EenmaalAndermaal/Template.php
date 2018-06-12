@@ -11,7 +11,7 @@ session_start();
 //if(!isset($_SESSION['rol'])){
 //    $_SESSION['rol'] = "gast";
 //}
-require 'Functions.php';
+require 'functions.php';
 isGuest();
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>
@@ -34,7 +34,7 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-targe  t="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <?php include 'Navbar.php'; ?>
+    <?php include 'navigatie.php'; ?>
 </nav>
 <nav class="...">
 <ol id="Breadcrumb" class="breadcrumb">
@@ -50,7 +50,7 @@ $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
    // echo "<pre>";// zorgt dat 't goed leesbaar is
       //  print_r($_SESSION);// laat de hele sessie op dat moment zien
    // echo "</pre>";
-    include_once 'Footer.php';
+    include_once 'footer.php';
 ?>
 </body>
 </html>

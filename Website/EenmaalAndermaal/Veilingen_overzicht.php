@@ -6,7 +6,7 @@
  * Time: 09:25
  */
 
-include 'Template.php';
+include 'template.php';
 
 if(isset($_SESSION['zoek'])){
     $veiling = zoek($_SESSION['zoek']);
@@ -103,7 +103,7 @@ $valuta = valuta($veiling[0]['valuta']);
             foreach ($rows as $key) {
                 ?>
                 <tr>
-                    <th scope="col"><a href="Veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
+                    <th scope="col"><a href="veiling.php?<?php echo $key['voorwerpnummer']?>">   <?php echo $key['titel']; ?></a></th>
                     <td><img src="<?php echo 'http://iproject5.icasites.nl/thumbnails/' . $key['thumbnail']; ?>"></td>
                     <td><?php echo $key['beschrijving']; ?></td>
                     <td><?php echo $valuta . $key['startprijs'] . ',00'; ?></td>
@@ -124,6 +124,6 @@ $valuta = valuta($veiling[0]['valuta']);
     ?>
     </tbody>
 </table>
-<?php include "Footer.php"; ?>
+<?php include "footer.php"; ?>
 </body>
 </html>

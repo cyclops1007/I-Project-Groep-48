@@ -5,7 +5,7 @@
  * Date: 23-5-2018
  * Time: 13:52
  */
-include 'Template.php';
+include 'template.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

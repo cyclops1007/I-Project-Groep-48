@@ -6,7 +6,7 @@
  * Time: 14:38
  */
 
-include 'Template.php';
+include 'template.php';
 
 $veilingId = $_SERVER['QUERY_STRING'];
 print_r($veilingId);
@@ -161,6 +161,6 @@ if(isset($_POST['bod'])){
             </div>
         </div>
     </div>
-    <?php include 'Footer.php';?>
+    <?php include 'footer.php';?>
 </body>
 </html>

@@ -5,7 +5,7 @@
  * Date: 26-4-2018
  * Time: 10:09
  */
-include 'Template.php';
+include 'template.php';
 isUser();
 $id = $_SESSION['ID'];
 $artikelen = array(getArtikelen($id));

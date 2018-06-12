@@ -5,7 +5,7 @@
  * Date: 7-5-2018
  * Time: 10:09
  */
-include 'Template.php';
+include 'template.php';
 $veiling = veilingenB();
 isAdmin();
 print_r(isvBlocked($_POST['ID']));
@@ -59,6 +59,6 @@ if (isset($_POST['ID']) && isvBlocked($_POST['ID']) == 0){
     <?php }?>
     </tbody>
 </table>
-<?php include 'Footer.php';?>
+<?php include 'footer.php';?>
 </body>
 </html>

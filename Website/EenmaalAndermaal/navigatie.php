@@ -9,15 +9,15 @@ $profiel = "";
 $profielN = "";
 if(isset($_POST['search']) && !empty($_POST['search'])){
     $_SESSION['zoek'] = $_POST['search'];
-    header("Location: Veilingen_overzicht.php");
+    header("Location: veilingen_overzicht.php");
 }
 
 if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
-    $profiel = "Login.php";
+    $profiel = "login.php";
     $profielN = "Login";
 }else{
     $ingelogd = ingelogd($_SESSION['ID']);
-    $profiel = "Mijn_account.php";
+    $profiel = "mijn_account.php";
     $profielN = "Mijn profiel";
 }
 ?>
@@ -33,15 +33,15 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <?php if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){ ?>
-                    <a class="dropdown-item" href="Login.php">Login</a>
-                    <a class="dropdown-item" href="Registreer.php">Registreer</a>
+                    <a class="dropdown-item" href="login.php">Login</a>
+                    <a class="dropdown-item" href="registreer.php">Registreer</a>
                 <?php }else{  ?>
-                    <a class="dropdown-item" href="Uitloggen.php">Uitloggen</a>
-                    <a class="dropdown-item" href="Mijn_account.php">Profiel</a>
-                    <a class="dropdown-item" href="Mijn_artikelen.php">Mijn biedingen</a>
-                    <a class="dropdown-item" href="Account_upgrade.php">Account upgraden</a>
+                    <a class="dropdown-item" href="uitloggen.php">Uitloggen</a>
+                    <a class="dropdown-item" href="mijn_account.php">Profiel</a>
+                    <a class="dropdown-item" href="mijn_artikelen.php">Mijn biedingen</a>
+                    <a class="dropdown-item" href="account_upgrade.php">Account upgraden</a>
                     <?php if($_SESSION['rol'] >= 2){?>
-                        <a class="dropdown-item" href="Mijn_artikelen.php">Mijn veilingen</a>
+                        <a class="dropdown-item" href="mijn_artikelen.php">Mijn veilingen</a>
                     <?php }} ?>
             </div>
         </li>
@@ -50,7 +50,7 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                 Veilingen
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="Veilingen_overzicht.php">Overzicht</a>
+                <a class="dropdown-item" href="veilingen_overzicht.php">Overzicht</a>
                 <?php if($_SESSION['rol'] >= 2 ){ ?>
                     <a class="dropdown-item" href="voorwerp_verkoop.php">Nieuwe veiling</a>
                 <?php } ?>
@@ -62,8 +62,8 @@ if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){
                     Beheer
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Veiling_Overzicht_Beheerder.php">Veilingen</a>
-                    <a class="dropdown-item" href="Admin_gebruiker.php">Gebruikers</a>
+                    <a class="dropdown-item" href="admin_voorwerp.php">Veilingen</a>
+                    <a class="dropdown-item" href="admin_gebruiker.php">Gebruikers</a>
                 </div>
             </li>
         <?php } ?>

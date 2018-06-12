@@ -6,7 +6,7 @@
  * Time: 11:51
  */
 
-include 'Template.php';
+include 'template.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

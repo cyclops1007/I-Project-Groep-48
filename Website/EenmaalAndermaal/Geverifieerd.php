@@ -6,7 +6,7 @@
  * Time: 09:43
  */
 //wanneer de link geverificeerd word kom je hier
-include "Template.php";
+include "template.php";
 
 if($_GET['email']){
 
@@ -22,7 +22,7 @@ if($_GET['email']){
         // We have a match, activate the account
         $activeer = $dbh->prepare("UPDATE Gebruiker SET verified = 1 WHERE mailbox='$mailaddress'");
         $activeer->execute();
-        header( "refresh:5;url=Login.php" );
+        header( "refresh:5;url=login.php" );
         echo "Je account is geactiveerd, je kan nu inloggen!";
 
 

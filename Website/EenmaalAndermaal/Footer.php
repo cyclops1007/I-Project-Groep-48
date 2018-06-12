@@ -12,8 +12,8 @@
     <div class="d-flex justify-content-center">
         <span class="text-muted col-sm-7">© <?php echo date("Y");?> Copyright</span>
 
-        <a href="Voorwaarden.php" class="col-sm-2">Voorwaarden</a>
+        <a href="voorwaarden.php" class="col-sm-2">Voorwaarden</a>
 
-        <a href="Contact_pagina.php" class="col-sm-1">Contact</a>
+        <a href="contact_pagina.php" class="col-sm-1">Contact</a>
     </div>
 </footer>

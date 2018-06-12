@@ -6,7 +6,7 @@
  * Time: 13:20
  */
 
-include 'Template.php';
+include 'template.php';
 isAdmin();
 ?>
 <!DOCTYPE html>
@@ -22,6 +22,6 @@ isAdmin();
             <input type="submit" class="btn btn-outline-light my-2 my-sm-0" value="Pas aan">
         </form>
     </div>
-    <?php include "Footer.php"; ?>
+    <?php include "footer.php"; ?>
 </body>
 </html>

@@ -6,7 +6,7 @@
  * Time: 9:14
  */
 
-include 'Template.php';
+include 'template.php';
 $valuta = getValuta();
 $landnaam = getLanden();
 isUser();

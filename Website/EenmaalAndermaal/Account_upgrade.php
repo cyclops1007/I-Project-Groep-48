@@ -6,7 +6,7 @@
  * Time: 14:44
  */
 
-include 'Template.php';
+include 'template.php';
 isUser();
 if(isset($_POST['Upgrade'])){
     upgradeAccount($_SESSION['ID']);

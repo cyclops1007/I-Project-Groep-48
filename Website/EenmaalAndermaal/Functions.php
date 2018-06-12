@@ -6,7 +6,7 @@
  * Date: 8-5-2018
  * Time: 10:32
  */
-require_once("Database_con.php");
+require_once("database_con.php");
 
 /**
  * Returns the 'gebruikersnaam', 'postcode', 'achternaam', 'voornaam' and 'plaatsnaam' from the table 'gebruiker'.
@@ -567,7 +567,7 @@ function login(){
                     } else{
                         $_SESSION['block'] = 1;
                     }
-                    header("Location: Mijn_account.php");
+                    header("Location: mijn_account.php");
 
                 } else{
                     $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';

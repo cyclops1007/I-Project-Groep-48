@@ -6,7 +6,7 @@
  * Time: 11:34
  */
 
-include "Template.php";
+include "template.php";
 
 if($_GET['mail'] && $_GET['hash']) {
 
@@ -65,7 +65,7 @@ if($_GET['mail'] && $_GET['hash']) {
     </form>
     <br>
 </div>
-<?php include 'Footer.php';?>
+<?php include 'footer.php';?>
 </body>
 </html>
 
