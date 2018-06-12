@@ -13,11 +13,10 @@ $_SESSION['change'] = NULL;
 $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
 if (!isset($_SESSION['change']) && !empty($_POST)) {
     $_SESSION['change'] = $_POST["Change"];;
-    echo 3;
-} elseif ((isset($_POST['voornaam']) )) {
-        echo 2;
+} if ((isset($_POST['voornaam']) )) {
         updateAccount($_POST);
     $_SESSION["change"] = NULL;
+    redirect('Mijn_account');
 }
 ?>
 <!DOCTYPE html>
@@ -70,7 +69,7 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
                                 <option><?php echo $option; ?></option>
                             <?php } ?>
                         </select><br>
-                        <label>Plaats:</label>
+                        <label>Postcode:</label>
                         <input class="form-control" type="text" name="postcode" value="<?php echo $key['postcode'];?>"><br>
                         <label>E-mail:</label>
                         <input class="form-control" type="text" name="mailbox" value="<?php echo $key['mailbox'];?>"><br><br>
