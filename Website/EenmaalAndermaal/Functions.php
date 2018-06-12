@@ -126,7 +126,7 @@ function AfbeeldingIndex()
 {
     global $dbh;
 
-    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID() DESC OFFSET 0 ROWS 
+    $sql = $dbh->query("SELECT afbeelding, voorwerpnummer FROM afbeeldingen ORDER BY NEWID() DESC OFFSET 0 ROWS 
     FETCH NEXT 3 ROWS ONLY;");
     $afbeeldingIndex = $sql->fetchALL();
 

@@ -5,9 +5,8 @@
  * Date: 24-4-2018
  * Time: 11:15
  */
-include 'template.php';
-include 'database_con.php';
-$foto = afbeeldingIndex();
+include 'Template.php';
+$foto = AfbeeldingIndex();
 /**
  * Contains the basic html for the page, calling to the carousel and the container function.
  *
@@ -39,7 +38,7 @@ $foto = afbeeldingIndex();
                         <div class="carousel-tekst">
                             <p>Klik op de afbeelding om naar de veiling te gaan</p>
                         </div>
-                        <a href="veiling.php?<?php echo $voorwerp['voorwerpnummer']; ?>">
+                        <a href="Veiling.php?<?php echo $voorwerp['voorwerpnummer']; ?>">
                             <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                         </a>
                     </div>
@@ -69,5 +68,5 @@ $foto = afbeeldingIndex();
         </div>
     </div>
 </body>
-<?php include 'footer.php';?>
+<?php include 'Footer.php';?>
 </html>

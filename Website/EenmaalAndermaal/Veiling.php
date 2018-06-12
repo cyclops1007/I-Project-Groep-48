@@ -9,14 +9,12 @@
 include 'template.php';
 
 $veilingId = $_SERVER['QUERY_STRING'];
-
 $veiling = artikelnummer($veilingId);
 $endTimeArray = getEndDate($veilingId);
 $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
-$location = 'index';
 if(date("Y-m-d") > $endTimeArray['looptijdEindeDag']) {
     sluitVeiling($veilingId);
-    redirect($location);
+    redirect('index');
 }
 
 $valuta = valuta($veiling[0]['valuta']);
@@ -110,7 +108,6 @@ if(isset($_POST['bod'])){
                             <!-- The slideshow -->
                             <?php
                             foreach ($foto as $voorwerp){
-                            print_r($voorwerp);
                             if ($voorwerp === reset($foto)) { ?>
                             <div class="carousel-item active">
                                 <?php }else{ ?>
@@ -159,7 +156,7 @@ if(isset($_POST['bod'])){
                         }
                         ?>
                     </div>
-                    <div id="text-container" class="container rounded col-sm-6">
+                    <div id="text-container2" class="container rounded" style="width: 10%;">
                         <p><strong>Beschrijving: </strong><?php echo $veiling[0]['beschrijving']; // kan best zijn dat dit meerdere informatie moet worden maar dat komt dan wel.?></p>
                     </div>
                 </div>
