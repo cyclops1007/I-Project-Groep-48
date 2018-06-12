@@ -14,7 +14,6 @@ if(isset($_SESSION['zoek'])){
 }else{
     $veiling = veilingen();
 }
-
 $valuta = valuta($veiling[0]['valuta']);
 
 ?>

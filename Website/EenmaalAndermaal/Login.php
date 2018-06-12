@@ -29,6 +29,7 @@ Login();
     </form>
     <br>
     <p>Nog geen account? Klik <a href="registreer.php">HIER</a> om te registreren!</p>
+    <p>Wachtwoord vergeten? Klik <a href="wachtwoord_vergeten.php">HIER</a> om te registreren!</p>
 </div>
 <?php include 'footer.php';?>
 </body>

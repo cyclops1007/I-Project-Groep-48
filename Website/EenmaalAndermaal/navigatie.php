@@ -9,7 +9,7 @@ $profiel = "";
 $profielN = "";
 if(isset($_POST['search']) && !empty($_POST['search'])){
     $_SESSION['zoek'] = $_POST['search'];
-    header("Location: veilingen_overzicht.php");
+    redirect("veilingen_overzicht.php");
 }
 
 if($_SESSION['rol'] == 0 || !isset($_SESSION['rol'])){

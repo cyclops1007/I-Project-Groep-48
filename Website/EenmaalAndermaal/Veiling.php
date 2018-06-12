@@ -9,21 +9,24 @@
 include 'template.php';
 
 $veilingId = $_SERVER['QUERY_STRING'];
-print_r($veilingId);
+
 $veiling = artikelnummer($veilingId);
+$endTimeArray = getEndDate($veilingId);
+$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
+if(date("Y-m-d") > $endTimeArray['looptijdEindeDag']) {
+    sluitVeiling($veilingId);
+}
+
 $valuta = valuta($veiling[0]['valuta']);
 $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
-$endTimeArray = getEndDate($veilingId);
-$endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
-if(date("Y-m-d") < $endTimeArray['looptijdEindeDag']) {
-    sluitVeiling($veilingId);
-}
+
 if($veiling[0]['veilingGesloten'] == 1){
     //$mails = getMails($hoogsteBod[1], $veiling['verkoper']);
     //stuurMail($mails);
     deleteVoorwerp($veilingId);
-    header("Location: index.php");
+    redirect("veilingen_overzicht.php");
+    exit;
 }
 
 if(isset($_POST['bod'])){
@@ -105,15 +108,15 @@ if(isset($_POST['bod'])){
                             <!-- The slideshow -->
                             <?php
                             foreach ($foto as $voorwerp){
-                                print_r($voorwerp);
+                            print_r($voorwerp);
                             if ($voorwerp === reset($foto)) { ?>
                             <div class="carousel-item active">
-                            <?php }else{ ?>
+                                <?php }else{ ?>
                                 <div class="carousel-item">
                                     <?php } ?>
                                     <img src="<?php echo 'http://iproject5.icasites.nl/pics/' . $voorwerp['afbeelding']; ?>">
                                 </div>
-                            <?php } ?>
+                                <?php } ?>
                             </div>
                             <!-- Left and right controls -->
                             <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -149,9 +152,9 @@ if(isset($_POST['bod'])){
                                 <button type="submit" class="btn btn-outline-light">bied</button>
                             </form>
                         <?php }
-                            if($veiling[0]['veilingGesloten'] != 0){
-                                echo "<p>Deze veiling is gesloten!</p>";
-                            }
+                        if($veiling[0]['veilingGesloten'] != 0){
+                            echo "<p>Deze veiling is gesloten!</p>";
+                        }
                         ?>
                     </div>
                     <div id="text-container" class="container rounded col-sm-6">

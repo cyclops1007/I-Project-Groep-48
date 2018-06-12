@@ -74,7 +74,7 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
                         <label>E-mail:</label>
                         <input class="form-control" type="text" name="mailbox" value="<?php echo $key['mailbox'];?>"><br><br>
                         <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Change"
-                               value="Verander account informatie">
+                               value="Wijzig">
                         <br><br>
                     </div>
                 </form>

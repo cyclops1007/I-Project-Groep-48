@@ -243,6 +243,7 @@ function updateHoogsteBod($veilingId, $nieuwBod, $gebruiker){
  * Registers a new user.
  *
  * @param array $registreerArray Array filled with all the data needed to register a new user into the 'Gebruiker' table
+ * @return void
  */
 function registreer($registreerArray){
     global $dbh;
@@ -586,7 +587,7 @@ function login(){
 function sluitVeiling($id){
     global $dbh;
 
-    $sql = $dbh->prepare("UPDATE Voorwerp SET veilingGesloten = true WHERE voorwerpnummer = ':ID'");
+    $sql = $dbh->prepare("UPDATE Voorwerp SET veilingGesloten = '1' WHERE voorwerpnummer = :ID");
     $sql->execute(array(':ID' => $id));
 
 }
