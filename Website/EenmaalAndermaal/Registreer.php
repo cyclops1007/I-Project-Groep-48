@@ -146,12 +146,12 @@ if (!empty($_POST)){
             <label for="postcode">Postcode:</label>
             <input id="postcode" class="form-control" type="text" name="postalcode"><br>
 
-            <!--        <label>Land:</label>
+            <label>Land:</label>
             <select class="form-control" name="country">
-                <?php //foreach ($options as $land) { ?>
-                    <option><?php //echo $land['land'] ?></option>
-                <?php //} ?>
-            </select><br> -->
+                <?php foreach ($options as $land) { ?>
+                    <option><?php echo $land['landcode'] ?></option>
+                <?php } ?>
+            </select><br>
             <?php echo $dateerr ?><br>
             <label for="geboortedatum">Geboortedatum:</label>
             <input id="geboortedatum" class="form-control" type="text" name="date"><br>
