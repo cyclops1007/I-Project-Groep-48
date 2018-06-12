@@ -83,9 +83,8 @@ if (!empty($_POST)){
             $headers[] = "X-Mailer: PHP/" . phpversion();
             mail($to, $subject, $email, implode("\r\n", $headers), "-f" . $from);
 
-
+            header("Refresh: 3; url=Login.php");
             echo "Je account is gemaakt! <br/> Klik op de activatie link op uw mail om uw account the verifiëren";
-
 
         }elseif($isCorrect == false){
             echo "Wachtwoord komt niet overeen";

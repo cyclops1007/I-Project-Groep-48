@@ -12,11 +12,11 @@ $accountInfo = mijnAccount($_SESSION['ID']);
 $_SESSION['change'] = NULL;
 $array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
 if (!isset($_SESSION['change']) && !empty($_POST)) {
-    $_SESSION['change'] = $_POST["Change"];
-} else {
-    if(isset($_POST['firstname']) && !empty($_POST)){
+    $_SESSION['change'] = $_POST["Change"];;
+    echo 3;
+} elseif ((isset($_POST['voornaam']) )) {
+        echo 2;
         updateAccount($_POST);
-    }
     $_SESSION["change"] = NULL;
 }
 ?>
@@ -33,6 +33,7 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
             foreach ($accountInfo as $key) {
                 echo "<h2>Gebruikersnaam: ". $key['gebruikersnaam'] . "</h2>";
                 echo "<h2>Naam: "          . $key['voornaam'] . "</h2>";
+                echo "<h2>Achternaam: "    . $key['achternaam'] . "</h2>";
                 echo "<h2>Adres: "         . $key['adresregel1'] . "</h2>";
                 echo "<h2>Adres-2: "       . $key['adresregel2'] . "</h2>";
                 echo "<h2>Postcode: "      . $key['postcode'] . "</h2>";

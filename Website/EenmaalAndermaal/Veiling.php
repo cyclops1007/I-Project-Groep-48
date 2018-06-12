@@ -13,8 +13,10 @@ $veilingId = $_SERVER['QUERY_STRING'];
 $veiling = artikelnummer($veilingId);
 $endTimeArray = getEndDate($veilingId);
 $endTime = $endTimeArray['looptijdEindeDag'] . " " . $endTimeArray['looptijdEindeTijdstip'];
+$location = 'index';
 if(date("Y-m-d") > $endTimeArray['looptijdEindeDag']) {
     sluitVeiling($veilingId);
+    redirect($location);
 }
 
 $valuta = valuta($veiling[0]['valuta']);
@@ -25,7 +27,7 @@ if($veiling[0]['veilingGesloten'] == 1){
     //$mails = getMails($hoogsteBod[1], $veiling['verkoper']);
     //stuurMail($mails);
     deleteVoorwerp($veilingId);
-    redirect("veilingen_overzicht.php");
+
     exit;
 }
 

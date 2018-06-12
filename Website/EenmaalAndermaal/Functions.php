@@ -194,22 +194,19 @@ function getValuta(){
 }
 function updateAccount($array){
     global $dbh;
-
     $sessie = $_SESSION['ID'];
-    $sqlUpdate = $dbh->query("UPDATE Gebruiker SET voornaam = :voornaam, achternaam = :achternaam, 
-                              gebruikersnaam = :gebruikersnaam, adresregel1 = :adresregel1, adresregel2 = :adresregel2, 
-                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = '$sessie'");
-    $sql = $dbh->prepare($sqlUpdate);
-    $parameters = array(
+    print_r($_SESSION);
+    $sql = $dbh->prepare("UPDATE Gebruiker SET voornaam = :voornaam WHERE gebruikersId = '$sessie'");
+    $sql->execute(array(
         ':voornaam' => $array['voornaam'],
-        ':achternaam' => $array['achternaam'],
-        ':gebruikersnaam' => $array['gebruikersnaam'],
-        ':adresregel1' => $array['adresregel1'],
-        ':adresregel2' => $array['adresregel2'],
-        ':postcode' => $array['postcode'],
-        ':mailbox' => $array['mailbox']
-    );
-    $sql->execute($parameters);
+        //':achternaam' => $array['achternaam'],
+        //':gebruikersnaam' => $array['gebruikersnaam'],
+        //':adresregel1' => $array['adresregel1'],
+        //':adresregel2' => $array['adresregel2'],
+        //':postcode' => $array['postcode'],
+        //':mailbox' => $array['mailbox']
+    ));
+
 }
 
 
@@ -568,8 +565,8 @@ function login(){
                     } else{
                         $_SESSION['block'] = 1;
                     }
-                    header("Location: mijn_account.php");
-
+                    header("Refresh: 3; url=Mijn_account.php");
+                    echo "You're being logged in";
                 } else{
                     $login_foutmelding = '<p class="login">De gebruikersnaam en wachtwoord komen niet overeen.</p>';
                     echo $login_foutmelding;
@@ -579,9 +576,6 @@ function login(){
     }
 }
 
-
-//$_SESSION['block'] = false;
-//isUBlocked($id)
 
 
 function sluitVeiling($id){
@@ -636,6 +630,15 @@ function upgradeAccount($id){
 
     $sql = $dbh->prepare("UPDATE Gebruiker SET rol = '2' WHERE gebruikersId = :ID");
     $sql->execute(array(':ID' => $id));
+}
+
+function hashmail($mail){
+    global $dbh;
+
+    $sql = $dbh->prepare("SELECT Hash FROM Gebruiker WHERE mailbox = '$mail'");
+    $sql->execute();
+    $fetch = $sql->fetchColumn();
+    return $fetch;
 }
 
 ?>

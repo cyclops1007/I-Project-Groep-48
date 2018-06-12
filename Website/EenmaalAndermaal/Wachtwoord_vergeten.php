@@ -9,10 +9,11 @@
 include "template.php";
 if (!empty($_POST)) {
     $mailaddress = $_POST['mail'];
+    $hash = hashmail($mailaddress);
     $subject = "Wachtwoord vergeten"; //title
     $email = "Hello it seems you forgot your password <br>
               Please click the link below to get a new password. <br>
-               <a href='http://iproject48.icasites.nl/nieuw_wachtwoord.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
+               <a href='http://localhost:63342/EenmaalAndermaal/Nieuw_Wachtwoord.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
     $to = $mailaddress;
     $from = 'eenmaalandermaal2018@gmail.com'; //send from
     $headers = array();
@@ -22,6 +23,7 @@ if (!empty($_POST)) {
     $headers[] = "Reply-To: EenmaalAndermaal <{$from}>";
     $headers[] = "X-Mailer: PHP/" . phpversion();
     mail($to, $subject, $email, implode("\r\n", $headers), "-f" . $from);
+    echo "U wachtwoord is naar u mail gestuurd";
 }
 ?>
 <!DOCTYPE html>

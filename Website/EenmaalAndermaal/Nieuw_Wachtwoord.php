@@ -8,9 +8,9 @@
 
 include "template.php";
 
-if($_GET['mail'] && $_GET['hash']) {
+if($_GET['email'] && $_GET['hash']) {
 
-    $mailaddress = $_GET['mail'];
+    $mailaddress = $_GET['email'];
 
     if (!empty($_POST)) {
 

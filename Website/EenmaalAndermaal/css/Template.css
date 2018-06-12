@@ -123,3 +123,8 @@ textarea {
     float: right;
     max-width: 100%;
 }
+
+th a {
+    color: #AFA5C5;
+    text-decoration: underline;
+}
