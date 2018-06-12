@@ -8,7 +8,7 @@
 
 include 'Template.php';
 isUser();
-if(isset($_POST)){
+if(isset($_POST['Upgrade'])){
     upgradeAccount($_SESSION['ID']);
 }
 

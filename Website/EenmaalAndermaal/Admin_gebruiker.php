@@ -9,7 +9,6 @@
 include 'Template.php';
 isAdmin();
 $data = gebruiker();
-$isblocked;
 if (isset($_POST['ID'])&& isUblocked($_POST['ID']) == 0){
     uBlock($_POST['ID']);
 }else if(isset($_POST['ID']) && isUblocked($_POST['ID']) == 1){
