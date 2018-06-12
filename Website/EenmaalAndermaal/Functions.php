@@ -530,8 +530,7 @@ function login(){
             $login_foutmelding = '<p class="login">U account is nog niet geverifieerd. Klik a.u.b. op de link in u mailbox om uw account the verifieeren</p>';
             echo $login_foutmelding;
         }
-        //$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        //$isCorrect = password_verify($password_h, $hashed_password);
+
         else {
             $pass = $dbh->prepare("SELECT wachtwoord FROM Gebruiker WHERE gebruikersnaam = :username");
             $pass->execute(array(
@@ -553,6 +552,11 @@ function login(){
                     $_SESSION['ID'] = $x[0];
                     $_SESSION["rol"] = $x[1];
                     $_SESSION['username'] = $_POST['username'];
+                    if(isUBlocked($_SESSION['ID']) == false){
+                        $_SESSION['block'] = 0;
+                    } else{
+                        $_SESSION['block'] = 1;
+                    }
                     header("Location: Mijn_account.php");
 
                 } else{
@@ -563,6 +567,10 @@ function login(){
         }
     }
 }
+
+
+//$_SESSION['block'] = false;
+//isUBlocked($id)
 
 
 function sluitVeiling($id){
@@ -585,24 +593,30 @@ function deleteVoorwerp($id){
 function checkusername($checkname){
     global $dbh;
 
+    $checkname2 = true;
     $sql = $dbh->prepare("SELECT COUNT(*) FROM Gebruiker WHERE gebruikersnaam = '$checkname'");
     $sql->execute();
     $tel = $sql->fetchColumn();
 
     if($tel > 0){
         return "Gebruikersnaam wordt al gebruikt";
+    } else{
+        return $checkname2 = false;
     }
 }
 
 function checkmail($checkmail){
     global $dbh;
 
+    $checkmail2 = true;
     $sql = $dbh->prepare("SELECT COUNT(*) FROM Gebruiker WHERE mailbox = '$checkmail'");
     $sql->execute();
     $tel = $sql->fetchColumn();
 
     if($tel > 0){
         return "email wordt al gebruikt";
+    } else {
+        return $checkmail2 = false;
     }
 }
 

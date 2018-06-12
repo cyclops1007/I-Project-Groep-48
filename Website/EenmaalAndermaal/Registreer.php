@@ -49,6 +49,8 @@ if (!empty($_POST)){
 
         $user = checkusername($username);
         $mailer = checkmail($mailaddress);
+        $checkmail2 = checkmail($mailaddress);
+        $checkuser2 = checkusername($username);
         if(empty($firstname)){$fnameerr = "Voornaam is niet ingevuld";}
         if(empty($lastname)){$lnameerr = "Achternaam is niet ingevuld";}
         if(empty($username)){$userr = "Gebruikersnaam is niet ingevuld";}
@@ -59,7 +61,7 @@ if (!empty($_POST)){
         if(empty($password)){$passerr = "wachtwoord is niet ingevuld";}
         if(empty($password_h)){$passherr = "wachtwoord is niet ingevuld";}
 
-        if($isCorrect == true && $error == false){
+        if($isCorrect == true && $error == false && $checkuser2 == false && $checkmail2 == false){
 
             $hash = registreer($_POST);
             $subject = "Signup | verification"; //title
