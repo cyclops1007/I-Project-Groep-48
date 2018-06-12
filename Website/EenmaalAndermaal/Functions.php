@@ -45,7 +45,7 @@ function ingelogd($id){
 function getLanden(){
     global $dbh;
 
-    $sql = $dbh->query("SELECT landnaam FROM Landen");
+    $sql = $dbh->query("SELECT * FROM Landen");
     $land = $sql->fetchAll();
 
     return $land;
