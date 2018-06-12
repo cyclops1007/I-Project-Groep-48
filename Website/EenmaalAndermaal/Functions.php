@@ -45,7 +45,7 @@ function ingelogd($id){
 function getLanden(){
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM Landen");
+    $sql = $dbh->query("SELECT landnaam FROM Landen");
     $land = $sql->fetchAll();
 
     return $land;
@@ -196,15 +196,17 @@ function updateAccount($array){
     global $dbh;
     $sessie = $_SESSION['ID'];
     print_r($_SESSION);
-    $sql = $dbh->prepare("UPDATE Gebruiker SET voornaam = :voornaam WHERE gebruikersId = '$sessie'");
+    $sql = $dbh->prepare("UPDATE Gebruiker SET voornaam = :voornaam, achternaam = :achternaam, 
+                              gebruikersnaam = :gebruikersnaam, adresregel1 = :adresregel1, adresregel2 = :adresregel2, 
+                              postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = '$sessie'");
     $sql->execute(array(
         ':voornaam' => $array['voornaam'],
-        //':achternaam' => $array['achternaam'],
-        //':gebruikersnaam' => $array['gebruikersnaam'],
-        //':adresregel1' => $array['adresregel1'],
-        //':adresregel2' => $array['adresregel2'],
-        //':postcode' => $array['postcode'],
-        //':mailbox' => $array['mailbox']
+        ':achternaam' => $array['achternaam'],
+        ':gebruikersnaam' => $array['gebruikersnaam'],
+        ':adresregel1' => $array['adresregel1'],
+        ':adresregel2' => $array['adresregel2'],
+        ':postcode' => $array['postcode'],
+        ':mailbox' => $array['mailbox']
     ));
 
 }
