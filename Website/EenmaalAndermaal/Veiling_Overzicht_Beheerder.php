@@ -6,13 +6,15 @@
  * Time: 10:09
  */
 include 'Template.php';
-$veiling = veilingen();
+$veiling = veilingenB();
 isAdmin();
-if (!empty($_POST) && isvBlocked($_SESSION['ID']) == false){
-    vBlock($_POST);
-}else if(!empty($_POST) && isvBlocked($_SESSION['ID']) == true){
-    vUnblock($_POST);
+print_r(isvBlocked($_POST['ID']));
+if (isset($_POST['ID']) && isvBlocked($_POST['ID']) == 0){
+    vBlock($_POST['ID']);
+}else if(!empty($_POST) && isvBlocked($_POST['ID']) == 1){
+    vUnblock($_POST['ID']);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +44,7 @@ if (!empty($_POST) && isvBlocked($_SESSION['ID']) == false){
             <td><?php echo $key['startprijs']; ?></td>
             <td>
                 <form action="" method="post">
+                    <input type="hidden" name="ID" value="<?php echo $key['voorwerpnummer'];?>">
                     <input type="image" src="
                     <?php
                         if($key['blocked'] == 0){

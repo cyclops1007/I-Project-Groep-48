@@ -67,7 +67,7 @@ function mijnAccount($id) {
 }
 
 /**
- * Returns all items from the table 'voorwerp'.
+ * Returns all items from the table 'voorwerp' if not blocked.
  *
  * @return array
  */
@@ -75,6 +75,20 @@ function veilingen() {
     global $dbh;
 
     $sql = $dbh->query("SELECT *  FROM voorwerp WHERE blocked = '0'");
+    $veilingen = $sql->fetchAll();
+
+    return $veilingen;
+}
+
+/**
+ * Returns all items from the table 'voorwerp'.
+ *
+ * @return array
+ */
+function veilingenB() {
+    global $dbh;
+
+    $sql = $dbh->query("SELECT *  FROM voorwerp");
     $veilingen = $sql->fetchAll();
 
     return $veilingen;
@@ -362,20 +376,6 @@ function isUBlocked($id){
     return $gebruiker; // moet false of true returnen
 }
 
-/**
- * Checks if the article by the given articleId is blocked.
- *
- * @param int $id The id number of the object of which you want to know if he's blocked or not
- * @return boolean
- */
-function isvBlocked($id){
-    global $dbh; //deze is fucked
-
-    $sql = $dbh->query("SELECT blocked FROM Voorwerp WHERE gebruikersId = $id");
-    $artikel = $sql->fetchAll();
-
-    return $artikel; // moet false of true returnen
-}
 
 /**
  * Blocks a user.
@@ -401,9 +401,23 @@ function uUnblock($id){
     global $dbh;
 
     $update = $dbh->prepare("UPDATE Gebruiker SET blocked = 0 WHERE gebruikersId = :ID");
-
     $update->execute(array(':ID' => $id));
     header("Location: admin_gebruiker.php");
+}
+
+/**
+ * Checks if the article by the given articleId is blocked.
+ *
+ * @param int $id The id number of the object of which you want to know if he's blocked or not
+ * @return boolean
+ */
+function isvBlocked($id){
+    global $dbh;
+
+    $sql = $dbh->query("SELECT blocked FROM Voorwerp WHERE voorwerpnummer = $id");
+    $artikel = $sql->fetchColumn();
+
+    return $artikel;
 }
 
 /**
@@ -415,11 +429,9 @@ function uUnblock($id){
 function vBlock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Voorwerp SET blocked = true WHERE gebruikersId = :ID");
-    $sql = $dbh->prepare($update);
-    $parameters = array(':ID' => $id);
-
-    $sql->execute($parameters);
+    $update = $dbh->prepare("UPDATE Voorwerp SET blocked = 1 WHERE voorwerpnummer = :ID");
+    $update->execute(array(':ID' => $id));
+    header("Location: admin_voorwerp.php");
 }
 
 
@@ -433,11 +445,9 @@ function vBlock($id){
 function vUnblock($id){
     global $dbh;
 
-    $update = $dbh->query("UPDATE Voorwerp SET blocked = false WHERE gebruikersId = :ID");
-    $sql = $dbh->prepare($update);
-    $parameters = array(':ID' => $id);
-
-    $sql->execute($parameters);
+    $update = $dbh->prepare("UPDATE Voorwerp SET blocked = 0 WHERE voorwerpnummer = :ID");
+    $update->execute(array(':ID' => $id));
+    header("Location: admin_voorwerp.php");
 }
 
 /**
