@@ -6,7 +6,7 @@
  * Time: 16:55
  */
 
-include 'functions.php';
+include 'functies.php';
 
 $veilingId = $_REQUEST["q"];
 $veiling = artikelnummer($veilingId);

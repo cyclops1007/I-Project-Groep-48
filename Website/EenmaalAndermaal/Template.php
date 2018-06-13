@@ -11,7 +11,7 @@ session_start();
 //if(!isset($_SESSION['rol'])){
 //    $_SESSION['rol'] = "gast";
 //}
-require 'functions.php';
+require 'functies.php';
 isGuest();
 $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 ?>

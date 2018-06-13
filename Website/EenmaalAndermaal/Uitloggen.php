@@ -5,7 +5,7 @@
  * Date: 8-5-2018
  * Time: 9:57
  */
-include 'functions.php';
+include 'functies.php';
 $location = 'index';
 session_start();
 logout();
