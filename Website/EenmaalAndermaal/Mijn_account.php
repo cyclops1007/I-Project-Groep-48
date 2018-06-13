@@ -10,7 +10,6 @@ include 'template.php';
 isUser();
 $accountInfo = mijnAccount($_SESSION['ID']);
 $_SESSION['change'] = NULL;
-$array = ['1', '2', '3'];//wordt veranderd nadat de database data bevat.
 if (!isset($_SESSION['change']) && !empty($_POST)) {
     $_SESSION['change'] = $_POST["Change"];;
 } if ((isset($_POST['voornaam']) )) {
@@ -51,7 +50,7 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
             <?php
         } elseif ($_SESSION['change'] == 1) {
             foreach ($accountInfo as $key){ ?>
-                <form action="" method="post">
+                <form action="mijn_account.php" method="post">
                     <div class="form-group">
                         <label>Voornaam:</label>
                         <input class="form-control" type="text" name="voornaam" value="<?php echo $key['voornaam'];?>"><br>

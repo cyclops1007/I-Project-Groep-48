@@ -26,7 +26,7 @@ function gebruiker() {
 function zoek($title) {
     global $dbh;
 
-    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE titel LIKE '%$title%' AND blocked = '0'");
+    $sql = $dbh->query("SELECT * FROM Voorwerp WHERE titel LIKE '%$title%' AND blocked = 0");
     $zoek = $sql->fetchALL();
 
     return $zoek;
@@ -98,7 +98,6 @@ function veilingenB() {
  * Returns all the data from the table 'Voorwerp' where the $veilingId equals the 'voorwerpnummer'.
  *
  * @param int $veilingId
- * @return String
  */
 
 function artikelnummer($veilingId) {
@@ -106,7 +105,7 @@ function artikelnummer($veilingId) {
 
 
     $sql = $dbh->query("SELECT * FROM Voorwerp WHERE voorwerpnummer = $veilingId");
-    $artikelnummer = $sql->fetchALL();
+    $artikelnummer = $sql->fetchAll();
 
     return $artikelnummer;
 }
