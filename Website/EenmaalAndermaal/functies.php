@@ -195,7 +195,6 @@ function getValuta(){
 function updateAccount($array){
     global $dbh;
     $sessie = $_SESSION['ID'];
-    print_r($_SESSION);
     $sql = $dbh->prepare("UPDATE Gebruiker SET voornaam = :voornaam, achternaam = :achternaam, 
                               gebruikersnaam = :gebruikersnaam, adresregel1 = :adresregel1, adresregel2 = :adresregel2, 
                               postcode = :postcode, mailbox = :mailbox WHERE gebruikersId = '$sessie'");
@@ -304,7 +303,6 @@ function verkoop($verkoopArray){
             ':Blocked'              => 0,
             ':VeilingGesloten'      => 0,
             ':eindtijdstip'         => '12:00:00.0000000');
-        print_r($parameters);
 
 
         $sql->execute($parameters);
@@ -669,5 +667,29 @@ function insertverkoper($id){
     $parameters = array(':ID' => $id,
         ':controle' => 'Reader');
     $sql->execute($parameters);
+}
+
+function mailkoper($id){
+    global $dbh;
+
+    $sql = $dbh->prepare("SELECT mailbox
+FROM Gebruiker INNER JOIN Bod
+	ON Gebruiker.gebruikersId = Bod.gebruikersId 
+WHERE voorwerp = $id
+GROUP BY bodbedrag, mailbox
+HAVING bodbedrag = MAX(bodbedrag)");
+    $sql->execute();
+    $fetch = $sql->fetchColumn();
+    return $fetch;
+}
+
+function mailverkoper($id){
+    global $dbh;
+
+    $sql = $dbh->prepare("SELECT mailbox FROM gebruiker WHERE gebruikersId = ':ID'");
+    $parameters = array(':ID' => $id);
+    $sql->execute($parameters);
+    $fetch = $sql->fetchColumn();
+    return $fetch;
 }
 ?>

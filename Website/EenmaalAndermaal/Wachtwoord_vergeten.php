@@ -13,7 +13,7 @@ if (!empty($_POST)) {
     $subject = "Wachtwoord vergeten"; //title
     $email = "Hello it seems you forgot your password <br>
               Please click the link below to get a new password. <br>
-               <a href='http://localhost:63342/EenmaalAndermaal/Nieuw_Wachtwoord.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
+               <a href='http://iproject48.icasites.nl/Nieuw_Wachtwoord.php?email=$mailaddress&hash=$hash'>please click this link to activate your account</a>";
     $to = $mailaddress;
     $from = 'eenmaalandermaal2018@gmail.com'; //send from
     $headers = array();

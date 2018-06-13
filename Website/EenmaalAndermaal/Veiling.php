@@ -22,10 +22,28 @@ $foto = artikelfoto($veilingId);
 $hoogsteBod = getHoogsteBod($veilingId);
 
 if($veiling[0]['veilingGesloten'] == 1){
-    //$mails = getMails($hoogsteBod[1], $veiling['verkoper']);
-    //stuurMail($mails);
+//    $mailverkoper = mailverkoper($veilingId);
+//    $mailkoper = mailkoper($veilingId);
+//    $subject = "Veiling verkocht"; //title
+//    $subject2 = "Veiling afgelopen";
+//    $email = "U hebt de veiling gewonnen!
+//                            Hierboven ziet u het mail adres van de verkoper.
+//                            Gebruik deze mail om contact op te nemen.";
+//    $email2 = "De veiling is afgelopen!
+//                            Hierboven ziet u het mail adres van de koper.
+//                            Gebruik deze mail om contact op te nemen.";
+//    $to2 = $mailverkoper;
+//    $to = $mailkoper;
+//    $from = 'eenmaalandermaal2018@gmail.com'; //send from
+//    $headers = array();
+//    $headers[] = "MIME-Version: 1.0";
+//    $headers[] = "Content-type: text/html; charset=iso-8859-1";
+//    $headers[] = "From: EenmaalAndermaal <{$from}>";
+//    $headers[] = "Reply-To: EenmaalAndermaal <{$from}>";
+//    $headers[] = "X-Mailer: PHP/" . phpversion();
+//    mail($to, $subject, $email, implode("\r\n", $headers), "-f" . $from);
+//    mail($to2, $subject2, $email2, implode("\r\n", $headers), "-f" . $from);
     deleteVoorwerp($veilingId);
-
     exit;
 }
 
@@ -142,7 +160,8 @@ if(isset($_POST['bod'])){
                         <p id="hoogsteBod">Huidige prijs: <?php echo "$valuta" . $hoogsteBod[0] . ',00';?></p>
                         <p id="resterendeVeilingDuur"></p>
                         <br>
-                        <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0 && $_SESSION['blocked'] != true){ ?>
+                        <?php
+                        if(isset($_SESSION['rol']) && $_SESSION['rol'] != 0 && $_SESSION['block'] != 1){ ?>
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label>Mijn bod:</label>

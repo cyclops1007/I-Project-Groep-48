@@ -8,7 +8,6 @@
 include 'template.php';
 $veiling = veilingenB();
 isAdmin();
-print_r(isvBlocked($_POST['ID']));
 if (isset($_POST['ID']) && isvBlocked($_POST['ID']) == 0){
     vBlock($_POST['ID']);
 }else if(!empty($_POST) && isvBlocked($_POST['ID']) == 1){

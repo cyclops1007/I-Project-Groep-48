@@ -19,7 +19,6 @@ if($_GET['email'] && $_GET['hash']) {
         $error = false;
         foreach ($required as $field) {
             if (empty($_POST[$field])) {
-                print_r($_POST);
                 $error = true;
             }
         }

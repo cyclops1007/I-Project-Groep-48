@@ -19,7 +19,6 @@ if (!empty($_POST)) {
     $error = false;
     foreach ($required as $field) {
         if (empty($_POST[$field])) {
-            print_r($_POST);
             $error = true;
         }
     }
@@ -31,7 +30,7 @@ if (!empty($_POST)) {
         $startprijs     = $_POST['Startprijs'];
         $betalingswijze = $_POST['Betalingswijze'];
         $foto           = $_POST['Pic'];
-
+        echo "Voorwerp is toegevoegd";
         verkoop($_POST);
     }
 }
