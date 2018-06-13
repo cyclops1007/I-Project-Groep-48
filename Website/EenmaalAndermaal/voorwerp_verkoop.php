@@ -10,11 +10,11 @@ include 'template.php';
 $valuta = getValuta();
 $landnaam = getLanden();
 isUser();
-if(isUBlocked($_SESSION['ID'])){ redirect('index.php');}
+if(isUBlocked($_SESSION['ID'])){ redirect('index');}
 if (!empty($_POST)) {
 
 
-    $required = array('Titel', 'Catogorie', 'Beschrijving', 'Startprijs', 'Betalingswijze', 'Postalcode', 'Pic');
+    $required = array('Titel', 'Beschrijving', 'Startprijs', 'Betalingswijze', 'Pic');
 
     $error = false;
     foreach ($required as $field) {
@@ -27,11 +27,9 @@ if (!empty($_POST)) {
         echo "All fields are required.";
     } else {
         $titel          = $_POST['Titel'];
-        $catogorie      = $_POST['Catogorie'];
         $beschrijving   = $_POST['Beschrijving'];
         $startprijs     = $_POST['Startprijs'];
         $betalingswijze = $_POST['Betalingswijze'];
-        $postcode       = $_POST['Postalcode'];
         $foto           = $_POST['Pic'];
 
         verkoop($_POST);
@@ -50,8 +48,6 @@ if (!empty($_POST)) {
         <div class="form-group">
             <label>Titel:</label>
             <input class="form-control" type="text" name="Titel"><br>
-            <label>Catogorie:</label>
-            <input class="form-control" type="text" name="Catogorie"><br>
             <label>Beschrijving:</label>
             <input class="form-control" type="text" name="Beschrijving"><br>
             <label>Startprijs:</label>
@@ -67,11 +63,9 @@ if (!empty($_POST)) {
             <label>Land:</label>
             <select class="form-control" name="Land">
                 <?php foreach($landnaam as $land){
-                    echo"<option>" . $land['landnaam'] . "</option>";
+                    echo"<option>" . $land['landcode'] . "</option>";
                 } ?>
             </select><br>
-            <label>postcode:</label>
-            <input class="form-control" type="text" name="Postalcode"><br>
             <label>Upload foto's</label>
             <input type="file" name="Pic" accept="image/*">
         </div>

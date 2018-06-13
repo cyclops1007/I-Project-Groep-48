@@ -45,7 +45,7 @@ function ingelogd($id){
 function getLanden(){
     global $dbh;
 
-    $sql = $dbh->query("SELECT landnaam FROM Landen");
+    $sql = $dbh->query("SELECT * FROM Landen");
     $land = $sql->fetchAll();
 
     return $land;
@@ -126,7 +126,7 @@ function AfbeeldingIndex()
 {
     global $dbh;
 
-    $sql = $dbh->query("SELECT afbeelding, voorwerpnummer FROM afbeeldingen ORDER BY NEWID() DESC OFFSET 0 ROWS 
+    $sql = $dbh->query("SELECT afbeelding FROM afbeeldingen ORDER BY NEWID() DESC OFFSET 0 ROWS 
     FETCH NEXT 3 ROWS ONLY;");
     $afbeeldingIndex = $sql->fetchALL();
 
@@ -249,15 +249,16 @@ function registreer($registreerArray){
     //pre_r($registreerArray)
     $hash = md5(rand(0,1000));
     try {
-        $sqlregistreer = "INSERT INTO Gebruiker (voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst, Hash) VALUES(:firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion, :hash)";
+        $sqlregistreer = "INSERT INTO Gebruiker (gebruikersId, voornaam, achternaam, gebruikersnaam, adresregel1, adresregel2, postcode, landcode, geboortedag, mailbox, wachtwoord, vraagnummer, rol, verified, blocked, antwoordTekst, Hash) VALUES(:gebruikersId, :firstname, :lastname, :username, :address1, :address2, :postalcode, :country, :datum, :mail, :password, :security_q, :verkoper, :verified, :blocked, :aquestion, :hash)";
         $sql = $dbh->prepare($sqlregistreer);
-        $parameters = array(':firstname' => $registreerArray['firstname'],
+        $parameters = array(':gebruikersId' => maxid(),
+            ':firstname' => $registreerArray['firstname'],
             ':lastname' => $registreerArray['lastname'],
             ':username' => $registreerArray['username'],
             ':address1' => $registreerArray['address1'],
             ':address2' => $registreerArray['address2'],
             ':postalcode' => $registreerArray['postalcode'],
-            ':country' => "DEU",
+            ':country' => $registreerArray['country'],
             ':datum' => $registreerArray['date'],
             ':mail' => $registreerArray['mail'],
             ':password' => password_hash($registreerArray['password'], PASSWORD_DEFAULT),
@@ -281,22 +282,18 @@ function verkoop($verkoopArray){
     $datum2 = date('Y-m-d',$d);
 //    pre_r($verkoopArray);
     try {
-        $sqlverkoop = "INSERT INTO Voorwerp (titel, categorie, beschrijving, startprijs, 
-                                             betalingswijzeNaam, postcode, thumbnail, valuta,
-                                             landnaam, looptijd, looptijdBeginDag, verkoper,
-                                             looptijdEindeDag, blocked, veilingGesloten) 
-                       
-                       VALUES(:Titel, :Categorie, :Beschrijving, :Startprijs, 
-                              :Betalingswijze, :Postalcode, :Thumbnail, :Valuta,
-                              :Land, :Looptijd, :looptijdBeginDag, :Verkoper,
-                              :looptijdEindeDag, :Blocked, :VeilingGesloten)";
+        $sqlverkoop = "INSERT INTO Voorwerp (looptijdBeginDag,looptijdEindeDag,looptijdEindeTijdstip,voorwerpnummer, titel, beschrijving, startprijs, 
+                                             betalingswijzeNaam, thumbnail, valuta,
+                                             landcode, looptijd,  verkoper,
+                                              blocked, veilingGesloten) 
+                       VALUES(:looptijdBeginDag, :looptijdEindeDag, :eindtijdstip, :nummer, :Titel, :Beschrijving, :Startprijs, :Betalingswijze, :Thumbnail,
+                       :Valuta, :Land, :Looptijd, :Verkoper, :Blocked, :VeilingGesloten)";
         $sql = $dbh->prepare($sqlverkoop);
-        $parameters = array(':Titel' => $verkoopArray['Titel'],
-            ':Categorie'            => $verkoopArray['Catogorie'],
+        $parameters = array(':nummer' => maxvoorwerp(),
+            ':Titel'                => $verkoopArray['Titel'],
             ':Beschrijving'         => $verkoopArray['Beschrijving'],
             ':Startprijs'           => $verkoopArray['Startprijs'],
             ':Betalingswijze'       => $verkoopArray['Betalingswijze'],
-            ':Postalcode'           => $verkoopArray['Postalcode'],
             ':Thumbnail'            => $verkoopArray['Pic'],
             ':Valuta'               => $verkoopArray['Valuta'],
             ':Land'                 => $verkoopArray['Land'],
@@ -305,12 +302,14 @@ function verkoop($verkoopArray){
             ':Verkoper'             => $_SESSION['ID'],
             ':looptijdEindeDag'     => $datum2,
             ':Blocked'              => 0,
-            ':VeilingGesloten'      => 0);
+            ':VeilingGesloten'      => 0,
+            ':eindtijdstip'         => '12:00:00.0000000');
+        print_r($parameters);
 
 
         $sql->execute($parameters);
 
-        print_r($parameters);
+
     }catch(Exception $e){
         echo $e;
     }
@@ -643,4 +642,32 @@ function hashmail($mail){
     return $fetch;
 }
 
+function maxid(){
+    global $dbh;
+
+    $sql = $dbh->prepare("SELECT MAX(gebruikersId) FROM Gebruiker");
+    $sql->execute();
+    $fetch = $sql->fetchColumn();
+    $result = $fetch + 1;
+    return $result;
+}
+
+function maxvoorwerp(){
+    global $dbh;
+
+    $sql = $dbh->prepare("SELECT MAX(voorwerpnummer) FROM Voorwerp");
+    $sql->execute();
+    $fetch = $sql->fetchColumn();
+    $result = $fetch + 1;
+    return $result;
+}
+
+function insertverkoper($id){
+    global $dbh;
+
+    $sql = $dbh->prepare("INSERT INTO Verkoper (gebruikersId, controleOptie) VALUES(:ID, :controle");
+    $parameters = array(':ID' => $id,
+        ':controle' => 'Reader');
+    $sql->execute($parameters);
+}
 ?>

@@ -37,7 +37,7 @@ if (!empty($_POST)){
         $address1       = $_POST['address1'];
         $address2       = $_POST['address2'];
         $postalcode     = $_POST['postalcode'];
-        //$country        = 1;
+        $country        = $_POST['country'];
         $date           = $_POST['date'];
         $mailaddress     = $_POST['mail'];
         $password       = $_POST['password'];

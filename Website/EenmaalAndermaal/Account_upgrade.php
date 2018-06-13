@@ -9,7 +9,9 @@
 include 'template.php';
 isUser();
 if(isset($_POST['Upgrade'])){
+    $_SESSION['rol'] = 2;
     upgradeAccount($_SESSION['ID']);
+    insertverkoper($_SESSION['ID']);
 }
 
 function showUpgrade(){
