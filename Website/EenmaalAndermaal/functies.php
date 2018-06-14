@@ -661,11 +661,9 @@ function maxvoorwerp(){
 
 function insertverkoper($id){
     global $dbh;
-
-    $sql = $dbh->prepare("INSERT INTO Verkoper (gebruikersId, controleOptie) VALUES(:ID, :controle");
-    $parameters = array(':ID' => $id,
-        ':controle' => 'Reader');
-    $sql->execute($parameters);
+    $sql = $dbh->prepare("INSERT INTO Verkoper (gebruikersId, controleOptie) VALUES (:ID, :controle)");
+    $sql->execute(array(':ID' => $id,
+        ':controle' => "Reader"));
 }
 
 function mailkoper($id){

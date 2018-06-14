@@ -12,6 +12,7 @@ if(isset($_POST['Upgrade'])){
     $_SESSION['rol'] = 2;
     upgradeAccount($_SESSION['ID']);
     insertverkoper($_SESSION['ID']);
+
 }
 
 function showUpgrade(){
@@ -25,7 +26,7 @@ function showUpgrade(){
 }
 function showNoUpgrade(){
     echo "<p>U bent al een verkoper! Er zijn geen upgrades meer mogelijk</p><br>";
-}
+    }
 
 ?>
 <!DOCTYPE html>
@@ -40,6 +41,7 @@ function showNoUpgrade(){
         <?php
             if($_SESSION['rol'] == 1){
                 showUpgrade();
+
             } else {
                 showNoUpgrade();
             }

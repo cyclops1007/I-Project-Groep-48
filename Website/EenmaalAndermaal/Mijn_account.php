@@ -15,7 +15,10 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
 } if ((isset($_POST['voornaam']) )) {
         updateAccount($_POST);
     $_SESSION["change"] = NULL;
-    redirect('Mijn_account');
+    $_POST['voornaam'] = null;
+    //redirect('Mijn_account');
+    //header("Refresh:0");
+    //header("Refresh:5; url=Mijn_account");
 }
 ?>
 <!DOCTYPE html>
@@ -29,15 +32,15 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
         <?php
         if ($_SESSION['change'] != 1) {
             foreach ($accountInfo as $key) {
-                echo "<h2>Gebruikersnaam: ". $key['gebruikersnaam'] . "</h2>";
-                echo "<h2>Naam: "          . $key['voornaam'] . "</h2>";
-                echo "<h2>Achternaam: "    . $key['achternaam'] . "</h2>";
-                echo "<h2>Adres: "         . $key['adresregel1'] . "</h2>";
-                echo "<h2>Adres-2: "       . $key['adresregel2'] . "</h2>";
-                echo "<h2>Postcode: "      . $key['postcode'] . "</h2>";
-                echo "<h2>Land: "          . $key['landcode'] . "</h2>";
-                echo "<h2>Geboortedatum: " . $key['geboortedag'] . "</h2>";
-                echo "<h2>E-mail: "        . $key['mailbox'] . "</h2>";
+                echo "<h2>Gebruikersnaam: " ;   if(isset($_POST['gebruikersnaam'])){echo $_POST['gebruikersnaam'];}else{ echo $key['gebruikersnaam'];}  echo "</h2>";
+                echo "<h2>Naam: " ;   if(isset($_POST['voornaam'])){echo $_POST['voornaam'];}else{ echo $key['voornaam'];}  echo "</h2>";
+                echo "<h2>Achternaam: " ;   if(isset($_POST['achternaam'])){echo $_POST['achternaam'];}else{ echo $key['achternaam'];}  echo "</h2>";
+                echo "<h2>Adres: " ;   if(isset($_POST['adresregel1'])){echo $_POST['adresregel1'];}else{ echo $key['adresregel1'];}  echo "</h2>";
+                echo "<h2>Adres-2: " ;   if(isset($_POST['adresregel2'])){echo $_POST['adresregel2'];}else{ echo $key['adresregel2'];}  echo "</h2>";
+                echo "<h2>Postcode: " ;   if(isset($_POST['postcode'])){echo $_POST['postcode'];}else{ echo $key['postcode'];}  echo "</h2>";
+                echo "<h2>Land: " ;   if(isset($_POST['landcode'])){echo $_POST['landcode'];}else{ echo $key['landcode'];}  echo "</h2>";
+                echo "<h2>Geboortedatum: " ;   if(isset($_POST['geboortedag'])){echo $_POST['geboortedag'];}else{ echo $key['geboortedag'];}  echo "</h2>";
+                echo "<h2>E-mail: " ;   if(isset($_POST['mailbox'])){echo $_POST['mailbox'];}else{ echo $key['mailbox'];}  echo "</h2>";
             }
             ?>
             <br>
@@ -48,7 +51,7 @@ if (!isset($_SESSION['change']) && !empty($_POST)) {
             </form>
             <br>
             <?php
-        } elseif ($_SESSION['change'] == 1) {
+            } elseif ($_SESSION['change'] == 1) {
             foreach ($accountInfo as $key){ ?>
                 <form action="mijn_account.php" method="post">
                     <div class="form-group">
